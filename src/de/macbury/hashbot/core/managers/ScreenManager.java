@@ -3,7 +3,7 @@ package de.macbury.hashbot.core.managers;
 import com.badlogic.gdx.utils.Disposable;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.screens.LoadingScreen;
-import de.macbury.hashbot.core.screens.MenuScreen;
+import de.macbury.hashbot.core.screens.menu.MenuScreen;
 
 /**
  * Created by macbury on 18.04.14.

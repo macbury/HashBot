@@ -22,9 +22,14 @@ public class CursorDefiniton {
     this.offset = offset;
   }
 
+  float tempAlpha = 1;
+
   public void draw(Batch batch) {
     batch.begin();
+      tempAlpha = batch.getColor().a;
+      batch.getColor().a = 1f;
       batch.draw(texture, Gdx.input.getX() + offset.x, Gdx.graphics.getHeight() - Gdx.input.getY() - texture.getRegionHeight() + offset.y);
+      batch.getColor().a = tempAlpha;
     batch.end();
   }
 }

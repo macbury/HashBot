@@ -10,6 +10,7 @@
     <orderEntry type="library" name="org.jruby:jruby-complete:1.7.6" level="project" />
     <orderEntry type="library" name="gdx" level="project" />
     <orderEntry type="library" name="org.yaml:snakeyaml:1.13" level="project" />
+    <orderEntry type="library" name="tween-engine-api" level="project" />
   </component>
 </module>
 

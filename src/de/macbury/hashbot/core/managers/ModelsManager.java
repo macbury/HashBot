@@ -32,10 +32,13 @@ public class ModelsManager {
 
     for (Material material : instance.materials) {
       BlendingAttribute blendingAttribute = (BlendingAttribute)material.get(BlendingAttribute.Type);
-      blendingAttribute.opacity = 0.8f;
-      blendingAttribute.sourceFunction = GL20.GL_SRC_ALPHA;
-      blendingAttribute.destFunction = GL20.GL_ONE_MINUS_SRC_ALPHA;
-      blendingAttribute.blended = true;
+      if (blendingAttribute != null) {
+        blendingAttribute.opacity = 0.8f;
+        blendingAttribute.sourceFunction = GL20.GL_SRC_ALPHA;
+        blendingAttribute.destFunction = GL20.GL_ONE_MINUS_SRC_ALPHA;
+        blendingAttribute.blended = true;
+      }
+
     }
     instance.position.set(0, 0, 0);
     return instance;

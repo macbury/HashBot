@@ -1,5 +1,6 @@
 package de.macbury.hashbot.core;
 
+import aurelienribon.tweenengine.Tween;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -7,6 +8,12 @@ import com.badlogic.gdx.backends.lwjgl.ExtLwjgGraphics;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import de.macbury.hashbot.core.graphics.tweens.UIStageAccessor;
+import de.macbury.hashbot.core.graphics.tweens.UITableAccessor;
+import de.macbury.hashbot.core.graphics.ui.CursorOverlay;
+import de.macbury.hashbot.core.graphics.ui.UIStage;
+import de.macbury.hashbot.core.graphics.ui.UITable;
 import de.macbury.hashbot.core.i18n.I18n;
 import de.macbury.hashbot.core.i18n.I18nLocale;
 import de.macbury.hashbot.core.managers.*;
@@ -28,10 +35,10 @@ public class HashBot extends Game {
 
   private String[] args;
   private boolean debug;
+  private CursorOverlay cursorOverlay;
 
   @Override
   public void create() {
-
     for(String arg : args) {
       if (arg.contains("debug")) {
         this.debug = true;
@@ -42,6 +49,9 @@ public class HashBot extends Game {
 
     Gdx.app.debug(TAG, "Initializing");
     Gdx.app.debug(TAG, "Version: " + Gdx.app.getVersion());
+
+    this.cursorOverlay = new CursorOverlay();
+
     HashBot.game       = this;
     HashBot.assets     = new Assets(this);
     HashBot.screens    = new ScreenManager(this);
@@ -49,12 +59,16 @@ public class HashBot extends Game {
     HashBot.music      = new MusicManager();
     HashBot.models     = new ModelsManager();
     HashBot.i18n       = new I18n(Gdx.files.internal("i18n/pl.yml"));
+
+    Tween.registerAccessor(UIStage.class, new UIStageAccessor());
+    Tween.registerAccessor(UITable.class, new UITableAccessor());
     screens.openLoadingScreen();
   }
 
   @Override
   public void render() {
     super.render();
+    cursorOverlay.draw();
   }
 
   @Override

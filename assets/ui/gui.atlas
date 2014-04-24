@@ -1,0 +1,78 @@
+
+gui.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+context-menu
+  rotate: false
+  xy: 1, 27
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+openhand
+  rotate: false
+  xy: 35, 27
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+closedhand
+  rotate: false
+  xy: 69, 27
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+forbidden
+  rotate: false
+  xy: 103, 27
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+arrow
+  rotate: false
+  xy: 137, 27
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+ibeam
+  rotate: false
+  xy: 171, 27
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+copy
+  rotate: false
+  xy: 205, 27
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+button_normal
+  rotate: false
+  xy: 1, 1
+  size: 32, 24
+  split: 14, 13, 7, 7
+  orig: 32, 24
+  offset: 0, 0
+  index: -1
+button_pressed
+  rotate: false
+  xy: 35, 1
+  size: 32, 24
+  split: 2, 2, 2, 2
+  orig: 32, 24
+  offset: 0, 0
+  index: -1
+button_hover
+  rotate: false
+  xy: 69, 1
+  size: 32, 24
+  split: 14, 13, 7, 7
+  orig: 32, 24
+  offset: 0, 0
+  index: -1

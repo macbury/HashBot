@@ -1,0 +1,10 @@
+pl:
+  loading_screen:
+    loading: "Wczytywanie: %d%%"
+  menu_screen:
+    new_game: "Nowa Gra"
+    continue: "Kontynuuj"
+    settings: "Opcje"
+    map_editor: "Edytor Map"
+    settings: "Opcje"
+    exit: "Zamknij"

@@ -29,7 +29,6 @@ public class ModelsManager {
       }
 
     }
-    instance.position.set(0, 0, 0);
     return instance;
   }
 

@@ -52,7 +52,13 @@ public class MenuDefaultTable extends UITable {
       }
     });
     this.mapEditorButton  = HashBot.ui.menuButton(HashBot.i18n.t("menu_screen.map_editor"));
-
+    mapEditorButton.addListener(new ClickListener() {
+      @Override
+      public void clicked(InputEvent event, float x, float y) {
+        super.clicked(event, x, y);
+        MenuDefaultTable.this.listener.onMapEditButtonClick();
+      }
+    });
     row().expand();
     add().colspan(2);
     row();

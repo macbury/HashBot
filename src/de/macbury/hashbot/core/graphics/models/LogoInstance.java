@@ -9,12 +9,13 @@ import com.badlogic.gdx.math.Vector3;
  */
 public class LogoInstance extends ModelInstance {
   private static final float ROTATION_SPEED = 90;
-  public Vector3 position;
+  private Vector3 position;
   private float rotation;
   public LogoInstance(Model model) {
     super(model);
     position = new Vector3();
     rotation = 0.0f;
+    position.set(-3, 0, 2);
   }
 
   public void update(float delta) {

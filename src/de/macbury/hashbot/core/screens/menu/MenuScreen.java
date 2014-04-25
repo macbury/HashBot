@@ -17,12 +17,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.models.LogoInstance;
 import de.macbury.hashbot.core.graphics.ui.FlatColors;
+import de.macbury.hashbot.core.screens.BaseScreen;
 
 
 /**
  * Created by macbury on 18.04.14.
  */
-public class MenuScreen implements Screen, MenuOptionsListener {
+public class MenuScreen extends BaseScreen implements MenuOptionsListener {
   public static final int GRID_SIZE = 64;
   private static final String TAG = "MenuScreen";
   private LogoInstance menuLogoModel;
@@ -101,6 +102,8 @@ public class MenuScreen implements Screen, MenuOptionsListener {
   @Override
   public void resize(int width, int height) {
     stage.resize(width, height);
+    camera.viewportWidth  = width;
+    camera.viewportHeight = height;
   }
 
   @Override
@@ -142,5 +145,15 @@ public class MenuScreen implements Screen, MenuOptionsListener {
   public void onSettingsButtonClick() {
     //stage.goToSettings();
     HashBot.ui.settingsDialog().show(stage);
+  }
+
+  @Override
+  public void onMapEditButtonClick() {
+    HashBot.screens.openMapEditor();
+  }
+
+  @Override
+  public void afterFade() {
+
   }
 }

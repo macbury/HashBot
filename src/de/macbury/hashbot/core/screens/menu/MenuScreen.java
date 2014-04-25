@@ -7,19 +7,16 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.g3d.Environment;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
-import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
 import com.badlogic.gdx.graphics.g3d.utils.DefaultTextureBinder;
 import com.badlogic.gdx.graphics.g3d.utils.RenderContext;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.models.LogoInstance;
 import de.macbury.hashbot.core.graphics.ui.FlatColors;
-import de.macbury.hashbot.core.graphics.ui.UIStage;
 
 
 /**
@@ -45,11 +42,10 @@ public class MenuScreen implements Screen, MenuOptionsListener {
     camera.position.set(0, -5, 0);
     camera.lookAt(Vector3.Zero);
 
-    //stage.getViewport().setCamera(camera);
 
     env             = new Environment();
     env.set(new ColorAttribute(ColorAttribute.AmbientLight, 1f, 1f, 1f, 1f));
-    //env.add(new DirectionalLight().set(1f, 1f,1f, 2f, 10f,0f));
+    env.add(new DirectionalLight().set(1f, 1f,1f, 2f, 10f,0f));
     this.modelBatch = new ModelBatch(renderContext);
 
     this.menuLogoModel     = HashBot.models.menuLogo();
@@ -97,8 +93,8 @@ public class MenuScreen implements Screen, MenuOptionsListener {
     renderContext.begin(); {
       stage.draw();
 
-      //if (HashBot.game.isDebug())
-        //Table.drawDebug(stage);
+      if (HashBot.game.isDebug())
+        Table.drawDebug(stage);
     } renderContext.end();
   }
 
@@ -112,7 +108,7 @@ public class MenuScreen implements Screen, MenuOptionsListener {
     Gdx.app.debug(TAG, "Show");
     Gdx.input.setInputProcessor(stage);
     HashBot.ui.normalCursor();
-    stage.setCurrentTable(stage.menuTable);
+    stage.goToDefault();
     //HashBot.music.mainMenu().play();
   }
 
@@ -140,5 +136,11 @@ public class MenuScreen implements Screen, MenuOptionsListener {
   @Override
   public void onExitButtonClick() {
     Gdx.app.exit();
+  }
+
+  @Override
+  public void onSettingsButtonClick() {
+    //stage.goToSettings();
+    HashBot.ui.settingsDialog().show(stage);
   }
 }

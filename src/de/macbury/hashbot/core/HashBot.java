@@ -7,15 +7,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.ExtLwjgGraphics;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import de.macbury.hashbot.core.graphics.tweens.UIStageAccessor;
 import de.macbury.hashbot.core.graphics.tweens.UITableAccessor;
 import de.macbury.hashbot.core.graphics.ui.CursorOverlay;
-import de.macbury.hashbot.core.graphics.ui.UIStage;
-import de.macbury.hashbot.core.graphics.ui.UITable;
+import de.macbury.hashbot.core.graphics.ui.widgets.UIStage;
+import de.macbury.hashbot.core.graphics.ui.widgets.UITable;
 import de.macbury.hashbot.core.i18n.I18n;
-import de.macbury.hashbot.core.i18n.I18nLocale;
 import de.macbury.hashbot.core.managers.*;
 
 /**
@@ -32,6 +29,7 @@ public class HashBot extends Game {
   public static MusicManager music;
   public static ModelsManager models;
   public static I18n i18n;
+  public static ConfigManager config;
 
   private String[] args;
   private boolean debug;
@@ -53,16 +51,23 @@ public class HashBot extends Game {
     this.cursorOverlay = new CursorOverlay();
 
     HashBot.game       = this;
+    HashBot.i18n       = new I18n();
+    HashBot.config     = new ConfigManager();
     HashBot.assets     = new Assets(this);
     HashBot.screens    = new ScreenManager(this);
     HashBot.ui         = new UIManager();
     HashBot.music      = new MusicManager();
     HashBot.models     = new ModelsManager();
-    HashBot.i18n       = new I18n(Gdx.files.internal("i18n/pl.yml"));
 
     Tween.registerAccessor(UIStage.class, new UIStageAccessor());
     Tween.registerAccessor(UITable.class, new UITableAccessor());
     screens.openLoadingScreen();
+  }
+
+  @Override
+  public void resize(int width, int height) {
+    super.resize(width, height);
+    cursorOverlay.resize(width, height);
   }
 
   @Override

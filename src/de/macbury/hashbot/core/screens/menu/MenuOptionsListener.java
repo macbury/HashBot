@@ -5,4 +5,5 @@ package de.macbury.hashbot.core.screens.menu;
  */
 public interface MenuOptionsListener {
   public void onExitButtonClick();
+  public void onSettingsButtonClick();
 }

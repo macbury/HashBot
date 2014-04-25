@@ -3,66 +3,106 @@ gui.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+window_body
+  rotate: false
+  xy: 1, 121
+  size: 128, 128
+  split: 6, 6, 21, 9
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+select_pressed
+  rotate: false
+  xy: 1, 95
+  size: 64, 24
+  split: 5, 23, 5, 5
+  orig: 64, 24
+  offset: 0, 0
+  index: -1
+select_normal
+  rotate: false
+  xy: 131, 225
+  size: 64, 24
+  split: 5, 23, 5, 5
+  orig: 64, 24
+  offset: 0, 0
+  index: -1
+select_hover
+  rotate: false
+  xy: 1, 69
+  size: 64, 24
+  split: 5, 23, 5, 5
+  orig: 64, 24
+  offset: 0, 0
+  index: -1
 context-menu
   rotate: false
-  xy: 1, 27
+  xy: 67, 87
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 openhand
   rotate: false
-  xy: 35, 27
+  xy: 131, 191
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 closedhand
   rotate: false
-  xy: 69, 27
+  xy: 1, 35
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 forbidden
   rotate: false
-  xy: 103, 27
+  xy: 131, 157
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 arrow
   rotate: false
-  xy: 137, 27
+  xy: 1, 1
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 ibeam
   rotate: false
-  xy: 171, 27
+  xy: 131, 123
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 copy
   rotate: false
-  xy: 205, 27
+  xy: 165, 191
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 button_normal
   rotate: false
-  xy: 1, 1
+  xy: 197, 225
   size: 32, 24
-  split: 14, 13, 7, 7
+  split: 14, 13, 4, 7
+  orig: 32, 24
+  offset: 0, 0
+  index: -1
+list_view_selected_background
+  rotate: false
+  xy: 165, 165
+  size: 32, 24
+  split: 2, 2, 2, 2
   orig: 32, 24
   offset: 0, 0
   index: -1
 button_pressed
   rotate: false
-  xy: 35, 1
+  xy: 165, 139
   size: 32, 24
   split: 2, 2, 2, 2
   orig: 32, 24
@@ -70,9 +110,52 @@ button_pressed
   index: -1
 button_hover
   rotate: false
-  xy: 69, 1
+  xy: 35, 43
   size: 32, 24
   split: 14, 13, 7, 7
   orig: 32, 24
+  offset: 0, 0
+  index: -1
+window_foreground
+  rotate: false
+  xy: 101, 100
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+scroll_pane_background
+  rotate: false
+  xy: 199, 206
+  size: 17, 17
+  split: 4, 4, 4, 4
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+checkbox_on
+  rotate: false
+  xy: 231, 232
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+scroll_pane_knob_background
+  rotate: false
+  xy: 67, 69
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+checkbox_off
+  rotate: false
+  xy: 35, 24
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+scroll_pane_knob
+  rotate: false
+  xy: 199, 188
+  size: 16, 16
+  orig: 16, 16
   offset: 0, 0
   index: -1

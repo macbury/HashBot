@@ -20,6 +20,7 @@ public class Assets extends AssetManager {
   private static final String MODELS_PREFIX     = "models/";
 
   public static final String FONT_UI        = FONT_PREFIX + "ui.fnt";
+  public static final String FONT_UI_SMALL  = FONT_PREFIX + "ui_small.fnt";
   public static final String FONT_CODE      = FONT_PREFIX + "code.fnt";
   public static final String MUSIC_MENU     = MUSIC_PREFIX + "menu.mp3";
 
@@ -27,7 +28,6 @@ public class Assets extends AssetManager {
   public static final String CURSOR_PLACEHOLDER       = UI_PREFIX + "cursor_placeholder.png";
 
   public static final String MODEL_MENU_LOGO      = MODELS_PREFIX + "logo.g3db";
-  public static final String MODEL_MENU_ITEM      = MODELS_PREFIX + "menu_item.g3db";
 
   public static final String SOUND_CLICK          = SOUND_PREFIX + "click.wav";
   public static final String SOUND_HOVER          = SOUND_PREFIX + "hover.wav";
@@ -52,11 +52,11 @@ public class Assets extends AssetManager {
   private void pushPendingAssets() {
     didLoad = false;
     load(ATLAS_UI, TextureAtlas.class);
+    load(FONT_UI_SMALL, BitmapFont.class);
     load(CURSOR_PLACEHOLDER, Pixmap.class);
     load(MUSIC_MENU, Music.class);
     load(FONT_CODE, BitmapFont.class);
 
-    load(MODEL_MENU_ITEM, Model.class);
     load(MODEL_MENU_LOGO, Model.class);
 
     load(SOUND_CLICK, Sound.class);

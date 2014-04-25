@@ -12,6 +12,7 @@ import java.util.HashMap;
  */
 public class I18nLocale {
 
+  private String name;
   public String key;
   private HashMap<String, String> keys;
   private Yaml yaml;
@@ -25,9 +26,9 @@ public class I18nLocale {
       break;
     }
 
-    buildKeyset(tempKeys);
+    this.name = handle.nameWithoutExtension();
 
-    Gdx.app.log("I18n", "loaded");
+    buildKeyset(tempKeys);
   }
 
   private void buildKeyset(HashMap tempKeys) {
@@ -54,5 +55,9 @@ public class I18nLocale {
         findKey(subHash, finalKey+"."+k, k);
       }
     }
+  }
+
+  public String getName() {
+    return name;
   }
 }

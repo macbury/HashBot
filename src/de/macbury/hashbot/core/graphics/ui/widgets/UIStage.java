@@ -1,11 +1,10 @@
-package de.macbury.hashbot.core.graphics.ui;
+package de.macbury.hashbot.core.graphics.ui.widgets;
 
 import aurelienribon.tweenengine.*;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.tweens.UITableAccessor;
 
 /**
@@ -13,6 +12,7 @@ import de.macbury.hashbot.core.graphics.tweens.UITableAccessor;
  */
 public class UIStage extends Stage {
 
+  private static final float FADE_SPEED = 0.25F;
   public TweenManager tweenEngine;
   protected UITable currentTable;
   private UITable tempTable;
@@ -28,32 +28,37 @@ public class UIStage extends Stage {
 
   public void setCurrentTable(UITable nextTable) {
     Timeline sequence = Timeline.createSequence();
-
+    final InputProcessor tempProcessor = Gdx.input.getInputProcessor();
+    Gdx.input.setInputProcessor(null);
     sequence.beginParallel();
       if (currentTable != null) {
         this.tempTable = currentTable;
 
-        sequence.push(Tween.to(currentTable, UITableAccessor.FADE, 1.0f).target(0.0f));
-        sequence.setCallback(new TweenCallback() {
-          @Override
-          public void onEvent(int type, BaseTween<?> source) {
-            UIStage.this.tempTable.remove();
-          }
-        });
+        sequence.push(Tween.to(currentTable, UITableAccessor.FADE, FADE_SPEED).target(0.0f));
       }
       this.currentTable = nextTable;
       if (currentTable != null) {
         addActor(currentTable);
         currentTable.setAlpha(0);
-        sequence.pushPause(0.5f);
-        sequence.push(Tween.to(currentTable, UITableAccessor.FADE, 1.0f).target(1.0f));
+        sequence.push(Tween.to(currentTable, UITableAccessor.FADE, FADE_SPEED).target(1.0f));
       }
     sequence.end();
+
+    sequence.setCallback(new TweenCallback() {
+      @Override
+      public void onEvent(int type, BaseTween<?> source) {
+        if (tempTable != null)
+          UIStage.this.tempTable.remove();
+        tempTable = null;
+        Gdx.input.setInputProcessor(tempProcessor);
+      }
+    });
     sequence.start(tweenEngine);
   }
 
   public void resize(int width, int height) {
     getViewport().update(width, height, true);
+    getCurrentTable().invalidate();
   }
 
   @Override

@@ -1,4 +1,4 @@
-package de.macbury.hashbot.core.graphics.ui;
+package de.macbury.hashbot.core.graphics.ui.widgets;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import de.macbury.hashbot.core.HashBot;

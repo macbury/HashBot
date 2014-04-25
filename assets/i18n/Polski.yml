@@ -1,0 +1,29 @@
+pl:
+  loading_screen:
+    loading: "Wczytywanie: %d%%"
+  menu_screen:
+    new_game: "Nowa Gra"
+    continue: "Kontynuuj"
+    settings: "Opcje"
+    map_editor: "Edytor Map"
+    settings: "Opcje"
+    playground: "Plac zabaw"
+    about: "Tworcy"
+    exit: "Zamknij"
+    back: "Cofnij"
+  settings:
+    title: "Ustawienia"
+    save: "Zapisz"
+    cancel: "Anuluj"
+    language:
+      label: "Jezyk"
+    resolution:
+      label: "Rozdzielczosc"
+      fullscreen: "Pelny ekran"
+      vsync: "Synchronizacja pionowa"
+    quality:
+      label: "Efekty"
+      good: "Full"
+      none: "Polska szkola"
+    music:
+      label: "Muzyka"

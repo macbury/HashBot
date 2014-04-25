@@ -15,17 +15,6 @@ import de.macbury.hashbot.core.graphics.ui.FlatColors;
  */
 public class ModelsManager {
 
-  public ModelInstance menuItemInstance() {
-    ModelInstance instance = new ModelInstance((Model)HashBot.assets.get(Assets.MODEL_MENU_ITEM));
-    instance.materials.get(0).set(ColorAttribute.createDiffuse(FlatColors.WET_ASPHALT));
-    for (Material material : instance.materials) {
-      BlendingAttribute blendingAttribute = (BlendingAttribute)material.get(BlendingAttribute.Type);
-      blendingAttribute.opacity = 0.5f;
-      blendingAttribute.sourceFunction = GL20.GL_ONE;
-      blendingAttribute.destFunction = GL20.GL_SRC_ALPHA;
-    }
-    return instance;
-  }
 
   public LogoInstance menuLogo() {
     LogoInstance instance = new LogoInstance((Model)HashBot.assets.get(Assets.MODEL_MENU_LOGO));

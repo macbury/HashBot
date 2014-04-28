@@ -131,9 +131,17 @@ scroll_pane_background
   orig: 17, 17
   offset: 0, 0
   index: -1
-checkbox_on
+scroll_pane_light_background
   rotate: false
   xy: 231, 232
+  size: 17, 17
+  split: 4, 4, 4, 4
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+checkbox_on
+  rotate: false
+  xy: 35, 24
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
@@ -147,14 +155,21 @@ scroll_pane_knob_background
   index: -1
 checkbox_off
   rotate: false
-  xy: 35, 24
+  xy: 199, 187
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
   index: -1
 scroll_pane_knob
   rotate: false
-  xy: 199, 188
+  xy: 35, 6
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+fade_background
+  rotate: false
+  xy: 199, 169
   size: 16, 16
   orig: 16, 16
   offset: 0, 0

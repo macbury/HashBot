@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.ExtLwjgGraphics;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import de.macbury.hashbot.core.graphics.tweens.ScreenManagerAccessor;
 import de.macbury.hashbot.core.graphics.tweens.UIStageAccessor;
 import de.macbury.hashbot.core.graphics.tweens.UITableAccessor;
 import de.macbury.hashbot.core.graphics.ui.CursorOverlay;
@@ -61,6 +62,7 @@ public class HashBot extends Game {
 
     Tween.registerAccessor(UIStage.class, new UIStageAccessor());
     Tween.registerAccessor(UITable.class, new UITableAccessor());
+    Tween.registerAccessor(ScreenManager.class, new ScreenManagerAccessor());
     screens.openLoadingScreen();
   }
 
@@ -68,12 +70,16 @@ public class HashBot extends Game {
   public void resize(int width, int height) {
     super.resize(width, height);
     cursorOverlay.resize(width, height);
+    if (screens != null)
+      screens.resize(width, height);
   }
 
   @Override
   public void render() {
     super.render();
+    screens.render();
     cursorOverlay.draw();
+
   }
 
   @Override

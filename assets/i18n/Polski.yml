@@ -11,6 +11,15 @@ pl:
     about: "Tworcy"
     exit: "Zamknij"
     back: "Cofnij"
+  file_picker:
+    save: "Zapisz"
+    cancel: "Anuluj"
+    open: "Wczytaj"
+  map_editor:
+    open: "Wczytaj"
+    save: "Zapisz"
+    new: "Nowa"
+    settings: "Ustawienia mapy"
   settings:
     title: "Ustawienia"
     save: "Zapisz"

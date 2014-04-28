@@ -1,14 +1,18 @@
 package de.macbury.hashbot.core.managers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.CursorDefiniton;
+import de.macbury.hashbot.core.graphics.ui.dialogs.FilePickerDialog;
 import de.macbury.hashbot.core.graphics.ui.widgets.UIButton;
 import de.macbury.hashbot.core.graphics.ui.dialogs.SettingsDialog;
 import de.macbury.hashbot.core.graphics.ui.widgets.UICheckBox;
@@ -29,10 +33,12 @@ public class UIManager {
   public UIButton.UITextButtonStyle menuButtonStyle;
   public Label.LabelStyle normalLabel;
   public List.ListStyle listStyle;
-  public ScrollPane.ScrollPaneStyle scrollPaneStyle;
+  public ScrollPane.ScrollPaneStyle darkScrollPaneStyle;
   public SelectBox.SelectBoxStyle selectBoxStyle;
   public Slider.SliderStyle sliderStyle;
   public UICheckBox.UICheckBoxStyle checkBoxStyle;
+  public TextureRegion fadeBackground;
+  public ScrollPane.ScrollPaneStyle lightScrollPaneStyle;
 
   public void load() {
     this.atlas = (TextureAtlas)HashBot.assets.get(Assets.ATLAS_UI);
@@ -81,15 +87,22 @@ public class UIManager {
     listStyle.fontColorUnselected = Color.WHITE;
     listStyle.selection           = skin.getDrawable("list_view_selected_background");
 
-    this.scrollPaneStyle          = new ScrollPane.ScrollPaneStyle();
-    scrollPaneStyle.vScroll       = skin.getDrawable("scroll_pane_knob_background");
-    scrollPaneStyle.hScroll       = skin.getDrawable("scroll_pane_knob_background");
-    scrollPaneStyle.hScrollKnob   = skin.getDrawable("scroll_pane_knob");
-    scrollPaneStyle.vScrollKnob   = skin.getDrawable("scroll_pane_knob");
-    scrollPaneStyle.background    = skin.getDrawable("scroll_pane_background");
+    this.lightScrollPaneStyle          = new ScrollPane.ScrollPaneStyle();
+    lightScrollPaneStyle.vScroll       = skin.getDrawable("scroll_pane_knob_background");
+    lightScrollPaneStyle.hScroll       = skin.getDrawable("scroll_pane_knob_background");
+    lightScrollPaneStyle.hScrollKnob   = skin.getDrawable("scroll_pane_knob");
+    lightScrollPaneStyle.vScrollKnob   = skin.getDrawable("scroll_pane_knob");
+    lightScrollPaneStyle.background    = skin.getDrawable("scroll_pane_light_background");
+
+    this.darkScrollPaneStyle          = new ScrollPane.ScrollPaneStyle();
+    darkScrollPaneStyle.vScroll       = skin.getDrawable("scroll_pane_knob_background");
+    darkScrollPaneStyle.hScroll       = skin.getDrawable("scroll_pane_knob_background");
+    darkScrollPaneStyle.hScrollKnob   = skin.getDrawable("scroll_pane_knob");
+    darkScrollPaneStyle.vScrollKnob   = skin.getDrawable("scroll_pane_knob");
+    darkScrollPaneStyle.background    = skin.getDrawable("scroll_pane_background");
 
     this.selectBoxStyle           = new SelectBox.SelectBoxStyle();
-    selectBoxStyle.scrollStyle    = scrollPaneStyle;
+    selectBoxStyle.scrollStyle    = darkScrollPaneStyle;
     selectBoxStyle.listStyle      = listStyle;
     selectBoxStyle.fontColor      = Color.WHITE;
     selectBoxStyle.background     = skin.getDrawable("select_normal");
@@ -104,11 +117,11 @@ public class UIManager {
     this.checkBoxStyle              = new UICheckBox.UICheckBoxStyle();
     this.checkBoxStyle.checkboxOn   = skin.getDrawable("checkbox_on");
     this.checkBoxStyle.checkboxOff  = skin.getDrawable("checkbox_off");
+    checkBoxStyle.clickSound        = HashBot.assets.get(Assets.SOUND_CLICK);
+    checkBoxStyle.hoverSound        = HashBot.assets.get(Assets.SOUND_HOVER);
+    checkBoxStyle.font              = uiFontSmall;
 
-    checkBoxStyle.clickSound = HashBot.assets.get(Assets.SOUND_CLICK);
-    checkBoxStyle.hoverSound = HashBot.assets.get(Assets.SOUND_HOVER);
-
-    this.checkBoxStyle.font = uiFontSmall;
+    this.fadeBackground             = skin.getRegion("fade_background");
   }
 
   public void normalCursor() {
@@ -123,6 +136,14 @@ public class UIManager {
     return new Slider(min, max, stepSize, false, sliderStyle);
   }
 
+  public ScrollPane scrollPane(Actor content) {
+    return new ScrollPane(content, lightScrollPaneStyle);
+  }
+
+  public List list() {
+    return new List(listStyle);
+  }
+
   public SelectBox stringSelectBox() {
     return new SelectBox<String>(this.selectBoxStyle);
   }
@@ -130,6 +151,10 @@ public class UIManager {
   public SettingsDialog settingsDialog() {
     SettingsDialog dialog = new SettingsDialog(dialogStyle);
     return dialog;
+  }
+
+  public FilePickerDialog filePickerDialog(FileHandle handle) {
+    return new FilePickerDialog(handle, dialogStyle);
   }
 
   public Dialog dialog() {
@@ -154,7 +179,11 @@ public class UIManager {
   }
 
   public Label labelI18n(String i18nKey) {
-    return new Label(HashBot.i18n.t(i18nKey), normalLabel);
+    return label(HashBot.i18n.t(i18nKey));
+  }
+
+  public Label label(String text) {
+    return new Label(text, normalLabel);
   }
 
   public UIButton textI18nButton(String i18nKey) {

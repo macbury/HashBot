@@ -109,9 +109,10 @@ public class MenuScreen extends BaseScreen implements MenuOptionsListener {
   @Override
   public void show() {
     Gdx.app.debug(TAG, "Show");
-    Gdx.input.setInputProcessor(stage);
+
     HashBot.ui.normalCursor();
     stage.goToDefault();
+
     //HashBot.music.mainMenu().play();
   }
 
@@ -154,6 +155,6 @@ public class MenuScreen extends BaseScreen implements MenuOptionsListener {
 
   @Override
   public void afterFade() {
-
+    Gdx.input.setInputProcessor(stage);
   }
 }

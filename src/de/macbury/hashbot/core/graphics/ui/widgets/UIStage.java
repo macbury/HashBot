@@ -27,6 +27,8 @@ public class UIStage extends Stage {
   }
 
   public void setCurrentTable(UITable nextTable) {
+    if (nextTable == currentTable)
+      return;
     Timeline sequence = Timeline.createSequence();
     final InputProcessor tempProcessor = Gdx.input.getInputProcessor();
     Gdx.input.setInputProcessor(null);
@@ -58,7 +60,8 @@ public class UIStage extends Stage {
 
   public void resize(int width, int height) {
     getViewport().update(width, height, true);
-    getCurrentTable().invalidate();
+    if (getCurrentTable() != null)
+      getCurrentTable().invalidate();
   }
 
   @Override

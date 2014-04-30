@@ -35,51 +35,72 @@ select_hover
   orig: 64, 24
   offset: 0, 0
   index: -1
+text_area_line_number_background
+  rotate: false
+  xy: 67, 85
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+text_area_background
+  rotate: false
+  xy: 131, 189
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
 context-menu
-  rotate: false
-  xy: 67, 87
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-openhand
-  rotate: false
-  xy: 131, 191
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-closedhand
   rotate: false
   xy: 1, 35
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-forbidden
+openhand
   rotate: false
-  xy: 131, 157
+  xy: 131, 155
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-arrow
+closedhand
   rotate: false
   xy: 1, 1
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-ibeam
+forbidden
   rotate: false
-  xy: 131, 123
+  xy: 131, 121
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-copy
+text_area_current_line_background
   rotate: false
-  xy: 165, 191
+  xy: 103, 87
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+textarea_syntax_error_line_number
+  rotate: false
+  xy: 35, 35
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+arrow
+  rotate: false
+  xy: 35, 1
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+ibeam
+  rotate: false
+  xy: 167, 191
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -92,9 +113,16 @@ button_normal
   orig: 32, 24
   offset: 0, 0
   index: -1
+copy
+  rotate: false
+  xy: 201, 191
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 list_view_selected_background
   rotate: false
-  xy: 165, 165
+  xy: 137, 95
   size: 32, 24
   split: 2, 2, 2, 2
   orig: 32, 24
@@ -102,7 +130,7 @@ list_view_selected_background
   index: -1
 button_pressed
   rotate: false
-  xy: 165, 139
+  xy: 69, 59
   size: 32, 24
   split: 2, 2, 2, 2
   orig: 32, 24
@@ -110,7 +138,7 @@ button_pressed
   index: -1
 button_hover
   rotate: false
-  xy: 35, 43
+  xy: 103, 61
   size: 32, 24
   split: 14, 13, 7, 7
   orig: 32, 24
@@ -118,14 +146,21 @@ button_hover
   index: -1
 window_foreground
   rotate: false
-  xy: 101, 100
+  xy: 231, 230
   size: 19, 19
   orig: 19, 19
   offset: 0, 0
   index: -1
+text_area_cursor
+  rotate: false
+  xy: 252, 233
+  size: 3, 16
+  orig: 3, 16
+  offset: 0, 0
+  index: -1
 scroll_pane_background
   rotate: false
-  xy: 199, 206
+  xy: 137, 76
   size: 17, 17
   split: 4, 4, 4, 4
   orig: 17, 17
@@ -133,7 +168,7 @@ scroll_pane_background
   index: -1
 scroll_pane_light_background
   rotate: false
-  xy: 231, 232
+  xy: 69, 40
   size: 17, 17
   split: 4, 4, 4, 4
   orig: 17, 17
@@ -141,36 +176,43 @@ scroll_pane_light_background
   index: -1
 checkbox_on
   rotate: false
-  xy: 35, 24
+  xy: 69, 21
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+checkbox_off
+  rotate: false
+  xy: 69, 2
   size: 17, 17
   orig: 17, 17
   offset: 0, 0
   index: -1
 scroll_pane_knob_background
   rotate: false
-  xy: 67, 69
+  xy: 137, 58
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-checkbox_off
-  rotate: false
-  xy: 199, 187
-  size: 17, 17
-  orig: 17, 17
-  offset: 0, 0
-  index: -1
 scroll_pane_knob
   rotate: false
-  xy: 35, 6
+  xy: 156, 77
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 fade_background
   rotate: false
-  xy: 199, 169
+  xy: 88, 41
   size: 16, 16
   orig: 16, 16
+  offset: 0, 0
+  index: -1
+text_area_selection
+  rotate: false
+  xy: 88, 26
+  size: 13, 13
+  orig: 13, 13
   offset: 0, 0
   index: -1

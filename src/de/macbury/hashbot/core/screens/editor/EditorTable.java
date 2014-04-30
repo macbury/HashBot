@@ -13,7 +13,8 @@ public class EditorTable extends UITable {
 
   private static final float TITLE_PADDING = 24;
   private final EditorTableListener listener;
-  private UIButton settingsMapButton;
+  private UIButton testMapButton;
+  private UIButton codeMapButton;
   private UIButton saveMapButton;
   private UIButton openMapButton;
   private UIButton newMapButton;
@@ -51,14 +52,22 @@ public class EditorTable extends UITable {
       }
     });
 
-    settingsMapButton  = HashBot.ui.textI18nButton("map_editor.settings");
+    codeMapButton = HashBot.ui.textI18nButton("map_editor.code");
+    codeMapButton.addListener(new ClickListener() {
+      @Override
+      public void clicked(InputEvent event, float x, float y) {
+        super.clicked(event, x, y);
+        EditorTable.this.listener.codeButtonClicked();
+      }
+    });
 
+    testMapButton      = HashBot.ui.textI18nButton("map_editor.test");
     exitButton    = HashBot.ui.textButton("X");
     exitButton.addListener(new ClickListener() {
       @Override
       public void clicked(InputEvent event, float x, float y) {
         super.clicked(event, x, y);
-        HashBot.screens.openMainMenu();
+        EditorTable.this.listener.exitButtonClicked();
       }
     });
 
@@ -72,6 +81,7 @@ public class EditorTable extends UITable {
     row();
       add().colspan(5).expand();
     row();
-      add(settingsMapButton).colspan(3).left();
+      add(codeMapButton).fill();
+      add(testMapButton).colspan(2).left();
   }
 }

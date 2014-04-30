@@ -27,7 +27,6 @@ public class MenuScreen extends BaseScreen implements MenuOptionsListener {
   public static final int GRID_SIZE = 64;
   private static final String TAG = "MenuScreen";
   private LogoInstance menuLogoModel;
-  private float elapsedTime;
   private RenderContext renderContext;
   private ShapeRenderer shapeRenderer;
   private Environment env;
@@ -35,7 +34,7 @@ public class MenuScreen extends BaseScreen implements MenuOptionsListener {
   private ModelBatch modelBatch;
   private MenuStage stage;
   private Color tempColor = new Color();
-  private Vector3 tempVec = new Vector3();
+
   public MenuScreen() {
     this.stage          = new MenuStage(this);
     this.renderContext  = new RenderContext(new DefaultTextureBinder(DefaultTextureBinder.WEIGHTED));
@@ -52,7 +51,6 @@ public class MenuScreen extends BaseScreen implements MenuOptionsListener {
     this.menuLogoModel     = HashBot.models.menuLogo();
 
     shapeRenderer    = new ShapeRenderer();
-    this.elapsedTime = 0.0f;
   }
 
   @Override
@@ -60,7 +58,6 @@ public class MenuScreen extends BaseScreen implements MenuOptionsListener {
     Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     Gdx.gl.glClearColor(0, 0, 0, 0);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-    elapsedTime += delta;
     stage.act(delta);
     camera.update();
 
@@ -154,7 +151,12 @@ public class MenuScreen extends BaseScreen implements MenuOptionsListener {
   }
 
   @Override
-  public void afterFade() {
+  public void afterFadeIn() {
     Gdx.input.setInputProcessor(stage);
+  }
+
+  @Override
+  public void afterFadeOut() {
+
   }
 }

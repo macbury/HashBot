@@ -70,6 +70,11 @@ public class LoadingScreen implements Screen, Assets.AssetsListener {
 
   @Override
   public void assetsDidLoad() {
-    HashBot.screens.openMainMenu();
+    if (HashBot.args.startWithEditor) {
+      HashBot.screens.openMapEditor();
+    } else {
+      HashBot.screens.openMainMenu();
+    }
+
   }
 }

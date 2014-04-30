@@ -2,7 +2,6 @@ package de.macbury.hashbot.core.managers;
 
 import aurelienribon.tweenengine.*;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
@@ -23,7 +22,7 @@ public class ScreenManager implements Disposable {
   private LoadingScreen loadingScreen;
   private MenuScreen mainMenuScreen;
   private MapEditorScreen mapEditorScreen;
-
+  private BaseScreen currentScreen;
   private OrthographicCamera camera;
   private SpriteBatch spriteBatch;
   private float fadeAlpha = 0.0f;
@@ -64,22 +63,24 @@ public class ScreenManager implements Disposable {
   }
 
   public void openMapEditor() {
-    if (this.mapEditorScreen == null)
-      mapEditorScreen = new MapEditorScreen();
+    mapEditorScreen = new MapEditorScreen();
     transitToScreen(mapEditorScreen);
   }
 
   private void transitToScreen(final BaseScreen nextScreen) {
     Gdx.input.setInputProcessor(null);
+    final BaseScreen prevScreen = currentScreen;
     Tween.to(this, ScreenManagerAccessor.FADE, FADE_SPEED).target(1).setCallback(new TweenCallback() {
       @Override
       public void onEvent(int type, BaseTween<?> source) {
         game.setScreen(nextScreen);
-
+        currentScreen = nextScreen;
         Tween.to(ScreenManager.this, ScreenManagerAccessor.FADE, FADE_SPEED).target(0).setCallback(new TweenCallback() {
           @Override
           public void onEvent(int type, BaseTween<?> source) {
-            nextScreen.afterFade();
+            nextScreen.afterFadeIn();
+            if (prevScreen != null)
+              prevScreen.afterFadeOut();
           }
         }).start(tweenManager);
       }

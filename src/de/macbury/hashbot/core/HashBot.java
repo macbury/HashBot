@@ -14,6 +14,7 @@ import de.macbury.hashbot.core.graphics.ui.CursorOverlay;
 import de.macbury.hashbot.core.graphics.ui.widgets.UIStage;
 import de.macbury.hashbot.core.graphics.ui.widgets.UITable;
 import de.macbury.hashbot.core.i18n.I18n;
+import de.macbury.hashbot.core.input.InputManager;
 import de.macbury.hashbot.core.managers.*;
 
 /**
@@ -31,19 +32,17 @@ public class HashBot extends Game {
   public static ModelsManager models;
   public static I18n i18n;
   public static ConfigManager config;
+  public static ArgsManager args;
+  public static InputManager input;
 
-  private String[] args;
   private boolean debug;
   private CursorOverlay cursorOverlay;
 
   @Override
   public void create() {
-    for(String arg : args) {
-      if (arg.contains("debug")) {
-        this.debug = true;
-        Gdx.app.log(TAG, "Enabled debug");
-        Gdx.app.setLogLevel(Application.LOG_DEBUG);
-      }
+    if (args.debug) {
+      Gdx.app.log(TAG, "Enabled debug");
+      Gdx.app.setLogLevel(Application.LOG_DEBUG);
     }
 
     Gdx.app.debug(TAG, "Initializing");
@@ -52,6 +51,7 @@ public class HashBot extends Game {
     this.cursorOverlay = new CursorOverlay();
 
     HashBot.game       = this;
+    HashBot.input      = new InputManager();
     HashBot.i18n       = new I18n();
     HashBot.config     = new ConfigManager();
     HashBot.assets     = new Assets(this);
@@ -79,7 +79,6 @@ public class HashBot extends Game {
     super.render();
     screens.render();
     cursorOverlay.draw();
-
   }
 
   @Override
@@ -89,9 +88,6 @@ public class HashBot extends Game {
     super.dispose();
   }
 
-  public void setArgs(String[] args) {
-    this.args = args;
-  }
 
   public LwjglApplication start(String[] args) {
     LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
@@ -101,7 +97,7 @@ public class HashBot extends Game {
     config.fullscreen = false;
     config.forceExit = true;
     config.resizable = false;
-    setArgs(args);
+    HashBot.args = new ArgsManager(args);
     return new LwjglApplication(this, config, new ExtLwjgGraphics(config));
   }
 

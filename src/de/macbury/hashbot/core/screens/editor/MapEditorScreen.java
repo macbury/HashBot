@@ -4,19 +4,24 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import de.macbury.hashbot.core.HashBot;
+import de.macbury.hashbot.core.graphics.ui.dialogs.ConfirmDialog;
 import de.macbury.hashbot.core.graphics.ui.widgets.UIStage;
 import de.macbury.hashbot.core.screens.BaseScreen;
 
 /**
  * Created by macbury on 25.04.14.
  */
-public class MapEditorScreen extends BaseScreen implements EditorTableListener {
+public class MapEditorScreen extends BaseScreen implements EditorTableListener, ConfirmDialog.ConfirmDialogListener {
 
+  private ConfirmDialog exitConfirmDialog;
   private UIStage stage;
 
   public MapEditorScreen() {
     this.stage = new UIStage();
     this.stage.setCurrentTable(new EditorTable(this));
+
+    this.exitConfirmDialog = HashBot.ui.confirm("map_editor.confirm_exit.title", "map_editor.confirm_exit.message");
+    exitConfirmDialog.setListener(this);
   }
 
   @Override
@@ -41,7 +46,7 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener {
 
   @Override
   public void hide() {
-
+    exitConfirmDialog.hide();
   }
 
   @Override
@@ -60,13 +65,19 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener {
   }
 
   @Override
-  public void afterFade() {
+  public void afterFadeIn() {
     Gdx.input.setInputProcessor(stage);
+
+  }
+
+  @Override
+  public void afterFadeOut() {
+    dispose();
   }
 
   @Override
   public void newMapButtonClicked() {
-
+    HashBot.screens.openMapEditor();
   }
 
   @Override
@@ -76,6 +87,26 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener {
 
   @Override
   public void saveMapButtonClicked() {
+
+  }
+
+  @Override
+  public void codeButtonClicked() {
+    HashBot.ui.codeEditorDialog().show(stage);
+  }
+
+  @Override
+  public void exitButtonClicked() {
+    exitConfirmDialog.show(stage);
+  }
+
+  @Override
+  public void onConfirmOkButton(ConfirmDialog sender) {
+    HashBot.screens.openMainMenu();
+  }
+
+  @Override
+  public void onConfirmCancelButton(ConfirmDialog sender) {
 
   }
 }

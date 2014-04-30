@@ -12,6 +12,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.CursorDefiniton;
+import de.macbury.hashbot.core.graphics.ui.SolarizedDarkColors;
+import de.macbury.hashbot.core.graphics.ui.code_editor.CodeEditorView;
+import de.macbury.hashbot.core.graphics.ui.code_editor.widget.CodeEditorTextArea;
+import de.macbury.hashbot.core.graphics.ui.dialogs.CodeEditorDialog;
+import de.macbury.hashbot.core.graphics.ui.dialogs.ConfirmDialog;
 import de.macbury.hashbot.core.graphics.ui.dialogs.FilePickerDialog;
 import de.macbury.hashbot.core.graphics.ui.widgets.UIButton;
 import de.macbury.hashbot.core.graphics.ui.dialogs.SettingsDialog;
@@ -39,19 +44,23 @@ public class UIManager {
   public UICheckBox.UICheckBoxStyle checkBoxStyle;
   public TextureRegion fadeBackground;
   public ScrollPane.ScrollPaneStyle lightScrollPaneStyle;
+  public CodeEditorTextArea.CodeEditorTextAreaStyle codeEditorStyle;
+  public BitmapFont codeFont;
+  public CursorDefiniton textCursor;
+  public Window.WindowStyle dialogNpnModalStyle;
 
   public void load() {
     this.atlas = (TextureAtlas)HashBot.assets.get(Assets.ATLAS_UI);
     this.skin  = new Skin(atlas);
 
     arrowCursor = new CursorDefiniton(atlas.findRegion("arrow"));
-
+    textCursor  = new CursorDefiniton(atlas.findRegion("ibeam"));
     Gdx.input.setCursorImage((Pixmap)HashBot.assets.get(Assets.CURSOR_PLACEHOLDER), 0,0);
     normalCursor();
 
     this.uiFont = (BitmapFont)HashBot.assets.get(Assets.FONT_UI);
     this.uiFontSmall = (BitmapFont)HashBot.assets.get(Assets.FONT_UI_SMALL);
-
+    this.codeFont = (BitmapFont)HashBot.assets.get(Assets.FONT_CODE);
     this.normalLabel            = new Label.LabelStyle();
     normalLabel.font            = uiFontSmall;
     normalLabel.fontColor       = Color.WHITE;
@@ -79,6 +88,11 @@ public class UIManager {
     dialogStyle.background      = skin.getDrawable("window_body");
     dialogStyle.titleFont       = uiFontSmall;
     dialogStyle.titleFontColor  = Color.WHITE;
+
+    this.dialogNpnModalStyle            = new Dialog.WindowStyle();
+    dialogNpnModalStyle.background      = skin.getDrawable("window_body");
+    dialogNpnModalStyle.titleFont       = uiFontSmall;
+    dialogNpnModalStyle.titleFontColor  = Color.WHITE;
 
     this.listStyle                = new List.ListStyle();
     //listStyle.background          = skin.getDrawable("list_view_background");
@@ -122,10 +136,34 @@ public class UIManager {
     checkBoxStyle.font              = uiFontSmall;
 
     this.fadeBackground             = skin.getRegion("fade_background");
+
+    this.codeEditorStyle                            = new CodeEditorTextArea.CodeEditorTextAreaStyle();
+    this.codeEditorStyle.background                 = skin.getDrawable("text_area_background");
+    this.codeEditorStyle.focusedBackground          = skin.getDrawable("text_area_background");
+    this.codeEditorStyle.focusedFontColor           = codeEditorStyle.fontColor = SolarizedDarkColors.TEXT;
+    this.codeEditorStyle.font                       = codeFont;
+    this.codeEditorStyle.selection                  = skin.getDrawable("text_area_selection");
+    this.codeEditorStyle.cursor                     = skin.getDrawable("text_area_cursor");
+    this.codeEditorStyle.lineNumberBackround        = skin.getDrawable("text_area_line_number_background");
+    this.codeEditorStyle.focusedLineBackround       = skin.getDrawable("text_area_current_line_background");
+    this.codeEditorStyle.lineNumberColor            = SolarizedDarkColors.LINE_NUMBER;
+    this.codeEditorStyle.textColor                  = SolarizedDarkColors.TEXT;
+    this.codeEditorStyle.syntaxCommentColor         = SolarizedDarkColors.COMMENT;
+    this.codeEditorStyle.syntaxNumberColor          = SolarizedDarkColors.NUMBER;
+    this.codeEditorStyle.syntaxStringColor          = SolarizedDarkColors.STRING;
+    this.codeEditorStyle.syntaxKeywordColor         = SolarizedDarkColors.KEYWORD;
+    this.codeEditorStyle.syntaxSpecialKeywordColor  = SolarizedDarkColors.SPECIAL_KEYWORD;
+    this.codeEditorStyle.syntaxErrorLineBackground  = skin.getDrawable("textarea_syntax_error_line_number");
+    this.codeEditorStyle.syntaxErrorTextColor       = Color.WHITE;
+    //this.codeEditorStyle.exceptionGutterIcon        = skin.getDrawable("exception");
   }
 
   public void normalCursor() {
     currentCursor = arrowCursor;
+  }
+
+  public void textCursor() {
+    currentCursor = textCursor;
   }
 
   public UICheckBox checkBox() {
@@ -155,6 +193,10 @@ public class UIManager {
 
   public FilePickerDialog filePickerDialog(FileHandle handle) {
     return new FilePickerDialog(handle, dialogStyle);
+  }
+
+  public CodeEditorDialog codeEditorDialog() {
+    return new CodeEditorDialog(dialogNpnModalStyle);
   }
 
   public Dialog dialog() {
@@ -199,5 +241,13 @@ public class UIManager {
   public UIButton menuBackButton() {
     MenuBackButton button = new MenuBackButton(HashBot.i18n.t("menu_screen.back"), normalButtonStyle);
     return button;
+  }
+
+  public CodeEditorView codeEditorTextArea() {
+    return new CodeEditorView();
+  }
+
+  public ConfirmDialog confirm(String titleKey, String messageKey) {
+    return new ConfirmDialog(titleKey, messageKey, dialogStyle);
   }
 }

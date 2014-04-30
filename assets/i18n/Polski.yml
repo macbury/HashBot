@@ -1,6 +1,10 @@
 pl:
   loading_screen:
     loading: "Wczytywanie: %d%%"
+  confirm:
+    ok: "OK"
+    cancel: "Anuluj"
+
   menu_screen:
     new_game: "Nowa Gra"
     continue: "Kontynuuj"
@@ -16,10 +20,14 @@ pl:
     cancel: "Anuluj"
     open: "Wczytaj"
   map_editor:
+    confirm_exit:
+      title: "Czy na pewno?"
+      message: "Czy na pewno chcesz wyjsc z edycji mapy?"
     open: "Wczytaj"
     save: "Zapisz"
     new: "Nowa"
-    settings: "Ustawienia mapy"
+    code: "Kod"
+    test: "Testuj"
   settings:
     title: "Ustawienia"
     save: "Zapisz"

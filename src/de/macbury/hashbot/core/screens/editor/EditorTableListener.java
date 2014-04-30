@@ -7,4 +7,6 @@ public interface EditorTableListener {
   public void newMapButtonClicked();
   public void openMapButtonClicked();
   public void saveMapButtonClicked();
+  public void codeButtonClicked();
+  public void exitButtonClicked();
 }

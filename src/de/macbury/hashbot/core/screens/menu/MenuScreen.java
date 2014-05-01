@@ -1,7 +1,6 @@
 package de.macbury.hashbot.core.screens.menu;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
@@ -42,7 +41,6 @@ public class MenuScreen extends BaseScreen implements MenuOptionsListener {
     camera.position.set(0, -5, 0);
     camera.lookAt(Vector3.Zero);
 
-
     env             = new Environment();
     env.set(new ColorAttribute(ColorAttribute.AmbientLight, 1f, 1f, 1f, 1f));
     env.add(new DirectionalLight().set(1f, 1f,1f, 2f, 10f,0f));
@@ -51,6 +49,12 @@ public class MenuScreen extends BaseScreen implements MenuOptionsListener {
     this.menuLogoModel     = HashBot.models.menuLogo();
 
     shapeRenderer    = new ShapeRenderer();
+
+    if (!HashBot.profile.loggedIn()) {
+      stage.goToProfileSelect();
+    } else {
+      stage.goToDefault();
+    }
   }
 
   @Override
@@ -108,7 +112,7 @@ public class MenuScreen extends BaseScreen implements MenuOptionsListener {
     Gdx.app.debug(TAG, "Show");
 
     HashBot.ui.normalCursor();
-    stage.goToDefault();
+
 
     //HashBot.music.mainMenu().play();
   }

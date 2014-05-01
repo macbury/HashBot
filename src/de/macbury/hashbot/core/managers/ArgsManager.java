@@ -9,6 +9,8 @@ import com.badlogic.gdx.Gdx;
 public class ArgsManager {
   private static final CharSequence DEBUG_FLAG = "debug";
   private static final CharSequence EDITOR_FLAG = "editor";
+  private static final CharSequence FPS_FLAG = "fps";
+  public boolean fps;
   public boolean startWithEditor;
   public boolean debug;
 
@@ -20,6 +22,10 @@ public class ArgsManager {
 
       if (arg.contains(EDITOR_FLAG)) {
         this.startWithEditor = true;
+      }
+
+      if (arg.contains(FPS_FLAG)) {
+        this.fps = true;
       }
     }
   }

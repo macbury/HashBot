@@ -75,6 +75,5 @@ public class LoadingScreen implements Screen, Assets.AssetsListener {
     } else {
       HashBot.screens.openMainMenu();
     }
-
   }
 }

@@ -10,7 +10,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import de.macbury.hashbot.core.graphics.tweens.ScreenManagerAccessor;
 import de.macbury.hashbot.core.graphics.tweens.UIStageAccessor;
 import de.macbury.hashbot.core.graphics.tweens.UITableAccessor;
-import de.macbury.hashbot.core.graphics.ui.CursorOverlay;
+import de.macbury.hashbot.core.graphics.ui.Overlay;
 import de.macbury.hashbot.core.graphics.ui.widgets.UIStage;
 import de.macbury.hashbot.core.graphics.ui.widgets.UITable;
 import de.macbury.hashbot.core.i18n.I18n;
@@ -34,9 +34,10 @@ public class HashBot extends Game {
   public static ConfigManager config;
   public static ArgsManager args;
   public static InputManager input;
+  public static ProfileManager profile;
+  public static StorageManager storage;
 
-  private boolean debug;
-  private CursorOverlay cursorOverlay;
+  private Overlay overlay;
 
   @Override
   public void create() {
@@ -48,7 +49,7 @@ public class HashBot extends Game {
     Gdx.app.debug(TAG, "Initializing");
     Gdx.app.debug(TAG, "Version: " + Gdx.app.getVersion());
 
-    this.cursorOverlay = new CursorOverlay();
+    this.overlay       = new Overlay();
 
     HashBot.game       = this;
     HashBot.input      = new InputManager();
@@ -59,6 +60,8 @@ public class HashBot extends Game {
     HashBot.ui         = new UIManager();
     HashBot.music      = new MusicManager();
     HashBot.models     = new ModelsManager();
+    HashBot.profile    = new ProfileManager();
+    HashBot.storage    = new StorageManager();
 
     Tween.registerAccessor(UIStage.class, new UIStageAccessor());
     Tween.registerAccessor(UITable.class, new UITableAccessor());
@@ -69,7 +72,7 @@ public class HashBot extends Game {
   @Override
   public void resize(int width, int height) {
     super.resize(width, height);
-    cursorOverlay.resize(width, height);
+    overlay.resize(width, height);
     if (screens != null)
       screens.resize(width, height);
   }
@@ -78,7 +81,7 @@ public class HashBot extends Game {
   public void render() {
     super.render();
     screens.render();
-    cursorOverlay.draw();
+    overlay.draw();
   }
 
   @Override
@@ -102,6 +105,6 @@ public class HashBot extends Game {
   }
 
   public boolean isDebug() {
-    return debug;
+    return args.debug;
   }
 }

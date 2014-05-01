@@ -1,13 +1,20 @@
 pl:
+  profile:
+    guest: "Gosc"
+    exp: "Exp: %d/%d"
+    level: "Poziom: %d"
   loading_screen:
     loading: "Wczytywanie: %d%%"
   confirm:
     ok: "OK"
     cancel: "Anuluj"
-
+  profile_screen:
+    title: "Profile"
+    login: "Zaloguj"
+    guest: "Gosc"
+    create: "Dodaj nowy"
   menu_screen:
-    new_game: "Nowa Gra"
-    continue: "Kontynuuj"
+    missions: "Misje"
     settings: "Opcje"
     map_editor: "Edytor Map"
     settings: "Opcje"

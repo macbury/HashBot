@@ -3,6 +3,7 @@ package de.macbury.hashbot.core.screens.menu.table;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.macbury.hashbot.core.HashBot;
+import de.macbury.hashbot.core.graphics.ui.widgets.ProfileButton;
 import de.macbury.hashbot.core.graphics.ui.widgets.UIButton;
 import de.macbury.hashbot.core.graphics.ui.widgets.UITable;
 import de.macbury.hashbot.core.screens.menu.MenuOptionsListener;
@@ -13,13 +14,13 @@ import de.macbury.hashbot.core.screens.menu.MenuOptionsListener;
 public class MenuDefaultTable extends UITable {
   private static final int PADDING = 10;
   private static final int MENU_ITEM_WIDTH = 320;
+  public ProfileButton profileButton;
   public UIButton aboutButton;
   public UIButton settingsButton;
   public UIButton mapEditorButton;
   public UIButton playgroundButton;
-  public UIButton newGameButton;
+  public UIButton missionsButton;
   public UIButton exitButton;
-  public UIButton continueButton;
 
   private MenuOptionsListener listener;
 
@@ -39,8 +40,7 @@ public class MenuDefaultTable extends UITable {
       }
     });
 
-    this.continueButton   = HashBot.ui.menuButton(HashBot.i18n.t("menu_screen.continue"));
-    this.newGameButton    = HashBot.ui.menuButton(HashBot.i18n.t("menu_screen.new_game"));
+    this.missionsButton   = HashBot.ui.menuButton(HashBot.i18n.t("menu_screen.missions"));
     this.playgroundButton = HashBot.ui.menuButton(HashBot.i18n.t("menu_screen.playground"));
     this.aboutButton      = HashBot.ui.menuButton(HashBot.i18n.t("menu_screen.about"));
     this.settingsButton   = HashBot.ui.menuButton(HashBot.i18n.t("menu_screen.settings"));
@@ -59,14 +59,21 @@ public class MenuDefaultTable extends UITable {
         MenuDefaultTable.this.listener.onMapEditButtonClick();
       }
     });
-    row().expand();
-    add().colspan(2);
+
+    this.profileButton = HashBot.ui.profileButton(HashBot.profile.getCurrent());
+
+    row().expand();{
+      add().colspan(2);
+    }
+
+    row(); {
+      add().expandX();
+      add(profileButton).padBottom(PADDING).padRight(PADDING).width(MENU_ITEM_WIDTH);
+    }
+
     row();
     add().expandX();
-    add(continueButton).padBottom(PADDING).padRight(PADDING).width(MENU_ITEM_WIDTH);
-    row();
-    add().expandX();
-    add(newGameButton).padBottom(PADDING).padRight(PADDING).width(MENU_ITEM_WIDTH);
+    add(missionsButton).padBottom(PADDING).padRight(PADDING).width(MENU_ITEM_WIDTH);
     row();
     add().expandX();
     add(playgroundButton).padBottom(PADDING).padRight(PADDING).width(MENU_ITEM_WIDTH);
@@ -84,5 +91,9 @@ public class MenuDefaultTable extends UITable {
 
     add(exitButton).width(MENU_ITEM_WIDTH).padBottom(PADDING).padRight(PADDING);
 
+  }
+
+  public void update() {
+    profileButton.setGameProfile(HashBot.profile.getCurrent());
   }
 }

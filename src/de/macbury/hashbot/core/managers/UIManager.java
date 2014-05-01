@@ -18,9 +18,11 @@ import de.macbury.hashbot.core.graphics.ui.code_editor.widget.CodeEditorTextArea
 import de.macbury.hashbot.core.graphics.ui.dialogs.CodeEditorDialog;
 import de.macbury.hashbot.core.graphics.ui.dialogs.ConfirmDialog;
 import de.macbury.hashbot.core.graphics.ui.dialogs.FilePickerDialog;
+import de.macbury.hashbot.core.graphics.ui.widgets.ProfileButton;
 import de.macbury.hashbot.core.graphics.ui.widgets.UIButton;
 import de.macbury.hashbot.core.graphics.ui.dialogs.SettingsDialog;
 import de.macbury.hashbot.core.graphics.ui.widgets.UICheckBox;
+import de.macbury.hashbot.core.progress.GameProfile;
 import de.macbury.hashbot.core.screens.menu.MenuBackButton;
 
 /**
@@ -178,6 +180,10 @@ public class UIManager {
     return new ScrollPane(content, lightScrollPaneStyle);
   }
 
+  public ScrollPane scrollPaneDark(Actor content) {
+    return new ScrollPane(content, darkScrollPaneStyle);
+  }
+
   public List list() {
     return new List(listStyle);
   }
@@ -215,9 +221,18 @@ public class UIManager {
     return dialog;
   }
 
+  public UIButton menuI18nButton(String key) {
+    UIButton button = new UIButton(HashBot.i18n.t(key), menuButtonStyle);
+    return button;
+  }
+
   public UIButton menuButton(String text) {
     UIButton button = new UIButton(text, menuButtonStyle);
     return button;
+  }
+
+  public ProfileButton profileButton(GameProfile profile) {
+    return new ProfileButton(profile, normalButtonStyle);
   }
 
   public Label labelI18n(String i18nKey) {

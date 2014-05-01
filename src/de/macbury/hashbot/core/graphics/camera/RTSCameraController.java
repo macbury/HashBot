@@ -311,7 +311,6 @@ public class RTSCameraController extends InputAdapter {
     this.currentZoom = zoom;
   }
 
-
   public void setRotation(float rotation) {
     this.rotation = rotation;
   }

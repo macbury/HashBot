@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.ui.dialogs.ConfirmDialog;
 import de.macbury.hashbot.core.graphics.ui.widgets.UIStage;
+import de.macbury.hashbot.core.level.Level;
+import de.macbury.hashbot.core.level.LevelFactory;
 import de.macbury.hashbot.core.screens.BaseScreen;
 
 /**
@@ -13,12 +15,15 @@ import de.macbury.hashbot.core.screens.BaseScreen;
  */
 public class MapEditorScreen extends BaseScreen implements EditorTableListener, ConfirmDialog.ConfirmDialogListener {
 
+  private Level level;
   private ConfirmDialog exitConfirmDialog;
   private UIStage stage;
 
   public MapEditorScreen() {
     this.stage = new UIStage();
     this.stage.setCurrentTable(new EditorTable(this));
+
+    this.level = LevelFactory.newLevel(25, 25);
 
     this.exitConfirmDialog = HashBot.ui.confirm("map_editor.confirm_exit.title", "map_editor.confirm_exit.message");
     exitConfirmDialog.setListener(this);
@@ -30,7 +35,10 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
     Gdx.gl.glClearColor(0, 0, 0, 0);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
+    level.act(delta);
     stage.act(delta);
+
+    level.draw();
     stage.draw();
   }
 
@@ -67,7 +75,6 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
   @Override
   public void afterFadeIn() {
     Gdx.input.setInputProcessor(stage);
-
   }
 
   @Override

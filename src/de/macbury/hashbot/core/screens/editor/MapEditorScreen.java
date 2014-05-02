@@ -1,6 +1,7 @@
 package de.macbury.hashbot.core.screens.editor;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import de.macbury.hashbot.core.HashBot;
@@ -8,6 +9,7 @@ import de.macbury.hashbot.core.graphics.ui.dialogs.ConfirmDialog;
 import de.macbury.hashbot.core.graphics.ui.widgets.UIStage;
 import de.macbury.hashbot.core.level.Level;
 import de.macbury.hashbot.core.level.LevelFactory;
+import de.macbury.hashbot.core.level.map.exceptions.LevelInvalidDimensionException;
 import de.macbury.hashbot.core.screens.BaseScreen;
 
 /**
@@ -15,6 +17,7 @@ import de.macbury.hashbot.core.screens.BaseScreen;
  */
 public class MapEditorScreen extends BaseScreen implements EditorTableListener, ConfirmDialog.ConfirmDialogListener {
 
+  private InputMultiplexer inputMultiplexer;
   private Level level;
   private ConfirmDialog exitConfirmDialog;
   private UIStage stage;
@@ -23,10 +26,18 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
     this.stage = new UIStage();
     this.stage.setCurrentTable(new EditorTable(this));
 
-    this.level = LevelFactory.newLevel(25, 25);
+    try {
+      this.level = LevelFactory.newLevel(50, 50);
+    } catch (LevelInvalidDimensionException e) {
+      e.printStackTrace();
+    }
 
     this.exitConfirmDialog = HashBot.ui.confirm("map_editor.confirm_exit.title", "map_editor.confirm_exit.message");
     exitConfirmDialog.setListener(this);
+
+    this.inputMultiplexer = new InputMultiplexer();
+    inputMultiplexer.addProcessor(level.getCameraController());
+    inputMultiplexer.addProcessor(stage);
   }
 
   @Override
@@ -74,7 +85,7 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
 
   @Override
   public void afterFadeIn() {
-    Gdx.input.setInputProcessor(stage);
+    Gdx.input.setInputProcessor(inputMultiplexer);
   }
 
   @Override

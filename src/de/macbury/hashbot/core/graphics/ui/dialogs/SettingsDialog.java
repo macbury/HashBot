@@ -83,6 +83,12 @@ public class SettingsDialog extends UIDialog {
         if(resModes.indexOf(newMode) == -1 && mode.isFullscreenCapable()) {
           resModes.add(newMode);
         }
+
+        TempDisplayMode panoramicMode = newMode.toPanoramic();
+
+        if(resModes.indexOf(panoramicMode) == -1) {
+          resModes.add(panoramicMode);
+        }
       }
     } catch (LWJGLException e) {
       e.printStackTrace();
@@ -174,6 +180,10 @@ public class SettingsDialog extends UIDialog {
       } else {
         return 0;
       }
+    }
+    private final static float PANORAMA = 0.5625F;
+    public TempDisplayMode toPanoramic() {
+      return new TempDisplayMode(width, Math.round(width * PANORAMA));
     }
   }
 }

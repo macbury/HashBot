@@ -32,6 +32,9 @@ public class Assets extends AssetManager {
   public static final String SOUND_CLICK          = SOUND_PREFIX + "click.wav";
   public static final String SOUND_HOVER          = SOUND_PREFIX + "hover.wav";
 
+  public static final String TEXTURES                 = "textures/";
+  public static final String TERRAIN_TILESET          = TEXTURES + "terrain.pack";
+
   private HashBot game;
   private boolean didLoad = false;
 
@@ -61,6 +64,8 @@ public class Assets extends AssetManager {
 
     load(SOUND_CLICK, Sound.class);
     load(SOUND_HOVER, Sound.class);
+
+    load(TERRAIN_TILESET, TextureAtlas.class);
   }
 
   @Override

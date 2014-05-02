@@ -98,7 +98,7 @@ public class RTSCameraController extends InputAdapter {
     if (this.cam == null) {
       return;
     }
-
+    cam.update();
     double offX = 0;
     double offY = 0;
 

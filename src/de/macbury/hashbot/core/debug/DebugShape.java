@@ -1,11 +1,11 @@
 package de.macbury.hashbot.core.debug;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
+import de.macbury.hashbot.core.graphics.ui.FlatColors;
 import de.macbury.hashbot.core.level.map.Chunk;
-import de.macbury.hashbot.core.level.map.Map;
+import de.macbury.hashbot.core.level.map.Terrain;
 
 /**
  * Created by macbury on 09.03.14.
@@ -33,10 +33,11 @@ public class DebugShape {
     }
   }
 
-  public static void drawMap(ShapeRenderer shapeRender, Map map) {
+  public static void drawMap(ShapeRenderer shapeRender, Terrain terrain) {
     shapeRender.begin(ShapeRenderer.ShapeType.Line); {
-      shapeRender.setColor(Color.WHITE);
-      for (Chunk chunk : map.getChunks()) {
+
+      for (Chunk chunk : terrain.getChunks()) {
+        shapeRender.setColor(FlatColors.MIDNIGHT_BLUE);
         DebugShape.draw(shapeRender, chunk.getBoundingBox());
       }
     } shapeRender.end();

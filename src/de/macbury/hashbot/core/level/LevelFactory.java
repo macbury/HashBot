@@ -1,6 +1,6 @@
 package de.macbury.hashbot.core.level;
 
-import de.macbury.hashbot.core.level.map.Map;
+import de.macbury.hashbot.core.level.map.Terrain;
 import de.macbury.hashbot.core.level.map.exceptions.LevelInvalidDimensionException;
 
 /**
@@ -10,9 +10,9 @@ public class LevelFactory {
 
   public static Level newLevel(int rows, int cols) throws LevelInvalidDimensionException {
     Level level = new Level();
-    Map map     = new Map(cols, rows);
-    map.bootstrap();
-    level.setMap(map);
+    Terrain terrain = new Terrain(cols, rows);
+    terrain.bootstrap();
+    level.setTerrain(terrain);
     return level;
   }
 }

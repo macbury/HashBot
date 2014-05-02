@@ -24,7 +24,6 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
 
   public MapEditorScreen() {
     this.stage = new UIStage();
-    this.stage.setCurrentTable(new EditorTable(this));
 
     try {
       this.level = LevelFactory.newLevel(50, 50);
@@ -36,8 +35,11 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
     exitConfirmDialog.setListener(this);
 
     this.inputMultiplexer = new InputMultiplexer();
-    inputMultiplexer.addProcessor(level.getCameraController());
     inputMultiplexer.addProcessor(stage);
+
+    stage.addActor(level.getCameraController());
+    this.stage.setCurrentTable(new EditorTable(this));
+    level.init();
   }
 
   @Override
@@ -86,6 +88,7 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
   @Override
   public void afterFadeIn() {
     Gdx.input.setInputProcessor(inputMultiplexer);
+    level.getCameraController().focus();
   }
 
   @Override

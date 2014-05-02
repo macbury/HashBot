@@ -3,6 +3,8 @@ package de.macbury.hashbot.core.level.map;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g3d.Renderable;
 import com.badlogic.gdx.graphics.g3d.RenderableProvider;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.Pool;
@@ -12,19 +14,21 @@ import de.macbury.hashbot.core.level.map.blocks.BaseBlock;
 import de.macbury.hashbot.core.level.map.blocks.Block;
 import de.macbury.hashbot.core.level.map.exceptions.LevelInvalidDimensionException;
 import de.macbury.hashbot.core.managers.Assets;
+import de.macbury.hashbot.core.partition.QuadTreeObject;
 
 /**
  * Created by macbury on 01.05.14.
  */
-public class Map implements Disposable, RenderableProvider {
+public class Terrain implements Disposable, QuadTreeObject {
   private Block[][] tiles;
   private int width;
   private int height;
   private MeshAssembler builder;
   private TextureAtlas tileset;
   private Array<Chunk> chunks;
+  private BoundingBox boundingBox;
 
-  public Map(int width, int height) throws LevelInvalidDimensionException {
+  public Terrain(int width, int height) throws LevelInvalidDimensionException {
     builder = new MeshAssembler();
     tileset = HashBot.assets.get(Assets.TERRAIN_TILESET);
 
@@ -37,6 +41,8 @@ public class Map implements Disposable, RenderableProvider {
     if (width % Chunk.SIZE != 0 && height % Chunk.SIZE != 0) {
       throw new LevelInvalidDimensionException();
     }
+
+    this.boundingBox = new BoundingBox(new Vector3(0,0,0), new Vector3(width,Block.BLOCK_HEIGHT,height));
   }
 
   public void bootstrap() {
@@ -76,15 +82,6 @@ public class Map implements Disposable, RenderableProvider {
     }
   }
 
-  @Override
-  public void getRenderables(Array<Renderable> renderables, Pool<Renderable> pool) {
-    for(Chunk chunk : chunks) {
-      chunk.update();
-      //renderables.add(chunk);
-      //TODO: FIX
-    }
-  }
-
   public MeshAssembler getBuilder() {
     return builder;
   }
@@ -99,5 +96,16 @@ public class Map implements Disposable, RenderableProvider {
 
   public Array<Chunk> getChunks() {
     return chunks;
+  }
+
+  @Override
+  public BoundingBox getBoundingBox() {
+    return boundingBox;
+  }
+
+  public void update() {
+    for(Chunk chunk : chunks) {
+      chunk.update();
+    }
   }
 }

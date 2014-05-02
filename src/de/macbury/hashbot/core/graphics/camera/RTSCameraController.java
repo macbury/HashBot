@@ -6,13 +6,18 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.input.InputManager;
 
 /**
  * Created by macbury on 05.03.14.
  */
-public class RTSCameraController extends InputAdapter {
+public class RTSCameraController extends Widget {
   private static final float LERP_SPEED = 15.0f;
   private static int CAMERA_MOVE_PADDING = 16;
   private PerspectiveCamera cam;
@@ -61,6 +66,7 @@ public class RTSCameraController extends InputAdapter {
   private float alpha;
 
   public RTSCameraController() {
+    super();
     position = new Vector3(0,0,0);
     center = new Vector3(0, 0, 0);
     oldPosition = new Vector3(0,0,0);
@@ -80,10 +86,82 @@ public class RTSCameraController extends InputAdapter {
     maxTilt = (float) (Math.PI / 2) - 0.006f;
 
     currentZoom = maxZoom;
+    setFillParent(true);
+    addCaptureListener(new InputListener() {
+      @Override
+      public boolean scrolled(InputEvent event, float x, float y, int amount) {
+        if (!enabled)
+          return false;
+        if (amount == 0 || rotateMouseButtonPressed) {
+          return false;
+        } else {
+          scrollAmount = amount;
+          return true;
+        }
+      }
+
+      @Override
+      public boolean keyDown(InputEvent event, int keycode) {
+        if (!enabled || !keyboardEnabled)
+          return false;
+        return changePressStateFor(keycode, true);
+      }
+
+      @Override
+      public boolean keyUp(InputEvent event, int keycode) {
+        if (!enabled || !keyboardEnabled)
+          return false;
+        return changePressStateFor(keycode, false);
+      }
+
+      @Override
+      public boolean mouseMoved(InputEvent event, float screenX, float screenY) {
+        //leftHotCorent = (screenX <= CAMERA_MOVE_PADDING);
+        //rightHotCorent = (Gdx.graphics.getWidth() - CAMERA_MOVE_PADDING <= screenX);
+        //topHotCorent = (screenY <= CAMERA_MOVE_PADDING);
+        //bottomHotCorent = (Gdx.graphics.getHeight() - CAMERA_MOVE_PADDING <= screenY);
+
+        return false;
+      }
+
+      @Override
+      public boolean touchDown(InputEvent event, float screenX, float screenY, int pointer, int button) {
+        if (!enabled)
+          return false;
+        focus();
+        if (button == Input.Buttons.MIDDLE) {
+          rotateMouseButtonPressed = true;
+          mouseRotationDrag.set(screenX, screenY);
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      @Override
+      public void touchUp(InputEvent event, float screenX, float screenY, int pointer, int button) {
+        if (!enabled)
+          return;
+        if (button == Input.Buttons.MIDDLE) {
+          rotateMouseButtonPressed = false;
+          return;
+        } else {
+          return;
+        }
+      }
+
+    });
   }
 
   public boolean isKeyboardEnabled() {
     return keyboardEnabled;
+  }
+
+  public void focus() {
+    if (getStage() != null) {
+      getStage().setKeyboardFocus(this);
+      getStage().setScrollFocus(this);
+    }
   }
 
   public void setKeyboardEnabled(boolean keyboardEnabled) {
@@ -94,7 +172,13 @@ public class RTSCameraController extends InputAdapter {
     this.cam = camera;
   }
 
-  public void update(final float delta) {
+  @Override
+  public void act(float delta) {
+    super.act(delta);
+    update(delta);
+  }
+
+  private void update(final float delta) {
     if (this.cam == null) {
       return;
     }
@@ -181,31 +265,6 @@ public class RTSCameraController extends InputAdapter {
     this.center.z = z;
   }
 
-  @Override
-  public boolean scrolled(int amount) {
-    if (!enabled)
-      return false;
-    if (amount == 0 || rotateMouseButtonPressed) {
-      return false;
-    } else {
-      scrollAmount = amount;
-      return true;
-    }
-  }
-
-  @Override
-  public boolean keyDown(int keycode) {
-    if (!enabled || !keyboardEnabled)
-      return false;
-    return changePressStateFor(keycode, true);
-  }
-
-  @Override
-  public boolean keyUp(int keycode) {
-    if (!enabled || !keyboardEnabled)
-      return false;
-    return changePressStateFor(keycode, false);
-  }
 
   private boolean changePressStateFor(int keycode, boolean state) {
     boolean acted = false;
@@ -255,45 +314,7 @@ public class RTSCameraController extends InputAdapter {
     return acted;
   }
 
-  @Override
-  public boolean mouseMoved(int screenX, int screenY) {
-    //leftHotCorent = (screenX <= CAMERA_MOVE_PADDING);
-    //rightHotCorent = (Gdx.graphics.getWidth() - CAMERA_MOVE_PADDING <= screenX);
-    //topHotCorent = (screenY <= CAMERA_MOVE_PADDING);
-    //bottomHotCorent = (Gdx.graphics.getHeight() - CAMERA_MOVE_PADDING <= screenY);
 
-    return false;
-  }
-
-  @Override
-  public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-    if (!enabled)
-      return false;
-    if (button == Input.Buttons.RIGHT) {
-      rotateMouseButtonPressed = true;
-      mouseRotationDrag.set(screenX, screenY);
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  @Override
-  public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-    if (!enabled)
-      return false;
-    if (button == Input.Buttons.RIGHT) {
-      rotateMouseButtonPressed = false;
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  @Override
-  public boolean touchDragged(int screenX, int screenY, int pointer) {
-    return super.touchDragged(screenX, screenY, pointer);
-  }
 
   public boolean isEnabled() {
     return enabled;

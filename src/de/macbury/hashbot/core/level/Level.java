@@ -9,19 +9,22 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Disposable;
 import de.macbury.hashbot.core.debug.DebugShape;
 import de.macbury.hashbot.core.graphics.camera.RTSCameraController;
-import de.macbury.hashbot.core.level.map.Map;
+import de.macbury.hashbot.core.level.map.Terrain;
+import de.macbury.hashbot.core.partition.GameObjectTree;
 
 
 /**
  * Created by macbury on 30.04.14.
  */
 public class Level implements Disposable {
+
+  private GameObjectTree tree;
   private PerspectiveCamera camera;
   private ShapeRenderer shapeRender;
   private RenderContext renderContext;
   private ModelBatch modelBatch;
   private RTSCameraController cameraController;
-  private Map map;
+  private Terrain terrain;
 
   public Level() {
     this.camera           = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -36,6 +39,13 @@ public class Level implements Disposable {
     renderContext = new RenderContext(new DefaultTextureBinder(DefaultTextureBinder.WEIGHTED));
     modelBatch    = new ModelBatch(renderContext);
     shapeRender   = new ShapeRenderer();
+
+
+  }
+  // run after setup map ant entities
+  public void init() {
+    this.tree = new GameObjectTree(terrain);
+    this.tree.setCamera(camera);
   }
 
   @Override
@@ -47,26 +57,27 @@ public class Level implements Disposable {
   public void draw() {
     renderContext.begin(); {
       modelBatch.begin(camera);{
-        modelBatch.render(map);
+        modelBatch.render(tree);
       } modelBatch.end();
     } renderContext.end();
 
     renderContext.begin(); {
       shapeRender.setProjectionMatrix(camera.combined);
-      DebugShape.drawMap(shapeRender, map);
+      DebugShape.drawMap(shapeRender, terrain);
     } renderContext.end();
   }
 
   public void act(float delta) {
-    cameraController.update(delta);
+    tree.update(delta);
+    terrain.update();
   }
 
-  public void setMap(Map map) {
-    this.map = map;
+  public void setTerrain(Terrain terrain) {
+    this.terrain = terrain;
   }
 
-  public Map getMap() {
-    return map;
+  public Terrain getTerrain() {
+    return terrain;
   }
 
   public RTSCameraController getCameraController() {

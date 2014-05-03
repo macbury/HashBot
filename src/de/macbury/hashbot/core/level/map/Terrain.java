@@ -1,8 +1,11 @@
 package de.macbury.hashbot.core.level.map;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Renderable;
 import com.badlogic.gdx.graphics.g3d.RenderableProvider;
+import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.utils.Array;
@@ -19,7 +22,8 @@ import de.macbury.hashbot.core.partition.QuadTreeObject;
 /**
  * Created by macbury on 01.05.14.
  */
-public class Terrain implements Disposable, QuadTreeObject {
+public class Terrain implements Disposable {
+  private Material material;
   private Block[][] tiles;
   private int width;
   private int height;
@@ -27,6 +31,7 @@ public class Terrain implements Disposable, QuadTreeObject {
   private TextureAtlas tileset;
   private Array<Chunk> chunks;
   private BoundingBox boundingBox;
+  private Vector2 tempVec = new Vector2();
 
   public Terrain(int width, int height) throws LevelInvalidDimensionException {
     builder = new MeshAssembler();
@@ -43,6 +48,7 @@ public class Terrain implements Disposable, QuadTreeObject {
     }
 
     this.boundingBox = new BoundingBox(new Vector3(0,0,0), new Vector3(width,Block.BLOCK_HEIGHT,height));
+    this.material    = new Material(TextureAttribute.createDiffuse(tileset.getTextures().first()));
   }
 
   public void bootstrap() {
@@ -91,14 +97,17 @@ public class Terrain implements Disposable, QuadTreeObject {
   }
 
   public Block getBlock(int x, int y) {
-    return tiles[x][y];
+    if (x < 0 || y < 0 || x >= width || y >= height) {
+      return null;
+    } else {
+      return tiles[x][y];
+    }
   }
 
   public Array<Chunk> getChunks() {
     return chunks;
   }
 
-  @Override
   public BoundingBox getBoundingBox() {
     return boundingBox;
   }
@@ -107,5 +116,13 @@ public class Terrain implements Disposable, QuadTreeObject {
     for(Chunk chunk : chunks) {
       chunk.update();
     }
+  }
+
+  public Vector2 getCenter() {
+    return tempVec.set(width/2, height/2);
+  }
+
+  public Material getMaterial() {
+    return material;
   }
 }

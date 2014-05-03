@@ -8,8 +8,10 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 import de.macbury.hashbot.core.level.map.Chunk;
 import de.macbury.hashbot.core.level.map.Terrain;
+import de.macbury.hashbot.core.time.BaseTimer;
+import de.macbury.hashbot.core.time.FrameTickTimer;
 import de.macbury.hashbot.core.time.IntervalTimer;
-import de.macbury.hashbot.core.time.IntervalTimerListener;
+import de.macbury.hashbot.core.time.TimerListener;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -17,22 +19,23 @@ import java.util.Stack;
 /**
  * Created by macbury on 02.05.14.
  */
-public class GameObjectTree extends QuadTree implements RenderableProvider, IntervalTimerListener {
-  private IntervalTimer updateTimer;
+public class GameObjectTree extends QuadTree implements RenderableProvider, TimerListener {
+  private FrameTickTimer updateTimer;
   private Stack<QuadTreeObject> tempTreeObjects;
-  private ArrayList<QuadTreeObject> visibleObjects;
+  private Array<QuadTreeObject> visibleObjects;
   private Array<Renderable> visibleRenderables;
   private Array<RenderableProvider> visibleRenderableProviders;
   private PerspectiveCamera camera;
+
   public GameObjectTree(Terrain terrain) {
     super(0, terrain.getBoundingBox());
     this.tempTreeObjects = new Stack<QuadTreeObject>();
-    this.visibleObjects  = new ArrayList<QuadTreeObject>();
+    this.visibleObjects  = new Array<QuadTreeObject>();
     this.visibleRenderables = new Array<Renderable>();
     this.visibleRenderableProviders = new Array<RenderableProvider>();
     append(terrain);
 
-    this.updateTimer = new IntervalTimer(50);
+    this.updateTimer = new FrameTickTimer(2);
     updateTimer.setListener(this);
   }
 
@@ -63,7 +66,7 @@ public class GameObjectTree extends QuadTree implements RenderableProvider, Inte
     }
   }
 
-  public ArrayList<QuadTreeObject> getVisibleObjects() {
+  public Array<QuadTreeObject> getVisibleObjects() {
     return visibleObjects;
   }
 
@@ -79,8 +82,12 @@ public class GameObjectTree extends QuadTree implements RenderableProvider, Inte
     updateTimer.update(delta);
   }
 
+  public boolean isVisible(QuadTreeObject object) {
+    return visibleObjects.contains(object, true);
+  }
+
   @Override
-  public void timerTick(IntervalTimer sender) {
+  public void timerTick(BaseTimer sender) {
     cull(camera.frustum);
   }
 

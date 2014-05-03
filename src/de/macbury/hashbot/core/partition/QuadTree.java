@@ -144,7 +144,7 @@ public class QuadTree {
     }
 
     objects.add(object);
-
+    object.setQuadTreeParent(this);
     if (objects.size() > MAX_OBJECTS && level < MAX_LEVELS) {
       if (!haveNodes()) {
         split();
@@ -159,6 +159,15 @@ public class QuadTree {
           i++;
         }
       }
+    }
+  }
+
+  public boolean remove(QuadTreeObject object) {
+    int index = getIndex(object);
+    if (index == -1) {
+      return objects.remove(object);
+    } else {
+      return nodes[index].remove(object);
     }
   }
 

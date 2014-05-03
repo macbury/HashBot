@@ -7,4 +7,5 @@ import com.badlogic.gdx.math.collision.BoundingBox;
  */
 public interface QuadTreeObject {
   public BoundingBox getBoundingBox();
+  public void setQuadTreeParent(QuadTree parent);
 }

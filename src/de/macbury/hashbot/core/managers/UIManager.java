@@ -50,6 +50,7 @@ public class UIManager {
   public BitmapFont codeFont;
   public CursorDefiniton textCursor;
   public Window.WindowStyle dialogNpnModalStyle;
+  public CursorDefiniton grabCursor;
 
   public void load() {
     this.atlas = (TextureAtlas)HashBot.assets.get(Assets.ATLAS_UI);
@@ -57,6 +58,7 @@ public class UIManager {
 
     arrowCursor = new CursorDefiniton(atlas.findRegion("arrow"));
     textCursor  = new CursorDefiniton(atlas.findRegion("ibeam"));
+    grabCursor  = new CursorDefiniton(atlas.findRegion("closedhand"));
     Gdx.input.setCursorImage((Pixmap)HashBot.assets.get(Assets.CURSOR_PLACEHOLDER), 0,0);
     normalCursor();
 
@@ -166,6 +168,10 @@ public class UIManager {
 
   public void textCursor() {
     currentCursor = textCursor;
+  }
+
+  public void grabCursor() {
+    currentCursor = grabCursor;
   }
 
   public UICheckBox checkBox() {

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="artemis">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/artemis.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/artemis-src.jar!/" />
+    </SOURCES>
+  </library>
+</component>

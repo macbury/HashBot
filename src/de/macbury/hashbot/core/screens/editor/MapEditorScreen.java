@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import de.macbury.hashbot.core.HashBot;
+import de.macbury.hashbot.core.graphics.camera.RTSCameraController;
 import de.macbury.hashbot.core.graphics.ui.dialogs.ConfirmDialog;
 import de.macbury.hashbot.core.graphics.ui.widgets.UIStage;
 import de.macbury.hashbot.core.level.Level;
@@ -40,6 +41,8 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
     stage.addActor(level.getCameraController());
     this.stage.setCurrentTable(new EditorTable(this));
     level.init();
+
+    level.getCameraController().setMaxZoom(RTSCameraController.MAX_ZOOM * 3);
   }
 
   @Override

@@ -6,10 +6,8 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.math.collision.BoundingBox;
+import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.input.InputManager;
@@ -19,6 +17,7 @@ import de.macbury.hashbot.core.input.InputManager;
  */
 public class RTSCameraController extends Widget {
   private static final float LERP_SPEED = 15.0f;
+  public static final int MAX_ZOOM = 20;
   private static int CAMERA_MOVE_PADDING = 16;
   private PerspectiveCamera cam;
 
@@ -65,6 +64,8 @@ public class RTSCameraController extends Widget {
   private boolean rotateMouseButtonPressed;
   private float alpha;
 
+  private RTSCameraListener listener;
+
   public RTSCameraController() {
     super();
     position = new Vector3(0,0,0);
@@ -79,7 +80,7 @@ public class RTSCameraController extends Widget {
     tiltSpeed = 1.0f;
 
     minZoom = 3;
-    maxZoom = 20;
+    maxZoom = MAX_ZOOM;
     scrollSpeed = 100.0f;
 
     minTilt = 0.6f;
@@ -87,7 +88,20 @@ public class RTSCameraController extends Widget {
 
     currentZoom = maxZoom;
     setFillParent(true);
+
     addCaptureListener(new InputListener() {
+      @Override
+      public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+        super.exit(event, x, y, pointer, toActor);
+        //blur();
+      }
+
+      @Override
+      public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+        super.enter(event, x, y, pointer, fromActor);
+        focus();
+      }
+
       @Override
       public boolean scrolled(InputEvent event, float x, float y, int amount) {
         if (!enabled)
@@ -102,25 +116,28 @@ public class RTSCameraController extends Widget {
 
       @Override
       public boolean keyDown(InputEvent event, int keycode) {
-        if (!enabled || !keyboardEnabled)
+        if (!enabled || !keyboardEnabled || !focused())
           return false;
         return changePressStateFor(keycode, true);
       }
 
       @Override
       public boolean keyUp(InputEvent event, int keycode) {
-        if (!enabled || !keyboardEnabled)
+        if (!enabled || !keyboardEnabled || !focused())
           return false;
         return changePressStateFor(keycode, false);
       }
 
       @Override
       public boolean mouseMoved(InputEvent event, float screenX, float screenY) {
-        //leftHotCorent = (screenX <= CAMERA_MOVE_PADDING);
-        //rightHotCorent = (Gdx.graphics.getWidth() - CAMERA_MOVE_PADDING <= screenX);
-        //topHotCorent = (screenY <= CAMERA_MOVE_PADDING);
-        //bottomHotCorent = (Gdx.graphics.getHeight() - CAMERA_MOVE_PADDING <= screenY);
+        if (focused()) {
+          leftHotCorent = (screenX <= CAMERA_MOVE_PADDING);
+          rightHotCorent = (Gdx.graphics.getWidth() - CAMERA_MOVE_PADDING <= screenX);
+          topHotCorent = (Gdx.graphics.getHeight() - CAMERA_MOVE_PADDING <= screenY);
+          bottomHotCorent = (screenY <= CAMERA_MOVE_PADDING);
 
+          return true;
+        }
         return false;
       }
 
@@ -131,6 +148,7 @@ public class RTSCameraController extends Widget {
         focus();
         if (button == Input.Buttons.MIDDLE) {
           rotateMouseButtonPressed = true;
+          HashBot.ui.grabCursor();
           mouseRotationDrag.set(screenX, screenY);
           return true;
         } else {
@@ -144,6 +162,7 @@ public class RTSCameraController extends Widget {
           return;
         if (button == Input.Buttons.MIDDLE) {
           rotateMouseButtonPressed = false;
+          HashBot.ui.normalCursor();
           return;
         } else {
           return;
@@ -153,8 +172,19 @@ public class RTSCameraController extends Widget {
     });
   }
 
+  private void blur() {
+    Stage s = getStage();
+    if (s != null) {
+      s.unfocus(this);
+    }
+  }
+
   public boolean isKeyboardEnabled() {
     return keyboardEnabled;
+  }
+
+  public boolean focused() {
+    return (getStage() != null) && (getStage().getKeyboardFocus() == this);
   }
 
   public void focus() {
@@ -234,6 +264,15 @@ public class RTSCameraController extends Widget {
     position.x = center.x + (float) (currentZoom * Math.cos(tilt) * Math.sin(rotation));
     position.y = center.y + (float) (currentZoom * Math.sin(tilt));
     position.z = center.z + (float) (currentZoom * Math.cos(tilt) * Math.cos(rotation));
+
+    if (listener != null) {
+      BoundingBox box = listener.getCameraBounds();
+      if (!box.contains(center)) {
+        center.set(oldCenter);
+        return;
+      }
+
+    }
 
     if (!position.equals(oldPosition)) {
       oldPosition.set(position);
@@ -358,5 +397,21 @@ public class RTSCameraController extends Widget {
 
   public void setCurrentZoom(float currentZoom) {
     this.currentZoom = currentZoom;
+  }
+
+  public void setCenter(Vector2 center) {
+    this.setCenter(center.x, center.y);
+  }
+
+  public void setMaxZoom(float nz) {
+    maxZoom = nz;
+  }
+
+  public RTSCameraListener getListener() {
+    return listener;
+  }
+
+  public void setListener(RTSCameraListener listener) {
+    this.listener = listener;
   }
 }

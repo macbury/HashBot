@@ -5,13 +5,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import de.macbury.hashbot.core.HashBot;
+import de.macbury.hashbot.core.time.BaseTimer;
 import de.macbury.hashbot.core.time.IntervalTimer;
-import de.macbury.hashbot.core.time.IntervalTimerListener;
+import de.macbury.hashbot.core.time.TimerListener;
 
 /**
  * Created by macbury on 24.04.14.
  */
-public class Overlay implements IntervalTimerListener {
+public class Overlay implements TimerListener {
 
   private IntervalTimer fpsTimer;
   private OrthographicCamera camera;
@@ -49,7 +50,7 @@ public class Overlay implements IntervalTimerListener {
   }
 
   @Override
-  public void timerTick(IntervalTimer sender) {
+  public void timerTick(BaseTimer sender) {
     updateFPS();
   }
 }

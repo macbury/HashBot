@@ -1,6 +1,7 @@
 package de.macbury.hashbot.core.screens.editor;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.ui.widgets.UIButton;
@@ -83,5 +84,12 @@ public class EditorTable extends UITable {
     row();
       add(codeMapButton).fill();
       add(testMapButton).colspan(2).left();
+
+    addListener(new InputListener() {
+      @Override
+      public boolean mouseMoved(InputEvent event, float x, float y) {
+        return super.mouseMoved(event, x, y);
+      }
+    });
   }
 }

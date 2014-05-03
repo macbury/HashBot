@@ -3,15 +3,16 @@ package de.macbury.hashbot.core.time;
 /**
  * Created by macbury on 30.04.14.
  */
-public class IntervalTimer {
+public class IntervalTimer extends BaseTimer {
   private float acumulated = 0.0f;
   private float maxTime    = 1.0f;
-  private IntervalTimerListener listener;
+
 
   public IntervalTimer(float max) {
     this.maxTime = max;
   }
 
+  @Override
   public void update(float dt) {
     acumulated += dt;
     if (acumulated > maxTime) {
@@ -19,10 +20,6 @@ public class IntervalTimer {
       if (listener != null)
         listener.timerTick(this);
     }
-
   }
 
-  public void setListener(IntervalTimerListener listener) {
-    this.listener = listener;
-  }
 }

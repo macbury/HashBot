@@ -8,8 +8,8 @@ import de.macbury.hashbot.core.level.map.exceptions.LevelInvalidDimensionExcepti
  */
 public class LevelFactory {
 
-  public static Level newLevel(int rows, int cols) throws LevelInvalidDimensionException {
-    Level level = new Level();
+  public static LevelEditor newLevel(int rows, int cols) throws LevelInvalidDimensionException {
+    LevelEditor level = new LevelEditor();
     Terrain terrain = new Terrain(cols, rows);
     terrain.bootstrap();
     level.setTerrain(terrain);

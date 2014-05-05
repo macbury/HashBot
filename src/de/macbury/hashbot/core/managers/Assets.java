@@ -22,7 +22,7 @@ public class Assets extends AssetManager {
   public static final String FONT_UI        = FONT_PREFIX + "ui.fnt";
   public static final String FONT_UI_SMALL  = FONT_PREFIX + "ui_small.fnt";
   public static final String FONT_CODE      = FONT_PREFIX + "code.fnt";
-  public static final String MUSIC_MENU     = MUSIC_PREFIX + "menu.mp3";
+  public static final String MUSIC_MENU     = MUSIC_PREFIX + "AlteredCarbon_-_15_-_Drown.mp3";
 
   public static final String ATLAS_UI                 = UI_PREFIX + "gui.atlas";
   public static final String CURSOR_PLACEHOLDER       = UI_PREFIX + "cursor_placeholder.png";

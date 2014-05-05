@@ -10,12 +10,13 @@ import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import de.macbury.hashbot.core.HashBot;
+import de.macbury.hashbot.core.graphics.ui.GameUIOverlay;
 import de.macbury.hashbot.core.input.InputManager;
 
 /**
  * Created by macbury on 05.03.14.
  */
-public class RTSCameraController extends Widget {
+public class RTSCameraController {
   private static final float LERP_SPEED = 15.0f;
   public static final int MAX_ZOOM = 20;
   private static int CAMERA_MOVE_PADDING = 16;
@@ -65,6 +66,7 @@ public class RTSCameraController extends Widget {
   private float alpha;
 
   private RTSCameraListener listener;
+  private GameUIOverlay overlay;
 
   public RTSCameraController() {
     super();
@@ -87,9 +89,11 @@ public class RTSCameraController extends Widget {
     maxTilt = (float) (Math.PI / 2) - 0.006f;
 
     currentZoom = maxZoom;
-    setFillParent(true);
+  }
 
-    addCaptureListener(new InputListener() {
+  public void setOverlay(GameUIOverlay overlay) {
+    this.overlay = overlay;
+    this.overlay.addCaptureListener(new InputListener() {
       @Override
       public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
         super.exit(event, x, y, pointer, toActor);
@@ -99,7 +103,7 @@ public class RTSCameraController extends Widget {
       @Override
       public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
         super.enter(event, x, y, pointer, fromActor);
-        focus();
+        //RTSCameraController.this.overlay.focus();
       }
 
       @Override
@@ -116,21 +120,21 @@ public class RTSCameraController extends Widget {
 
       @Override
       public boolean keyDown(InputEvent event, int keycode) {
-        if (!enabled || !keyboardEnabled || !focused())
+        if (!enabled || !keyboardEnabled)
           return false;
         return changePressStateFor(keycode, true);
       }
 
       @Override
       public boolean keyUp(InputEvent event, int keycode) {
-        if (!enabled || !keyboardEnabled || !focused())
+        if (!enabled || !keyboardEnabled)
           return false;
         return changePressStateFor(keycode, false);
       }
 
       @Override
       public boolean mouseMoved(InputEvent event, float screenX, float screenY) {
-        if (focused()) {
+        if (RTSCameraController.this.overlay.focused()) {
           leftHotCorent = (screenX <= CAMERA_MOVE_PADDING);
           rightHotCorent = (Gdx.graphics.getWidth() - CAMERA_MOVE_PADDING <= screenX);
           topHotCorent = (Gdx.graphics.getHeight() - CAMERA_MOVE_PADDING <= screenY);
@@ -145,7 +149,7 @@ public class RTSCameraController extends Widget {
       public boolean touchDown(InputEvent event, float screenX, float screenY, int pointer, int button) {
         if (!enabled)
           return false;
-        focus();
+        RTSCameraController.this.overlay.focus();
         if (button == Input.Buttons.MIDDLE) {
           rotateMouseButtonPressed = true;
           HashBot.ui.grabCursor();
@@ -172,26 +176,8 @@ public class RTSCameraController extends Widget {
     });
   }
 
-  private void blur() {
-    Stage s = getStage();
-    if (s != null) {
-      s.unfocus(this);
-    }
-  }
-
   public boolean isKeyboardEnabled() {
     return keyboardEnabled;
-  }
-
-  public boolean focused() {
-    return (getStage() != null) && (getStage().getKeyboardFocus() == this);
-  }
-
-  public void focus() {
-    if (getStage() != null) {
-      getStage().setKeyboardFocus(this);
-      getStage().setScrollFocus(this);
-    }
   }
 
   public void setKeyboardEnabled(boolean keyboardEnabled) {
@@ -202,13 +188,7 @@ public class RTSCameraController extends Widget {
     this.cam = camera;
   }
 
-  @Override
-  public void act(float delta) {
-    super.act(delta);
-    update(delta);
-  }
-
-  private void update(final float delta) {
+  public void update(final float delta) {
     if (this.cam == null) {
       return;
     }

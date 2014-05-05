@@ -3,6 +3,7 @@ package de.macbury.hashbot.core.partition;
 import com.badlogic.gdx.math.Frustum;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
+import com.badlogic.gdx.math.collision.Ray;
 import de.macbury.hashbot.core.level.map.blocks.Block;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class QuadTree {
     Vector3 a   = nBounds.getMin();
     a.y         = 0;
     Vector3 b   = nBounds.getMax();
-    b.y         = Block.BLOCK_SIZE * 2;
+    b.y         = Block.BLOCK_SIZE * 10;
     bounds.set(a, b);
     clear();
   }
@@ -191,6 +192,7 @@ public class QuadTree {
 
     returnObjects.addAll(objects);
   }
+
 
   public void retrieve(List<QuadTreeObject> returnObjects, QuadTreeObject object) {
     retrieve(returnObjects, object.getBoundingBox());

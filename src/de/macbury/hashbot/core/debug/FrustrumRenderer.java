@@ -5,6 +5,8 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import de.macbury.hashbot.core.HashBot;
+import de.macbury.hashbot.core.input.InputManager;
 
 /**
  * Created by macbury on 05.03.14.
@@ -28,7 +30,6 @@ public class FrustrumRenderer extends InputAdapter {
     this.frustrumCamera = camera;
     this.renderer       = new ShapeRenderer();
     saveState();
-
   }
 
   public void saveState() {
@@ -58,7 +59,7 @@ public class FrustrumRenderer extends InputAdapter {
 
   @Override
   public boolean keyDown(int keycode) {
-    if (false) {//TODO: GameCore.inputProcessor.isEqual(GameInputProcessor.Action.TestFrustrum, keycode)) {
+    if ( HashBot.input.isEqual(InputManager.Action.TestFrustrum, keycode)) {
       this.enabled = !this.enabled;
       saveState();
       return true;

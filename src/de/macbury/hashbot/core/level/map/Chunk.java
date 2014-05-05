@@ -19,8 +19,9 @@ import de.macbury.hashbot.core.partition.QuadTreeObject;
  * Created by macbury on 01.05.14.
  */
 public class Chunk extends Renderable implements Disposable, QuadTreeObject {
-  public static final int SIZE = 10;
+  public static final int SIZE = 5;
   public final static int CHUNK_WIDTH = SIZE * Block.BLOCK_SIZE; //size in meters
+  private static final float CHUNK_HEIGHT = Block.BLOCK_HEIGHT;
   private Terrain terrain;
   private boolean dirty = true;
   private Vector3 start;
@@ -30,7 +31,7 @@ public class Chunk extends Renderable implements Disposable, QuadTreeObject {
   public Chunk(int bx, int by, Terrain terrain) {
     Vector3 tempVec   = new Vector3(bx * CHUNK_WIDTH, 0, by * CHUNK_WIDTH);
     this.start        = new Vector3(bx * SIZE, 0, by * SIZE);
-    this.boundingBox  = new BoundingBox(tempVec, tempVec.cpy().add(CHUNK_WIDTH, Block.BLOCK_HEIGHT, CHUNK_WIDTH));
+    this.boundingBox  = new BoundingBox(tempVec, tempVec.cpy().add(CHUNK_WIDTH, CHUNK_HEIGHT, CHUNK_WIDTH));
 
     this.primitiveType  = GL30.GL_TRIANGLES;
     this.meshPartOffset = 0;

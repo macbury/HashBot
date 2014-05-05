@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.g3d.Renderable;
 import com.badlogic.gdx.graphics.g3d.RenderableProvider;
 import com.badlogic.gdx.math.Frustum;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 import de.macbury.hashbot.core.level.map.Chunk;
@@ -25,7 +28,7 @@ public class GameObjectTree extends QuadTree implements RenderableProvider, Time
   private Array<QuadTreeObject> visibleObjects;
   private Array<Renderable> visibleRenderables;
   private Array<RenderableProvider> visibleRenderableProviders;
-  private PerspectiveCamera camera;
+  private Frustum frustum;
 
   public GameObjectTree(Terrain terrain) {
     super(0, terrain.getBoundingBox());
@@ -88,10 +91,23 @@ public class GameObjectTree extends QuadTree implements RenderableProvider, Time
 
   @Override
   public void timerTick(BaseTimer sender) {
-    cull(camera.frustum);
+    cull(frustum);
   }
 
-  public void setCamera(PerspectiveCamera camera) {
-    this.camera = camera;
+  public void setFrustum(Frustum frustum) {
+    this.frustum = frustum;
   }
+
+  public boolean intersect(ArrayList<QuadTreeObject> returnObjects, Ray ray, Vector3 intersect) {
+    returnObjects.clear();
+    intersect.set(Vector3.Zero);
+    for (QuadTreeObject object : visibleObjects) {
+      if (Intersector.intersectRayBounds(ray, object.getBoundingBox(), intersect)) {
+        returnObjects.add(object);
+      }
+    }
+
+    return returnObjects.size() != 0;
+  }
+
 }

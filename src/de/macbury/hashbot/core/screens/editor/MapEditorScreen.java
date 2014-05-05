@@ -6,9 +6,11 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.camera.RTSCameraController;
+import de.macbury.hashbot.core.graphics.ui.GameUIOverlay;
 import de.macbury.hashbot.core.graphics.ui.dialogs.ConfirmDialog;
 import de.macbury.hashbot.core.graphics.ui.widgets.UIStage;
 import de.macbury.hashbot.core.level.Level;
+import de.macbury.hashbot.core.level.LevelEditor;
 import de.macbury.hashbot.core.level.LevelFactory;
 import de.macbury.hashbot.core.level.map.exceptions.LevelInvalidDimensionException;
 import de.macbury.hashbot.core.screens.BaseScreen;
@@ -18,8 +20,10 @@ import de.macbury.hashbot.core.screens.BaseScreen;
  */
 public class MapEditorScreen extends BaseScreen implements EditorTableListener, ConfirmDialog.ConfirmDialogListener {
 
+  private GameUIOverlay overlay;
+  private EditorTable editorTable;
   private InputMultiplexer inputMultiplexer;
-  private Level level;
+  private LevelEditor level;
   private ConfirmDialog exitConfirmDialog;
   private UIStage stage;
 
@@ -37,12 +41,21 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
 
     this.inputMultiplexer = new InputMultiplexer();
     inputMultiplexer.addProcessor(stage);
+    inputMultiplexer.addProcessor(level.getFrustrumDebugger());
 
-    stage.addActor(level.getCameraController());
-    this.stage.setCurrentTable(new EditorTable(this));
+    this.overlay = new GameUIOverlay();
+    level.getCameraController().setOverlay(this.overlay);
+    level.getLevelEditorSystem().setOverlay(this.overlay);
+    stage.addActor(overlay);
+
+    this.editorTable = new EditorTable(this);
+    this.stage.setCurrentTable(editorTable);
+    level.setUILayout(editorTable);
     level.init();
 
     level.getCameraController().setMaxZoom(RTSCameraController.MAX_ZOOM * 3);
+
+
   }
 
   @Override
@@ -91,7 +104,7 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
   @Override
   public void afterFadeIn() {
     Gdx.input.setInputProcessor(inputMultiplexer);
-    level.getCameraController().focus();
+    overlay.focus();
   }
 
   @Override

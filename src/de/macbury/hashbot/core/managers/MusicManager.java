@@ -12,7 +12,11 @@ public class MusicManager {
   }
 
   public Music mainMenu() {
-    Music music = HashBot.assets.get(Assets.MUSIC_MENU);
+    return applyConfig((Music)HashBot.assets.get(Assets.MUSIC_MENU));
+  }
+
+  private Music applyConfig(Music music) {
+    music.setVolume(HashBot.config.getMusicVolume());
     return music;
   }
 }

@@ -112,9 +112,7 @@ public class MenuScreen extends BaseScreen implements MenuOptionsListener {
     Gdx.app.debug(TAG, "Show");
 
     HashBot.ui.normalCursor();
-
-
-    //HashBot.music.mainMenu().play();
+    HashBot.music.mainMenu().play();
   }
 
   @Override

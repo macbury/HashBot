@@ -3,12 +3,9 @@ package de.macbury.hashbot.core.managers;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Model;
-import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.BlendingAttribute;
-import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.models.LogoInstance;
-import de.macbury.hashbot.core.graphics.ui.FlatColors;
 
 /**
  * Created by macbury on 22.04.14.

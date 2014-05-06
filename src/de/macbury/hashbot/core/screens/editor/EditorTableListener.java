@@ -9,4 +9,6 @@ public interface EditorTableListener {
   public void saveMapButtonClicked();
   public void codeButtonClicked();
   public void exitButtonClicked();
+
+  public void brushButtonClicked();
 }

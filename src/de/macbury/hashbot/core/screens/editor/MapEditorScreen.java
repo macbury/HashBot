@@ -2,15 +2,14 @@ package de.macbury.hashbot.core.screens.editor;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.camera.RTSCameraController;
-import de.macbury.hashbot.core.graphics.ui.GameUIOverlay;
-import de.macbury.hashbot.core.graphics.ui.dialogs.ConfirmDialog;
-import de.macbury.hashbot.core.graphics.ui.widgets.UIStage;
-import de.macbury.hashbot.core.level.Level;
-import de.macbury.hashbot.core.level.LevelEditor;
+import de.macbury.hashbot.core.ui.GameUIOverlay;
+import de.macbury.hashbot.core.ui.dialogs.BrushDialog;
+import de.macbury.hashbot.core.ui.dialogs.ConfirmDialog;
+import de.macbury.hashbot.core.ui.widgets.UIStage;
+import de.macbury.hashbot.core.level.editor.LevelEditor;
 import de.macbury.hashbot.core.level.LevelFactory;
 import de.macbury.hashbot.core.level.map.exceptions.LevelInvalidDimensionException;
 import de.macbury.hashbot.core.screens.BaseScreen;
@@ -20,6 +19,7 @@ import de.macbury.hashbot.core.screens.BaseScreen;
  */
 public class MapEditorScreen extends BaseScreen implements EditorTableListener, ConfirmDialog.ConfirmDialogListener {
 
+  private BrushDialog brushDialog;
   private GameUIOverlay overlay;
   private EditorTable editorTable;
   private InputMultiplexer inputMultiplexer;
@@ -38,6 +38,8 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
 
     this.exitConfirmDialog = HashBot.ui.confirm("map_editor.confirm_exit.title", "map_editor.confirm_exit.message");
     exitConfirmDialog.setListener(this);
+
+    this.brushDialog       = HashBot.ui.brushDialog();
 
     this.inputMultiplexer = new InputMultiplexer();
     inputMultiplexer.addProcessor(stage);
@@ -135,6 +137,11 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
   @Override
   public void exitButtonClicked() {
     exitConfirmDialog.show(stage);
+  }
+
+  @Override
+  public void brushButtonClicked() {
+    brushDialog.toggleVisibility(stage);
   }
 
   @Override

@@ -12,16 +12,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.CursorDefiniton;
-import de.macbury.hashbot.core.graphics.ui.SolarizedDarkColors;
-import de.macbury.hashbot.core.graphics.ui.code_editor.CodeEditorView;
-import de.macbury.hashbot.core.graphics.ui.code_editor.widget.CodeEditorTextArea;
-import de.macbury.hashbot.core.graphics.ui.dialogs.CodeEditorDialog;
-import de.macbury.hashbot.core.graphics.ui.dialogs.ConfirmDialog;
-import de.macbury.hashbot.core.graphics.ui.dialogs.FilePickerDialog;
-import de.macbury.hashbot.core.graphics.ui.widgets.ProfileButton;
-import de.macbury.hashbot.core.graphics.ui.widgets.UIButton;
-import de.macbury.hashbot.core.graphics.ui.dialogs.SettingsDialog;
-import de.macbury.hashbot.core.graphics.ui.widgets.UICheckBox;
+import de.macbury.hashbot.core.ui.SolarizedDarkColors;
+import de.macbury.hashbot.core.ui.code_editor.CodeEditorView;
+import de.macbury.hashbot.core.ui.code_editor.widget.CodeEditorTextArea;
+import de.macbury.hashbot.core.ui.dialogs.*;
+import de.macbury.hashbot.core.ui.widgets.ProfileButton;
+import de.macbury.hashbot.core.ui.widgets.UIButton;
+import de.macbury.hashbot.core.ui.widgets.UICheckBox;
 import de.macbury.hashbot.core.progress.GameProfile;
 import de.macbury.hashbot.core.screens.menu.MenuBackButton;
 
@@ -29,6 +26,7 @@ import de.macbury.hashbot.core.screens.menu.MenuBackButton;
  * Created by macbury on 22.04.14.
  */
 public class UIManager {
+  public static final float BUTTON_HEIGHT = 29;
   public CursorDefiniton currentCursor;
   public CursorDefiniton arrowCursor;
   public TextureAtlas atlas;
@@ -209,6 +207,10 @@ public class UIManager {
 
   public CodeEditorDialog codeEditorDialog() {
     return new CodeEditorDialog(dialogNpnModalStyle);
+  }
+
+  public BrushDialog brushDialog() {
+    return new BrushDialog(dialogNpnModalStyle);
   }
 
   public Dialog dialog() {

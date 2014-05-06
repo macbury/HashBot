@@ -3,9 +3,9 @@ package de.macbury.hashbot.core.screens.menu.table;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.macbury.hashbot.core.HashBot;
-import de.macbury.hashbot.core.graphics.ui.widgets.ProfileButton;
-import de.macbury.hashbot.core.graphics.ui.widgets.UIButton;
-import de.macbury.hashbot.core.graphics.ui.widgets.UITable;
+import de.macbury.hashbot.core.ui.widgets.ProfileButton;
+import de.macbury.hashbot.core.ui.widgets.UIButton;
+import de.macbury.hashbot.core.ui.widgets.UITable;
 import de.macbury.hashbot.core.screens.menu.MenuOptionsListener;
 
 /**

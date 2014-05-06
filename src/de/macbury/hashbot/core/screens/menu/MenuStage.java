@@ -1,6 +1,6 @@
 package de.macbury.hashbot.core.screens.menu;
 
-import de.macbury.hashbot.core.graphics.ui.widgets.UIStage;
+import de.macbury.hashbot.core.ui.widgets.UIStage;
 import de.macbury.hashbot.core.screens.menu.table.MenuDefaultTable;
 import de.macbury.hashbot.core.screens.menu.table.MenuProfileTable;
 

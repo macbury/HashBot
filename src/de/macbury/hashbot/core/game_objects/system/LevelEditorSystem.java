@@ -19,8 +19,8 @@ import de.macbury.hashbot.core.game_objects.components.ActorComponent;
 import de.macbury.hashbot.core.game_objects.components.debug.LineBoxComponent;
 import de.macbury.hashbot.core.game_objects.components.level.CursorComponent;
 import de.macbury.hashbot.core.game_objects.components.level.LevelEditorComponent;
-import de.macbury.hashbot.core.graphics.ui.GameUIOverlay;
-import de.macbury.hashbot.core.level.LevelEditor;
+import de.macbury.hashbot.core.ui.GameUIOverlay;
+import de.macbury.hashbot.core.level.editor.LevelEditor;
 import de.macbury.hashbot.core.level.map.blocks.Block;
 import de.macbury.hashbot.core.partition.QuadTreeObject;
 
@@ -140,6 +140,7 @@ public class LevelEditorSystem extends EntitySystem {
       @Override
       public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
         if (button == 0) {
+          LevelEditorSystem.this.level.getCurrentBrush().apply(getActorComponent().getBoundingBox());
           getCursorComponent().endSelection();
         }
       }

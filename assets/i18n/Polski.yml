@@ -35,6 +35,19 @@ pl:
     new: "Nowa"
     code: "Kod"
     test: "Testuj"
+    brush:
+      toggle: "Pedzel"
+      type: "Typ"
+      terrain:
+        mode: "Tryb"
+        up: "Podnies"
+        down: "Obniz"
+        set: "Ustaw"
+      types:
+        terrain: "Teren"
+        texture: "Tekstury"
+        triggers: "Wyzwalacze"
+        objects: "Obiekty"
   settings:
     title: "Ustawienia"
     save: "Zapisz"

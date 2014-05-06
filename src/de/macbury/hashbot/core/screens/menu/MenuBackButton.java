@@ -2,7 +2,7 @@ package de.macbury.hashbot.core.screens.menu;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import de.macbury.hashbot.core.graphics.ui.widgets.UIButton;
+import de.macbury.hashbot.core.ui.widgets.UIButton;
 
 /**
  * Created by macbury on 24.04.14.

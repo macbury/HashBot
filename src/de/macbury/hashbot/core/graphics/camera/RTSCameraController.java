@@ -2,15 +2,13 @@ package de.macbury.hashbot.core.graphics.camera;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.scenes.scene2d.*;
-import com.badlogic.gdx.scenes.scene2d.ui.Widget;
 import de.macbury.hashbot.core.HashBot;
-import de.macbury.hashbot.core.graphics.ui.GameUIOverlay;
+import de.macbury.hashbot.core.ui.GameUIOverlay;
 import de.macbury.hashbot.core.input.InputManager;
 
 /**

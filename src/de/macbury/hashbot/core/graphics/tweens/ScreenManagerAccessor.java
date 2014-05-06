@@ -1,7 +1,6 @@
 package de.macbury.hashbot.core.graphics.tweens;
 
 import aurelienribon.tweenengine.TweenAccessor;
-import de.macbury.hashbot.core.graphics.ui.widgets.UIStage;
 import de.macbury.hashbot.core.managers.ScreenManager;
 
 /**

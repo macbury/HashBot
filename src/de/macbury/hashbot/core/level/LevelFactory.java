@@ -1,5 +1,6 @@
 package de.macbury.hashbot.core.level;
 
+import de.macbury.hashbot.core.level.editor.LevelEditor;
 import de.macbury.hashbot.core.level.map.Terrain;
 import de.macbury.hashbot.core.level.map.exceptions.LevelInvalidDimensionException;
 

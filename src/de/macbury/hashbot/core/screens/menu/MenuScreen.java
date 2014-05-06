@@ -15,7 +15,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.models.LogoInstance;
-import de.macbury.hashbot.core.graphics.ui.FlatColors;
+import de.macbury.hashbot.core.ui.FlatColors;
 import de.macbury.hashbot.core.screens.BaseScreen;
 
 

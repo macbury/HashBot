@@ -47,7 +47,7 @@ public abstract class Level implements Disposable, RTSCameraListener {
     this.camera           = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     camera.position.set(10f, 10f, 10f);
     camera.near = 0.1f;
-    camera.far = 50f;
+    camera.far = 40f;
     camera.update();
 
 

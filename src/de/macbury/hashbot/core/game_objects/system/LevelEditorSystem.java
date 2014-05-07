@@ -10,6 +10,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -19,10 +20,12 @@ import de.macbury.hashbot.core.game_objects.components.ActorComponent;
 import de.macbury.hashbot.core.game_objects.components.debug.LineBoxComponent;
 import de.macbury.hashbot.core.game_objects.components.level.CursorComponent;
 import de.macbury.hashbot.core.game_objects.components.level.LevelEditorComponent;
+import de.macbury.hashbot.core.level.map.Chunk;
 import de.macbury.hashbot.core.ui.GameUIOverlay;
 import de.macbury.hashbot.core.level.editor.LevelEditor;
 import de.macbury.hashbot.core.level.map.blocks.Block;
 import de.macbury.hashbot.core.partition.QuadTreeObject;
+import de.macbury.hashbot.core.ui.editor.LevelEditorSystemListener;
 
 import java.util.ArrayList;
 
@@ -35,7 +38,7 @@ public class LevelEditorSystem extends EntitySystem {
   private PerspectiveCamera camera;
   private LevelEditor level;
   private Vector3 tempVector                    = new Vector3();
-  private ArrayList<QuadTreeObject> tempObjects = new ArrayList<QuadTreeObject>();
+  private ArrayList<Chunk> tempObjects = new ArrayList<Chunk>();
   @Mapper
   ComponentMapper<CursorComponent> cm;
   @Mapper
@@ -43,11 +46,15 @@ public class LevelEditorSystem extends EntitySystem {
   @Mapper
   ComponentMapper<LineBoxComponent> lbm;
   private GameUIOverlay overlay;
-
+  private LevelEditorSystemListener listener;
   public LevelEditorSystem(LevelEditor levelEditor) {
     super(Aspect.getAspectForOne(LevelEditorComponent.class));
     this.level = levelEditor;
     this.camera = level.getCameraController().getCamera();
+  }
+
+  public void setListener(LevelEditorSystemListener listener) {
+    this.listener = listener;
   }
 
   @Override
@@ -77,21 +84,31 @@ public class LevelEditorSystem extends EntitySystem {
 
     if (updateCursorPos) {
       Ray pickupRay = camera.getPickRay(Gdx.input.getX(), Gdx.input.getY());
-      if (level.getTree().intersect(tempObjects, pickupRay, tempVector)) {
-        cursorComponent.endPositon.set(tempVector).y = Block.BLOCK_HEIGHT;
+      if (level.getTerrain().intersect(tempObjects, pickupRay, tempVector)) {
+        cursorComponent.endPositon.set(tempVector);
         cursorComponent.snapPosition();
       }
     }
 
     actorComponent.setVisible(overlay.focused());
 
+    Block block = level.getTerrain().getBlock((int)cursorComponent.endPositon.x, (int)cursorComponent.endPositon.z);
+
+    if (block != null) {
+      cursorComponent.endPositon.y = block.getHeight();
+    } else {
+      cursorComponent.endPositon.y = 0;
+    }
+
+
     if (cursorComponent.selection) {
       lineBoxComponent.setColor(Color.WHITE);
-      actorComponent.size.set(cursorComponent.getWidth(),Block.BLOCK_HEIGHT,cursorComponent.getHeight());
+      Vector3 minDim = listener.levelEditorCursorMinimalDimension(this);
+      actorComponent.size.set(Math.max(minDim.x, cursorComponent.getWidth()),Math.max(minDim.y, 0.1f),Math.max(minDim.z, cursorComponent.getHeight()));
       actorComponent.position.set(cursorComponent.getBottomRightPosition());
     } else {
       lineBoxComponent.setColor(Color.GRAY);
-      actorComponent.size.set(Block.BLOCK_SIZE,Block.BLOCK_HEIGHT,Block.BLOCK_SIZE);
+      actorComponent.size.set(listener.levelEditorCursorMinimalDimension(this));
       actorComponent.position.set(cursorComponent.endPositon);
     }
 
@@ -117,6 +134,7 @@ public class LevelEditorSystem extends EntitySystem {
       @Override
       public boolean mouseMoved(InputEvent event, float x, float y) {
         LevelEditorSystem.this.updateCursor(LevelEditorSystem.this.level.getCursor(), true);
+        LevelEditorSystem.this.listener.levelEditorSystemCursorMove(LevelEditorSystem.this);
         return false;
       }
 
@@ -124,6 +142,7 @@ public class LevelEditorSystem extends EntitySystem {
       public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
         if (button == 0) {
           getCursorComponent().startSelection();
+          LevelEditorSystem.this.listener.levelEditorSystemStartSelection(LevelEditorSystem.this);
           return true;
         } else {
           return false;
@@ -134,17 +153,22 @@ public class LevelEditorSystem extends EntitySystem {
       public void touchDragged(InputEvent event, float x, float y, int pointer) {
         if (getCursorComponent().selection) {
           LevelEditorSystem.this.updateCursor(LevelEditorSystem.this.level.getCursor(), true);
+          LevelEditorSystem.this.listener.levelEditorSystemCursorMove(LevelEditorSystem.this);
         }
       }
 
       @Override
       public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
         if (button == 0) {
-          LevelEditorSystem.this.level.getCurrentBrush().apply(getActorComponent().getBoundingBox());
+          LevelEditorSystem.this.listener.levelEditorSystemEndSelectionOrClick(LevelEditorSystem.this);
           getCursorComponent().endSelection();
         }
       }
 
     });
+  }
+
+  public BoundingBox getSelectionBoundingBox() {
+    return getActorComponent().getBoundingBox();
   }
 }

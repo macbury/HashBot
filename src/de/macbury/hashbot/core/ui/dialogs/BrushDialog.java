@@ -1,12 +1,14 @@
 package de.macbury.hashbot.core.ui.dialogs;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import de.macbury.hashbot.core.HashBot;
+import de.macbury.hashbot.core.level.editor.BrushBase;
 import de.macbury.hashbot.core.managers.UIManager;
 import de.macbury.hashbot.core.ui.editor.BrushSettingsWidgetGroup;
 import de.macbury.hashbot.core.ui.widgets.UIStage;
@@ -18,7 +20,7 @@ public class BrushDialog extends UIDialog {
   private SelectBox typeSelectBox;
   private BrushSettingsWidgetGroup contentGroup;
   private boolean showed;
-
+  private BrushBase currentBrush;
   public BrushDialog(WindowStyle style) {
     super("Brush", style);
     setModal(false);
@@ -78,5 +80,11 @@ public class BrushDialog extends UIDialog {
   public void hide() {
     super.hide();
     showed = false;
+  }
+
+  public void applySelection(BoundingBox selectionBoundingBox) {
+    if (currentBrush != null) {
+      currentBrush.apply(selectionBoundingBox);
+    }
   }
 }

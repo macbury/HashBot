@@ -5,9 +5,11 @@ import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Renderable;
 import com.badlogic.gdx.graphics.g3d.RenderableProvider;
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
+import com.badlogic.gdx.math.collision.Ray;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.Pool;
@@ -18,6 +20,8 @@ import de.macbury.hashbot.core.level.map.blocks.Block;
 import de.macbury.hashbot.core.level.map.exceptions.LevelInvalidDimensionException;
 import de.macbury.hashbot.core.managers.Assets;
 import de.macbury.hashbot.core.partition.QuadTreeObject;
+
+import java.util.ArrayList;
 
 /**
  * Created by macbury on 01.05.14.
@@ -120,6 +124,19 @@ public class Terrain implements Disposable {
 
   public Vector2 getCenter() {
     return tempVec.set(width/2, height/2);
+  }
+
+  public boolean intersect(ArrayList<Chunk> returnObjects, Ray ray, Vector3 intersect) {
+    returnObjects.clear();
+    intersect.set(Vector3.Zero);
+
+    for (Chunk chunk : chunks) {
+      if (Intersector.intersectRayTriangles(ray, chunk.getVerticies(), chunk.getIndicies(), chunk.getVertexSize(), intersect)) {
+        returnObjects.add(chunk);
+      }
+    }
+
+    return returnObjects.size() != 0;
   }
 
   public Material getMaterial() {

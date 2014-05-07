@@ -9,8 +9,12 @@ import de.macbury.hashbot.core.ui.widgets.UITable;
  * Created by macbury on 05.05.14.
  */
 public class BrushSettingsWidgetGroup extends WidgetGroup {
+  public static enum BrushMode {
+    Terrain, Texture, Triggers, Objects
+  }
   private UITable terrainBrushSettingsTable;
   private SelectBox terrainModeSelectBox;
+  private BrushMode currentMode;
 
   public BrushSettingsWidgetGroup() {
     super();
@@ -44,5 +48,6 @@ public class BrushSettingsWidgetGroup extends WidgetGroup {
   public void showTerrain() {
     hideAll();
     terrainBrushSettingsTable.setVisible(true);
+    this.currentMode = BrushMode.Terrain;
   }
 }

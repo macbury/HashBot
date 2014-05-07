@@ -12,6 +12,7 @@ public abstract class Block {
   public static final float BLOCK_HEIGHT = 1;
   private final int x;
   private final int y;
+  private int height = 0;
   private Vector2 vec2;
   private Vector3 vec3;
   private Chunk chunk;
@@ -28,7 +29,7 @@ public abstract class Block {
   }
 
   public Vector3 vec3() {
-    return vec3.set(x,y, 0);
+    return vec3.set(x,getHeight(), y);
   }
 
   public Chunk getChunk() {
@@ -37,5 +38,13 @@ public abstract class Block {
 
   public void setChunk(Chunk chunk) {
     this.chunk = chunk;
+  }
+
+  public int getHeight() {
+    return height;
+  }
+
+  public void setHeight(int height) {
+    this.height = height;
   }
 }

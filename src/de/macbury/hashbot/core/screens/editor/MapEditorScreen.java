@@ -3,11 +3,18 @@ package de.macbury.hashbot.core.screens.editor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.math.collision.BoundingBox;
 import de.macbury.hashbot.core.HashBot;
+import de.macbury.hashbot.core.game_objects.system.LevelEditorSystem;
 import de.macbury.hashbot.core.graphics.camera.RTSCameraController;
+import de.macbury.hashbot.core.level.map.blocks.Block;
 import de.macbury.hashbot.core.ui.GameUIOverlay;
 import de.macbury.hashbot.core.ui.dialogs.BrushDialog;
 import de.macbury.hashbot.core.ui.dialogs.ConfirmDialog;
+import de.macbury.hashbot.core.ui.editor.EditorTable;
+import de.macbury.hashbot.core.ui.editor.EditorTableListener;
+import de.macbury.hashbot.core.ui.editor.LevelEditorSystemListener;
 import de.macbury.hashbot.core.ui.widgets.UIStage;
 import de.macbury.hashbot.core.level.editor.LevelEditor;
 import de.macbury.hashbot.core.level.LevelFactory;
@@ -17,7 +24,7 @@ import de.macbury.hashbot.core.screens.BaseScreen;
 /**
  * Created by macbury on 25.04.14.
  */
-public class MapEditorScreen extends BaseScreen implements EditorTableListener, ConfirmDialog.ConfirmDialogListener {
+public class MapEditorScreen extends BaseScreen implements EditorTableListener, ConfirmDialog.ConfirmDialogListener, LevelEditorSystemListener {
 
   private BrushDialog brushDialog;
   private GameUIOverlay overlay;
@@ -55,9 +62,9 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
     level.setUILayout(editorTable);
     level.init();
 
+    level.getLevelEditorSystem().setListener(this);
+
     level.getCameraController().setMaxZoom(RTSCameraController.MAX_ZOOM * 3);
-
-
   }
 
   @Override
@@ -152,5 +159,34 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
   @Override
   public void onConfirmCancelButton(ConfirmDialog sender) {
 
+  }
+
+  @Override
+  public void levelEditorSystemStartSelection(LevelEditorSystem les) {
+
+  }
+
+  @Override
+  public void levelEditorSystemCursorMove(LevelEditorSystem les) {
+
+  }
+
+  @Override
+  public void levelEditorSystemEndSelectionOrClick(LevelEditorSystem les) {
+    BoundingBox box = les.getSelectionBoundingBox();
+    brushDialog.applySelection(box);
+    for(int x = (int)box.getMin().x; x < box.getMax().x; x++) {
+      for(int z = (int)box.getMin().z; z < box.getMax().z; z++) {
+        Block block = level.getTerrain().getBlock(x, z);
+        block.setHeight(block.getHeight()+1);
+        block.getChunk().rebuild();
+      }
+    }
+  }
+
+  private Vector3 cursorMinimalDimension = new Vector3();
+  @Override
+  public Vector3 levelEditorCursorMinimalDimension(LevelEditorSystem levelEditorSystem) {
+    return cursorMinimalDimension.set(1,1f,1);
   }
 }

@@ -81,10 +81,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EditorTable.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/editor/EditorTable.java">
+      <file leaf-file-name="MultiModeModelBatch.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/graphics/models/MultiModeModelBatch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="70" selection-start="1853" selection-end="1853" vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="1854">
+            <state line="33" column="53" selection-start="997" selection-end="1010" vertical-scroll-proportion="0.6164383" vertical-offset="54" max-vertical-offset="954">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BrushBase.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/editor/BrushBase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="35" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="486">
               <folding />
             </state>
           </provider>
@@ -93,16 +104,7 @@
       <file leaf-file-name="MapEditorScreen.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/screens/editor/MapEditorScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="177" column="4" selection-start="4579" selection-end="4857" vertical-scroll-proportion="0.0" vertical-offset="3186" max-vertical-offset="3564">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BrushDialog.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/dialogs/BrushDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="86" column="45" selection-start="2307" selection-end="2307" vertical-scroll-proportion="0.0" vertical-offset="1548" max-vertical-offset="1728">
+            <state line="25" column="3" selection-start="1231" selection-end="1231" vertical-scroll-proportion="0.0" vertical-offset="273" max-vertical-offset="3654">
               <folding />
             </state>
           </provider>
@@ -111,16 +113,16 @@
       <file leaf-file-name="Chunk.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/map/Chunk.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="89" column="74" selection-start="3655" selection-end="3655" vertical-scroll-proportion="0.0" vertical-offset="1602" max-vertical-offset="3312">
+            <state line="79" column="11" selection-start="3096" selection-end="3096" vertical-scroll-proportion="0.0" vertical-offset="1422" max-vertical-offset="3456">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Terrain.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/map/Terrain.java">
+      <file leaf-file-name="UIManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/managers/UIManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="124" column="30" selection-start="3332" selection-end="3332" vertical-scroll-proportion="0.46996465" vertical-offset="1311" max-vertical-offset="2160">
+            <state line="214" column="17" selection-start="10136" selection-end="10136" vertical-scroll-proportion="0.0" vertical-offset="3852" max-vertical-offset="4914">
               <folding />
             </state>
           </provider>
@@ -129,16 +131,25 @@
       <file leaf-file-name="LevelEditor.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/editor/LevelEditor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="26" selection-start="1807" selection-end="1807" vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="1458">
+            <state line="14" column="38" selection-start="473" selection-end="473" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="1458">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameObjectTree.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/partition/GameObjectTree.java">
+      <file leaf-file-name="Level.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/Level.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="100" column="2" selection-start="3111" selection-end="3494" vertical-scroll-proportion="0.0" vertical-offset="1800" max-vertical-offset="2142">
+            <state line="116" column="8" selection-start="4276" selection-end="4276" vertical-scroll-proportion="0.0" vertical-offset="2088" max-vertical-offset="3060">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CullingSystem.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/system/CullingSystem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="0" selection-start="952" selection-end="998" vertical-scroll-proportion="0.0" vertical-offset="558" max-vertical-offset="954">
               <folding />
             </state>
           </provider>
@@ -147,7 +158,7 @@
       <file leaf-file-name="Block.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/map/blocks/Block.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="24" selection-start="407" selection-end="407" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="1008">
+            <state line="6" column="3" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="1116">
               <folding />
             </state>
           </provider>
@@ -163,20 +174,11 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/time/IntervalTimer.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/graphics/ui/Overlay.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/partition/QuadTreeObject.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/time/FrameTickTimer.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/graphics/camera/RTSCameraListener.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/ModelRenderingSystem.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/FrustrumCullingSystem.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/components/PositionComponent.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/components/QuadTreeComponent.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/level/LevelFactory.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/components/LineBoxComponent.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/components/CursorComponent.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/components/level/LevelEditorComponent.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/partition/GameObjectTree.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/debug/FrustrumRenderer.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/partition/QuadTree.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/managers/Assets.java" />
@@ -193,35 +195,43 @@
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/components/debug/DebugComponent.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/system/ShapeRenderingSystem.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/components/ActorComponent.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/components/level/CursorComponent.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/level/editor/TerrainBrush.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/screens/editor/EditorTableListener.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/screens/editor/EditorTable.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/screens/binary_test/BinaryTestScreen.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/graphics/ui/dialogs/BrushDialog.java" />
         <option value="$PROJECT_DIR$/assets/i18n/Polski.yml" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/managers/UIManager.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/level/map/blocks/BaseBlock.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/editor/BrushSettingsWidgetGroup.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/level/editor/BrushBase.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/editor/EditorTableListener.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/editor/LevelEditorSystemListener.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/system/LevelEditorSystem.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/level/map/Terrain.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/level/map/blocks/Block.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/dialogs/BrushDialog.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/level/map/Chunk.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/screens/editor/MapEditorScreen.java" />
-        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/level/Level.java" />
         <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/level/editor/LevelEditor.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/components/level/CursorComponent.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/system/LevelEditorSystem.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/graphics/models/RenderDebugStats.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/dialogs/UIDialog.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/editor/EditorTableListener.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/editor/EditorTable.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/dialogs/StatsDialog.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/level/editor/TerrainBrush.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/managers/UIManager.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/dialogs/BrushDialog.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/graphics/models/StatsAndModelBatch.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/debug/DebugShape.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/debug/WireframeDebug.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/level/Level.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/level/map/blocks/Block.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/screens/editor/MapEditorScreen.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/partition/GameObjectTree.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/level/map/Chunk.java" />
+        <option value="$PROJECT_DIR$/src/de/macbury/hashbot/core/graphics/models/MultiModeModelBatch.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
-    <option name="y" value="27" />
+    <option name="x" value="1919" />
     <option name="width" value="1922" />
-    <option name="height" value="1054" />
+    <option name="height" value="1081" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -265,7 +275,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="PackagesPane" proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -575,6 +585,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -637,7 +648,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="progress" />
+              <option name="myItemId" value="ui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -659,13 +670,186 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="managers" />
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="editor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hexbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hashbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="de.macbury.hashbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dialogs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hexbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hashbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="de.macbury.hashbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="time" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hexbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hashbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="de.macbury.hashbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hexbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hashbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="de.macbury.hashbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="graphics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hexbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hashbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="de.macbury.hashbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game_objects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hexbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hashbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="de.macbury.hashbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game_objects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hexbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hashbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="de.macbury.hashbot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="debug" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageElementNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -716,7 +900,7 @@
       <recent name="de.macbury.hashbot.language" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainNormal">
+  <component name="RunManager" selected="Application.MapEditor">
     <configuration default="false" name="MainDebug" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="de.macbury.hashbot.Main" />
@@ -1064,7 +1248,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="27" width="1922" height="1054" extended-state="6" />
+    <frame x="1919" y="0" width="1922" height="1081" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1073,7 +1257,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39342403" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39273927" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36734694" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1087,12 +1271,12 @@
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32993197" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Tool Output" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17058824" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37641722" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37623763" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32993197" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32233223" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32199547" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1146,87 +1330,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/lib/sources/gdx-sources.jar!/com/badlogic/gdx/math/Intersector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="377" column="24" selection-start="15503" selection-end="15503" vertical-scroll-proportion="0.33252132" vertical-offset="6135" max-vertical-offset="21780" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/debug/FrustrumRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="26" selection-start="802" selection-end="802" vertical-scroll-proportion="0.0" vertical-offset="241" max-vertical-offset="1332" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/partition/QuadTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="35" selection-start="1250" selection-end="1250" vertical-scroll-proportion="0.0" vertical-offset="555" max-vertical-offset="2430" />
-      </provider>
-    </entry>
-    <entry file="jar:///usr/java/jdk1.7.0_51/src.zip!/java/lang/annotation/Target.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="18" selection-start="1629" selection-end="1629" vertical-scroll-proportion="0.69142854" vertical-offset="393" max-vertical-offset="918" />
-      </provider>
-    </entry>
-    <entry file="jar:///usr/java/jdk1.7.0_51/src.zip!/java/lang/annotation/Documented.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="4" selection-start="732" selection-end="732" vertical-scroll-proportion="0.58285713" vertical-offset="0" max-vertical-offset="525" />
-      </provider>
-    </entry>
-    <entry file="jar:///usr/java/jdk1.7.0_51/src.zip!/java/lang/annotation/Retention.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="7" selection-start="750" selection-end="750" vertical-scroll-proportion="0.5885714" vertical-offset="15" max-vertical-offset="540" />
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/artemis-src.jar!/com/artemis/annotations/Mapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="7" selection-start="203" selection-end="203" vertical-scroll-proportion="0.13714285" vertical-offset="0" max-vertical-offset="525" />
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/sources/gdx-sources.jar!/com/badlogic/gdx/scenes/scene2d/InputListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="13" selection-start="1590" selection-end="1590" vertical-scroll-proportion="0.33333334" vertical-offset="185" max-vertical-offset="2268" />
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/sources/gdx-sources.jar!/com/badlogic/gdx/InputAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="51" selection-start="969" selection-end="983" vertical-scroll-proportion="0.24" vertical-offset="0" max-vertical-offset="864" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/screens/menu/MenuScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="31" selection-start="3622" selection-end="3622" vertical-scroll-proportion="0.0" vertical-offset="2232" max-vertical-offset="2772" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/managers/MusicManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="22" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="486" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/Overlay.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="33" selection-start="1688" selection-end="1688" vertical-scroll-proportion="0.9778672" vertical-offset="324" max-vertical-offset="990">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/GameUIOverlay.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="25" selection-start="395" selection-end="395" vertical-scroll-proportion="0.38285714" vertical-offset="87" max-vertical-offset="720">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/managers/Assets.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="92" selection-start="1081" selection-end="1081" vertical-scroll-proportion="0.0" vertical-offset="1113" max-vertical-offset="1638" />
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/sources/gdx-sources.jar!/com/badlogic/gdx/utils/Array.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="159" column="17" selection-start="6559" selection-end="6559" vertical-scroll-proportion="0.33199194" vertical-offset="2355" max-vertical-offset="10116" />
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/sources/gdx-sources.jar!/com/badlogic/gdx/math/Vector3.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="80" column="17" selection-start="2640" selection-end="2640" vertical-scroll-proportion="0.33199194" vertical-offset="987" max-vertical-offset="10944" />
@@ -1272,16 +1375,6 @@
         <state line="92" column="3" selection-start="2443" selection-end="2443" vertical-scroll-proportion="0.38430583" vertical-offset="1069" max-vertical-offset="1566" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/system/CullingSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="26" selection-start="1134" selection-end="1134" vertical-scroll-proportion="0.0" vertical-offset="349" max-vertical-offset="954" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/system/ShapeRenderingSystem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="17" selection-start="1190" selection-end="1190" vertical-scroll-proportion="0.0" vertical-offset="436" max-vertical-offset="990" />
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/lib/sources/gdx-sources.jar!/com/badlogic/gdx/scenes/scene2d/Actor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="333" column="17" selection-start="12998" selection-end="12998" vertical-scroll-proportion="0.33206108" vertical-offset="5046" max-vertical-offset="11286" />
@@ -1302,16 +1395,9 @@
         <state line="44" column="20" selection-start="912" selection-end="912" vertical-scroll-proportion="0.0" vertical-offset="466" max-vertical-offset="1278" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/managers/UIManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="46" selection-start="1213" selection-end="1213" vertical-scroll-proportion="-0.14486921" vertical-offset="216" max-vertical-offset="4716" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/EntityFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="22" selection-start="587" selection-end="587" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="630">
-          <folding />
-        </state>
+        <state line="15" column="22" selection-start="587" selection-end="587" vertical-scroll-proportion="0.0" vertical-offset="132" max-vertical-offset="630" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/editor/BrushSettingsWidgetGroup.java">
@@ -1326,23 +1412,6 @@
         <state line="5" column="35" selection-start="129" selection-end="129" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/editor/TerrainBrush.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="33" selection-start="198" selection-end="205" vertical-scroll-proportion="0.23507462" vertical-offset="0" max-vertical-offset="536" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/editor/BrushBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="18" selection-start="363" selection-end="372" vertical-scroll-proportion="0.35106382" vertical-offset="0" max-vertical-offset="564" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/editor/EditorTableListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="9" selection-start="319" selection-end="319" vertical-scroll-proportion="0.38297874" vertical-offset="0" max-vertical-offset="564">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/editor/LevelEditorSystemListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="13" selection-start="507" selection-end="507" vertical-scroll-proportion="0.41064638" vertical-offset="0" max-vertical-offset="526">
@@ -1352,90 +1421,240 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/components/level/CursorComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="17" selection-start="986" selection-end="986" vertical-scroll-proportion="0.33269963" vertical-offset="455" max-vertical-offset="1008" />
-      </provider>
-    </entry>
     <entry file="jar:///usr/java/jdk1.7.0_51/src.zip!/java/nio/FloatBuffer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="956" column="25" selection-start="20861" selection-end="20861" vertical-scroll-proportion="0.91862565" vertical-offset="16250" max-vertical-offset="25776" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/map/Terrain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="28" selection-start="3265" selection-end="3265" vertical-scroll-proportion="0.0" vertical-offset="1284" max-vertical-offset="2160" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/components/level/CursorComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="17" selection-start="986" selection-end="986" vertical-scroll-proportion="0.56179774" vertical-offset="330" max-vertical-offset="1134" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/graphics/models/RenderDebugStats.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="24" selection-start="223" selection-end="223" vertical-scroll-proportion="0.30337077" vertical-offset="0" max-vertical-offset="612">
+          <folding>
+            <element signature="e#410#411#0" expanded="true" />
+            <element signature="e#434#435#0" expanded="true" />
+            <element signature="e#479#480#0" expanded="true" />
+            <element signature="e#511#512#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/dialogs/UIDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="19" selection-start="777" selection-end="777" vertical-scroll-proportion="0.9325843" vertical-offset="78" max-vertical-offset="738">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/editor/EditorTableListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="9" selection-start="354" selection-end="354" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/editor/EditorTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="70" selection-start="1853" selection-end="1853" vertical-scroll-proportion="0.0" vertical-offset="894" max-vertical-offset="1458">
+        <state line="97" column="85" selection-start="3285" selection-end="3285" vertical-scroll-proportion="0.0" vertical-offset="1068" max-vertical-offset="1620">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/graphics/mesh/MeshAssembler.java">
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/dialogs/StatsDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="293" column="14" selection-start="8427" selection-end="8427" vertical-scroll-proportion="0.33333334" vertical-offset="4805" max-vertical-offset="6444">
-          <folding />
+        <state line="52" column="25" selection-start="1544" selection-end="1544" vertical-scroll-proportion="0.9325843" vertical-offset="438" max-vertical-offset="1800">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/partition/GameObjectTree.java">
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/editor/TerrainBrush.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="100" column="2" selection-start="3111" selection-end="3494" vertical-scroll-proportion="0.0" vertical-offset="1211" max-vertical-offset="1764">
-          <folding />
+        <state line="1" column="0" selection-start="46" selection-end="46" vertical-scroll-proportion="0.03757829" vertical-offset="0" max-vertical-offset="558">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/ui/dialogs/BrushDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="45" selection-start="2307" selection-end="2307" vertical-scroll-proportion="0.0" vertical-offset="608" max-vertical-offset="1530">
+        <state line="62" column="26" selection-start="1862" selection-end="1862" vertical-scroll-proportion="0.0" vertical-offset="852" max-vertical-offset="1386">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/map/Chunk.java">
+    <entry file="jar://$PROJECT_DIR$/lib/sources/gdx-sources.jar!/com/badlogic/gdx/graphics/g3d/Renderable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="74" selection-start="3655" selection-end="3655" vertical-scroll-proportion="0.0" vertical-offset="827" max-vertical-offset="2862">
-          <folding />
-        </state>
+        <state line="68" column="23" selection-start="4554" selection-end="4554" vertical-scroll-proportion="0.3320158" vertical-offset="660" max-vertical-offset="1494" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/Level.java">
+    <entry file="jar://$PROJECT_DIR$/lib/sources/gdx-sources.jar!/com/badlogic/gdx/graphics/glutils/ShapeRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="22" selection-start="1370" selection-end="1370" vertical-scroll-proportion="-2.6460347" vertical-offset="1512" max-vertical-offset="2322">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/screens/editor/MapEditorScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="177" column="4" selection-start="4579" selection-end="4857" vertical-scroll-proportion="0.0" vertical-offset="2651" max-vertical-offset="3222">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/editor/LevelEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="26" selection-start="1807" selection-end="1807" vertical-scroll-proportion="0.0" vertical-offset="563" max-vertical-offset="1188">
-          <folding />
-        </state>
+        <state line="1117" column="0" selection-start="37570" selection-end="37570" vertical-scroll-proportion="0.35968378" vertical-offset="19366" max-vertical-offset="19872" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/system/LevelEditorSystem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="100" selection-start="3815" selection-end="3819" vertical-scroll-proportion="0.61702126" vertical-offset="1067" max-vertical-offset="2718">
+        <state line="103" column="19" selection-start="3601" selection-end="3601" vertical-scroll-proportion="0.0" vertical-offset="2184" max-vertical-offset="2718">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/map/Terrain.java">
+    <entry file="jar://$PROJECT_DIR$/lib/sources/gdx-sources.jar!/com/badlogic/gdx/graphics/g3d/ModelBatch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="30" selection-start="3332" selection-end="3332" vertical-scroll-proportion="0.46996465" vertical-offset="1311" max-vertical-offset="2160">
+        <state line="48" column="13" selection-start="2387" selection-end="2404" vertical-scroll-proportion="0.54545456" vertical-offset="102" max-vertical-offset="5652">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/system/ShapeRenderingSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="17" selection-start="1190" selection-end="1190" vertical-scroll-proportion="0.5019763" vertical-offset="160" max-vertical-offset="828">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/java/jdk1.7.0_51/src.zip!/java/nio/Buffer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="392" column="25" selection-start="12238" selection-end="12238" vertical-scroll-proportion="0.3320158" vertical-offset="6474" max-vertical-offset="9810" />
+      </provider>
+    </entry>
+    <entry file="jar:///usr/java/jdk1.7.0_51/src.zip!/java/nio/ShortBuffer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="589" column="26" selection-start="10720" selection-end="10720" vertical-scroll-proportion="1.5059289" vertical-offset="9390" max-vertical-offset="25776" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/managers/UIManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="214" column="17" selection-start="10136" selection-end="10136" vertical-scroll-proportion="0.0" vertical-offset="3269" max-vertical-offset="4518">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/sources/gdx-sources.jar!/com/badlogic/gdx/graphics/Mesh.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="394" column="25" selection-start="18232" selection-end="18232" vertical-scroll-proportion="-4.2" vertical-offset="6240" max-vertical-offset="19332">
+          <folding>
+            <element signature="e#18207#18208#0" expanded="true" />
+            <element signature="e#18256#18257#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/sources/gdx-sources.jar!/com/badlogic/gdx/graphics/VertexAttributes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="33" selection-start="2507" selection-end="2523" vertical-scroll-proportion="0.45232815" vertical-offset="624" max-vertical-offset="3798" />
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/sources/gdx-sources.jar!/com/badlogic/gdx/graphics/glutils/VertexData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="26" selection-start="1534" selection-end="1534" vertical-scroll-proportion="0.0" vertical-offset="161" max-vertical-offset="1152">
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/debug/DebugShape.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="3" selection-start="959" selection-end="959" vertical-scroll-proportion="0.66292137" vertical-offset="150" max-vertical-offset="846">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/sources/gdx-sources.jar!/com/badlogic/gdx/graphics/g3d/utils/RenderContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="20" selection-start="2124" selection-end="2124" vertical-scroll-proportion="0.33333334" vertical-offset="560" max-vertical-offset="1926" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/graphics/mesh/MeshAssembler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="293" column="14" selection-start="8427" selection-end="8427" vertical-scroll-proportion="0.20411985" vertical-offset="4859" max-vertical-offset="6444" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/debug/WireframeDebug.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="4" selection-start="1849" selection-end="1849" vertical-scroll-proportion="0.18913858" vertical-offset="1033" max-vertical-offset="1638">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#914#1042#0" expanded="true" />
+            <element signature="e#1035#1036#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/editor/BrushBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="35" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/map/blocks/Block.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="24" selection-start="407" selection-end="407" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="828">
+        <state line="6" column="3" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="936">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/screens/editor/MapEditorScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="3" selection-start="1231" selection-end="1231" vertical-scroll-proportion="0.0" vertical-offset="273" max-vertical-offset="3654">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/partition/GameObjectTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="43" selection-start="1586" selection-end="1586" vertical-scroll-proportion="-0.36758894" vertical-offset="600" max-vertical-offset="1764" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/editor/LevelEditor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="38" selection-start="473" selection-end="473" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1188">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/game_objects/system/CullingSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="952" selection-end="998" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="116" column="8" selection-start="4276" selection-end="4276" vertical-scroll-proportion="0.0" vertical-offset="1536" max-vertical-offset="2412">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/level/map/Chunk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="11" selection-start="3096" selection-end="3096" vertical-scroll-proportion="0.0" vertical-offset="1159" max-vertical-offset="3006">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/macbury/hashbot/core/graphics/models/MultiModeModelBatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="53" selection-start="997" selection-end="1010" vertical-scroll-proportion="0.6164383" vertical-offset="54" max-vertical-offset="954">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

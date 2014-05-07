@@ -41,11 +41,18 @@ public class CursorComponent extends Component {
     return tempPosition.set(ex, endPositon.y, ez);
   }
 
+  private float length(float length) {
+    if (length > 0) {
+      length++;
+    }
+    return Math.max(Math.abs(length), 1);
+  }
+
   public float getWidth() {
-    return Math.max(Math.abs(startPosition.x - endPositon.x), 1);
+    return length(startPosition.x - endPositon.x);
   }
 
   public float getHeight() {
-    return Math.max(Math.abs(startPosition.z - endPositon.z), 1);
+    return length(startPosition.z - endPositon.z);
   }
 }

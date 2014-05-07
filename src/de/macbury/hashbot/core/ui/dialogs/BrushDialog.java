@@ -3,12 +3,11 @@ package de.macbury.hashbot.core.ui.dialogs;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
-import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.level.editor.BrushBase;
+import de.macbury.hashbot.core.level.editor.LevelEditor;
+import de.macbury.hashbot.core.level.editor.TerrainBrush;
 import de.macbury.hashbot.core.managers.UIManager;
 import de.macbury.hashbot.core.ui.editor.BrushSettingsWidgetGroup;
 import de.macbury.hashbot.core.ui.widgets.UIStage;
@@ -17,16 +16,16 @@ import de.macbury.hashbot.core.ui.widgets.UIStage;
  * Created by macbury on 05.05.14.
  */
 public class BrushDialog extends UIDialog {
+  private LevelEditor level;
   private SelectBox typeSelectBox;
   private BrushSettingsWidgetGroup contentGroup;
-  private boolean showed;
   private BrushBase currentBrush;
-  public BrushDialog(WindowStyle style) {
+  public BrushDialog(WindowStyle style, LevelEditor level) {
     super("Brush", style);
+    this.level = level;
     setModal(false);
     setMovable(false);
     setPosition(10, 10);
-    this.showed = false;
 
     this.typeSelectBox = HashBot.ui.stringSelectBox();
     typeSelectBox.setItems(HashBot.i18n.t("map_editor.brush.types.terrain"),
@@ -46,6 +45,8 @@ public class BrushDialog extends UIDialog {
     table.row(); {
       table.add(contentGroup).expand().fill();
     }
+
+    currentBrush = new TerrainBrush(level);
   }
 
   @Override
@@ -58,17 +59,8 @@ public class BrushDialog extends UIDialog {
     return 320;
   }
 
-  public void toggleVisibility(UIStage stage) {
-    if (showed) {
-      hide();
-    } else {
-      show(stage);
-    }
-  }
-
   @Override
   public Dialog show(Stage stage) {
-    showed = true;
 
     super.show(stage);
     setPosition(0, UIManager.BUTTON_HEIGHT);
@@ -79,7 +71,6 @@ public class BrushDialog extends UIDialog {
   @Override
   public void hide() {
     super.hide();
-    showed = false;
   }
 
   public void applySelection(BoundingBox selectionBoundingBox) {

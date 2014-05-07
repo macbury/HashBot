@@ -10,9 +10,10 @@ import de.macbury.hashbot.core.level.map.Chunk;
 public abstract class Block {
   public static final int BLOCK_SIZE = 1;
   public static final float BLOCK_HEIGHT = 1;
+  public static final int BLOCK_MIN_HEIGHT = 1;
   private final int x;
   private final int y;
-  private int height = 0;
+  private int height = BLOCK_MIN_HEIGHT;
   private Vector2 vec2;
   private Vector3 vec3;
   private Chunk chunk;
@@ -46,5 +47,10 @@ public abstract class Block {
 
   public void setHeight(int height) {
     this.height = height;
+  }
+
+  public void updateChunk() {
+    if (chunk != null)
+      chunk.rebuild();
   }
 }

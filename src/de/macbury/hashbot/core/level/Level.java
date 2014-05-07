@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.g3d.Environment;
-import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
 import com.badlogic.gdx.graphics.g3d.utils.DefaultTextureBinder;
@@ -15,13 +14,15 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import com.badlogic.gdx.utils.Disposable;
-import de.macbury.hashbot.core.debug.DebugQuadTree;
 import de.macbury.hashbot.core.debug.DebugShape;
 import de.macbury.hashbot.core.debug.FrustrumRenderer;
+import de.macbury.hashbot.core.debug.WireframeDebug;
 import de.macbury.hashbot.core.game_objects.system.CullingSystem;
 import de.macbury.hashbot.core.game_objects.system.ShapeRenderingSystem;
 import de.macbury.hashbot.core.graphics.camera.RTSCameraController;
 import de.macbury.hashbot.core.graphics.camera.RTSCameraListener;
+import de.macbury.hashbot.core.graphics.models.MultiModeModelBatch;
+import de.macbury.hashbot.core.graphics.models.RenderDebugStats;
 import de.macbury.hashbot.core.level.map.Terrain;
 import de.macbury.hashbot.core.partition.GameObjectTree;
 
@@ -39,10 +40,11 @@ public abstract class Level implements Disposable, RTSCameraListener {
   protected PerspectiveCamera camera;
   protected ShapeRenderer shapeRender;
   protected RenderContext renderContext;
-  protected ModelBatch modelBatch;
+  protected MultiModeModelBatch modelBatch;
   protected RTSCameraController cameraController;
   protected Terrain terrain;
   protected EntityFactory entities;
+  protected WireframeDebug wireframeDebug;
   public Level() {
     this.camera           = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     camera.position.set(10f, 10f, 10f);
@@ -57,7 +59,7 @@ public abstract class Level implements Disposable, RTSCameraListener {
     cameraController.setListener(this);
 
     renderContext     = new RenderContext(new DefaultTextureBinder(DefaultTextureBinder.WEIGHTED));
-    modelBatch        = new ModelBatch(renderContext);
+    modelBatch        = new MultiModeModelBatch(renderContext);
     shapeRender       = new ShapeRenderer();
     frustrumDebugger  = new FrustrumRenderer(camera);
 
@@ -85,6 +87,8 @@ public abstract class Level implements Disposable, RTSCameraListener {
     world.setSystem(shapeRenderingSystem, true);
 
     world.initialize();
+
+    wireframeDebug = new WireframeDebug();
   }
 
   @Override
@@ -109,6 +113,8 @@ public abstract class Level implements Disposable, RTSCameraListener {
 
       //DebugQuadTree.debug(shapeRender, tree);
       frustrumDebugger.render(camera);
+      //renderContext.setDepthTest(GL30.GL_ALWAYS);
+      //wireframeDebug.render(shapeRender,tree);
     } renderContext.end();
   }
 
@@ -154,5 +160,5 @@ public abstract class Level implements Disposable, RTSCameraListener {
     return tree;
   }
 
-
+  public RenderDebugStats getStats() { return modelBatch.getStats(); }
 }

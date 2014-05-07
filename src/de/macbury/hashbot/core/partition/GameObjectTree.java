@@ -38,7 +38,7 @@ public class GameObjectTree extends QuadTree implements RenderableProvider, Time
     this.visibleRenderableProviders = new Array<RenderableProvider>();
     append(terrain);
 
-    this.updateTimer = new FrameTickTimer(2);
+    this.updateTimer = new FrameTickTimer(4);
     updateTimer.setListener(this);
   }
 

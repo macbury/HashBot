@@ -13,6 +13,7 @@ public class EditorTable extends UITable {
 
   private static final float TITLE_PADDING = 24;
   private final EditorTableListener listener;
+  private UIButton statsButton;
   private UIButton brushButton;
   private UIButton testMapButton;
   private UIButton codeMapButton;
@@ -71,6 +72,16 @@ public class EditorTable extends UITable {
     });
 
     testMapButton      = HashBot.ui.textI18nButton("map_editor.test");
+
+    statsButton        = HashBot.ui.textButton("Stats");
+    statsButton.addListener(new ClickListener() {
+      @Override
+      public void clicked(InputEvent event, float x, float y) {
+        super.clicked(event, x, y);
+        EditorTable.this.listener.statsButtonClicked();
+      }
+    });
+
     exitButton         = HashBot.ui.textButton("X");
     exitButton.addListener(new ClickListener() {
       @Override
@@ -92,6 +103,7 @@ public class EditorTable extends UITable {
     row();
       add(brushButton).fill();
       add(codeMapButton).fill();
-      add(testMapButton).left();
+      add(testMapButton).fill();
+      add(statsButton).fill();
   }
 }

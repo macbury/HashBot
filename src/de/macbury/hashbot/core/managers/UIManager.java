@@ -12,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.CursorDefiniton;
+import de.macbury.hashbot.core.level.Level;
+import de.macbury.hashbot.core.level.editor.LevelEditor;
 import de.macbury.hashbot.core.ui.SolarizedDarkColors;
 import de.macbury.hashbot.core.ui.code_editor.CodeEditorView;
 import de.macbury.hashbot.core.ui.code_editor.widget.CodeEditorTextArea;
@@ -209,25 +211,10 @@ public class UIManager {
     return new CodeEditorDialog(dialogNpnModalStyle);
   }
 
-  public BrushDialog brushDialog() {
-    return new BrushDialog(dialogNpnModalStyle);
+  public BrushDialog brushDialog(LevelEditor level) {
+    return new BrushDialog(dialogNpnModalStyle, level);
   }
 
-  public Dialog dialog() {
-    Dialog dialog = new Dialog("TEST", dialogStyle);
-    dialog.setWidth(320);
-    dialog.setHeight(240);
-    dialog.setTitleAlignment(Align.left);
-    dialog.setSize(800, 600);
-    dialog.setResizable(true);
-
-    dialog.getContentTable().row();
-    dialog.getContentTable().add(labelI18n("test"));
-
-    dialog.button(textButton("OK"));
-    dialog.button(textButton("CANCEL"));
-    return dialog;
-  }
 
   public UIButton menuI18nButton(String key) {
     UIButton button = new UIButton(HashBot.i18n.t(key), menuButtonStyle);
@@ -272,5 +259,9 @@ public class UIManager {
 
   public ConfirmDialog confirm(String titleKey, String messageKey) {
     return new ConfirmDialog(titleKey, messageKey, dialogStyle);
+  }
+
+  public StatsDialog statsDialog(Level level) {
+    return new StatsDialog(level.getStats(), dialogNpnModalStyle);
   }
 }

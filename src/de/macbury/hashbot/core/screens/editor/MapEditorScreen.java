@@ -9,9 +9,11 @@ import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.game_objects.system.LevelEditorSystem;
 import de.macbury.hashbot.core.graphics.camera.RTSCameraController;
 import de.macbury.hashbot.core.level.map.blocks.Block;
+import de.macbury.hashbot.core.time.IntervalTimer;
 import de.macbury.hashbot.core.ui.GameUIOverlay;
 import de.macbury.hashbot.core.ui.dialogs.BrushDialog;
 import de.macbury.hashbot.core.ui.dialogs.ConfirmDialog;
+import de.macbury.hashbot.core.ui.dialogs.StatsDialog;
 import de.macbury.hashbot.core.ui.editor.EditorTable;
 import de.macbury.hashbot.core.ui.editor.EditorTableListener;
 import de.macbury.hashbot.core.ui.editor.LevelEditorSystemListener;
@@ -26,6 +28,7 @@ import de.macbury.hashbot.core.screens.BaseScreen;
  */
 public class MapEditorScreen extends BaseScreen implements EditorTableListener, ConfirmDialog.ConfirmDialogListener, LevelEditorSystemListener {
 
+  private StatsDialog statsDialog;
   private BrushDialog brushDialog;
   private GameUIOverlay overlay;
   private EditorTable editorTable;
@@ -38,15 +41,17 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
     this.stage = new UIStage();
 
     try {
-      this.level = LevelFactory.newLevel(50, 50);
+      this.level = LevelFactory.newLevel(250, 250);
     } catch (LevelInvalidDimensionException e) {
       e.printStackTrace();
     }
 
+    this.statsDialog = HashBot.ui.statsDialog(level);
+
     this.exitConfirmDialog = HashBot.ui.confirm("map_editor.confirm_exit.title", "map_editor.confirm_exit.message");
     exitConfirmDialog.setListener(this);
 
-    this.brushDialog       = HashBot.ui.brushDialog();
+    this.brushDialog       = HashBot.ui.brushDialog(level);
 
     this.inputMultiplexer = new InputMultiplexer();
     inputMultiplexer.addProcessor(stage);
@@ -65,6 +70,7 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
     level.getLevelEditorSystem().setListener(this);
 
     level.getCameraController().setMaxZoom(RTSCameraController.MAX_ZOOM * 3);
+
   }
 
   @Override
@@ -152,6 +158,11 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
   }
 
   @Override
+  public void statsButtonClicked() {
+    statsDialog.toggleVisibility(stage);
+  }
+
+  @Override
   public void onConfirmOkButton(ConfirmDialog sender) {
     HashBot.screens.openMainMenu();
   }
@@ -175,13 +186,7 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
   public void levelEditorSystemEndSelectionOrClick(LevelEditorSystem les) {
     BoundingBox box = les.getSelectionBoundingBox();
     brushDialog.applySelection(box);
-    for(int x = (int)box.getMin().x; x < box.getMax().x; x++) {
-      for(int z = (int)box.getMin().z; z < box.getMax().z; z++) {
-        Block block = level.getTerrain().getBlock(x, z);
-        block.setHeight(block.getHeight()+1);
-        block.getChunk().rebuild();
-      }
-    }
+
   }
 
   private Vector3 cursorMinimalDimension = new Vector3();

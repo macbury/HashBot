@@ -3,6 +3,7 @@ package de.macbury.hashbot.core.debug;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
+import de.macbury.hashbot.core.partition.GameObjectTree;
 import de.macbury.hashbot.core.ui.FlatColors;
 import de.macbury.hashbot.core.level.map.Chunk;
 import de.macbury.hashbot.core.level.map.Terrain;
@@ -42,4 +43,5 @@ public class DebugShape {
       }
     } shapeRender.end();
   }
+
 }

@@ -94,21 +94,21 @@ public class LevelEditorSystem extends EntitySystem {
 
     Block block = level.getTerrain().getBlock((int)cursorComponent.endPositon.x, (int)cursorComponent.endPositon.z);
 
+
+
+    Vector3 minDim = listener.levelEditorCursorMinimalDimension(this);
     if (block != null) {
       cursorComponent.endPositon.y = block.getHeight();
-    } else {
-      cursorComponent.endPositon.y = 0;
     }
-
 
     if (cursorComponent.selection) {
       lineBoxComponent.setColor(Color.WHITE);
-      Vector3 minDim = listener.levelEditorCursorMinimalDimension(this);
+
       actorComponent.size.set(Math.max(minDim.x, cursorComponent.getWidth()),Math.max(minDim.y, 0.1f),Math.max(minDim.z, cursorComponent.getHeight()));
       actorComponent.position.set(cursorComponent.getBottomRightPosition());
     } else {
       lineBoxComponent.setColor(Color.GRAY);
-      actorComponent.size.set(listener.levelEditorCursorMinimalDimension(this));
+      actorComponent.size.set(minDim);
       actorComponent.position.set(cursorComponent.endPositon);
     }
 

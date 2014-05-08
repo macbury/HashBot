@@ -262,6 +262,10 @@ public class UIManager {
   }
 
   public StatsDialog statsDialog(Level level) {
-    return new StatsDialog(level.getStats(), dialogNpnModalStyle);
+    return new StatsDialog(level, dialogNpnModalStyle);
+  }
+
+  public TextField textField() {
+    return null;
   }
 }

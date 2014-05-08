@@ -19,6 +19,7 @@ import de.macbury.hashbot.core.level.map.blocks.BaseBlock;
 import de.macbury.hashbot.core.level.map.blocks.Block;
 import de.macbury.hashbot.core.level.map.exceptions.LevelInvalidDimensionException;
 import de.macbury.hashbot.core.managers.Assets;
+import de.macbury.hashbot.core.partition.GameObjectTree;
 import de.macbury.hashbot.core.partition.QuadTreeObject;
 
 import java.util.ArrayList;
@@ -126,12 +127,12 @@ public class Terrain implements Disposable {
     return tempVec.set(width/2, height/2);
   }
 
-  public boolean intersect(ArrayList<Chunk> returnObjects, Ray ray, Vector3 intersect) {
+  public boolean intersect(GameObjectTree tree, ArrayList<Chunk> returnObjects, Ray ray, Vector3 intersect) {
     returnObjects.clear();
     intersect.set(Vector3.Zero);
 
     for (Chunk chunk : chunks) {
-      if (Intersector.intersectRayTriangles(ray, chunk.getVerticies(), chunk.getIndicies(), chunk.getVertexSize(), intersect)) {
+      if (tree.isVisible(chunk) && Intersector.intersectRayTriangles(ray, chunk.getVerticies(), chunk.getIndicies(), chunk.getVertexSize(), intersect)) {
         returnObjects.add(chunk);
       }
     }

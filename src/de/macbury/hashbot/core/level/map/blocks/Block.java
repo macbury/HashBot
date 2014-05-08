@@ -11,18 +11,37 @@ public abstract class Block {
   public static final int BLOCK_SIZE = 1;
   public static final float BLOCK_HEIGHT = 1;
   public static final int BLOCK_MIN_HEIGHT = 1;
+
+  public Slope getSlope() {
+    return slope;
+  }
+
+  public void setSlope(Slope slope) {
+    this.slope = slope;
+  }
+
+  public static enum Slope {
+    None,
+    Top,
+    Down,
+    Left,
+    Right
+  }
+
   private final int x;
   private final int y;
   private int height = BLOCK_MIN_HEIGHT;
   private Vector2 vec2;
   private Vector3 vec3;
   private Chunk chunk;
+  private Slope slope;
 
   public Block(int x, int y) {
     this.x = x;
     this.y = y;
     this.vec2 = new Vector2();
     this.vec3 = new Vector3();
+    this.slope = Slope.None;
   }
 
   public Vector2 vec2() {

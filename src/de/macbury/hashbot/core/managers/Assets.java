@@ -1,22 +1,29 @@
 package de.macbury.hashbot.core.managers;
 
+import com.badlogic.gdx.assets.AssetDescriptor;
+import com.badlogic.gdx.assets.AssetLoaderParameters;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.AssetLoader;
+import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g3d.Model;
+import com.badlogic.gdx.utils.Array;
 import de.macbury.hashbot.core.HashBot;
 
 /**
  * Created by macbury on 18.04.14.
  */
 public class Assets extends AssetManager {
-  private static final String FONT_PREFIX   = "fonts/";
-  private static final String MUSIC_PREFIX  = "audio/music/";
-  private static final String SOUND_PREFIX  = "audio/effects/";
-  private static final String UI_PREFIX     = "ui/";
+  private static final String SHADERS_PREFIX    = "shaders/";
+  private static final String FONT_PREFIX       = "fonts/";
+  private static final String MUSIC_PREFIX      = "audio/music/";
+  private static final String SOUND_PREFIX      = "audio/effects/";
+  private static final String UI_PREFIX         = "ui/";
   private static final String MODELS_PREFIX     = "models/";
 
   public static final String FONT_UI        = FONT_PREFIX + "ui.fnt";
@@ -34,6 +41,9 @@ public class Assets extends AssetManager {
 
   public static final String TEXTURES                 = "textures/";
   public static final String TERRAIN_TILESET          = TEXTURES + "terrain.pack";
+
+  public static final String SHADER_FRAGMENT_DEFFERED  = SHADERS_PREFIX + "deffered.fragment.glsl";
+  public static final String SHADER_VERTEX_DEFFERED    = SHADERS_PREFIX + "deffered.vertex.glsl";
 
   private HashBot game;
   private boolean didLoad = false;
@@ -66,6 +76,7 @@ public class Assets extends AssetManager {
     load(SOUND_HOVER, Sound.class);
 
     load(TERRAIN_TILESET, TextureAtlas.class);
+
   }
 
   @Override
@@ -91,4 +102,5 @@ public class Assets extends AssetManager {
   public interface AssetsListener {
     public void assetsDidLoad();
   }
+
 }

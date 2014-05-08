@@ -13,6 +13,7 @@ public abstract class BrushBase extends UITable {
 
   public BrushBase(LevelEditor level) {
     this.level = level;
+    setFillParent(false);
   }
 
   public void apply(BoundingBox rect) {

@@ -230,6 +230,7 @@ public class ExtLwjgGraphics extends LwjglGraphics {
 
     Gdx.gl = gl20;
     Gdx.gl20 = gl20;
+    Gdx.gl30 = new LwjglGL30();
   }
 
   @Override

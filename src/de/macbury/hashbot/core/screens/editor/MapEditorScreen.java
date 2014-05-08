@@ -70,7 +70,7 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
     level.getLevelEditorSystem().setListener(this);
 
     level.getCameraController().setMaxZoom(RTSCameraController.MAX_ZOOM * 3);
-
+    statsDialog.toggleVisibility(stage);
   }
 
   @Override

@@ -84,7 +84,7 @@ public class LevelEditorSystem extends EntitySystem {
 
     if (updateCursorPos) {
       Ray pickupRay = camera.getPickRay(Gdx.input.getX(), Gdx.input.getY());
-      if (level.getTerrain().intersect(tempObjects, pickupRay, tempVector)) {
+      if (level.getTerrain().intersect(level.getTree(),tempObjects, pickupRay, tempVector)) {
         cursorComponent.endPositon.set(tempVector);
         cursorComponent.snapPosition();
       }
@@ -93,8 +93,6 @@ public class LevelEditorSystem extends EntitySystem {
     actorComponent.setVisible(overlay.focused());
 
     Block block = level.getTerrain().getBlock((int)cursorComponent.endPositon.x, (int)cursorComponent.endPositon.z);
-
-
 
     Vector3 minDim = listener.levelEditorCursorMinimalDimension(this);
     if (block != null) {

@@ -76,28 +76,24 @@ public class Chunk extends Renderable implements Disposable, QuadTreeObject {
             for (int th = topBlock.getHeight(); th < block.getHeight(); th++) {
               builder.frontFace(x * Block.BLOCK_SIZE, th * block.BLOCK_HEIGHT, y * Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE,uv.getU(),uv.getV(),uv.getU2(),uv.getU2());
             }
-            //topBlock.updateChunk();
           }
 
           if (bottomBlock != null) {
             for (int th = bottomBlock.getHeight(); th < block.getHeight(); th++) {
               builder.backFace(x * Block.BLOCK_SIZE, th * block.BLOCK_HEIGHT, y * Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, uv.getU(), uv.getV(), uv.getU2(), uv.getU2());
             }
-            //bottomBlock.updateChunk();
           }
 
           if (leftBlock != null) {
             for (int th = leftBlock.getHeight(); th < block.getHeight(); th++) {
               builder.leftFace(x * Block.BLOCK_SIZE, th * block.BLOCK_HEIGHT, y * Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, uv.getU(), uv.getV(), uv.getU2(), uv.getU2());
             }
-            //leftBlock.updateChunk();
           }
 
           if (rightBlock != null) {
             for (int th = rightBlock.getHeight(); th < block.getHeight(); th++) {
               builder.rightFace(x * Block.BLOCK_SIZE, th * block.BLOCK_HEIGHT, y * Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, uv.getU(), uv.getV(), uv.getU2(), uv.getU2());
             }
-            //rightBlock.updateChunk();
           }
         }
       }

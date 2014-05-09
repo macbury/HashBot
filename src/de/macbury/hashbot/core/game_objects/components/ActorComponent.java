@@ -1,6 +1,7 @@
 package de.macbury.hashbot.core.game_objects.components;
 
 import com.artemis.Component;
+import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import de.macbury.hashbot.core.graphics.utils.CallBackVector3;
@@ -14,22 +15,25 @@ import de.macbury.hashbot.core.partition.QuadTreeObject;
  * Created by macbury on 03.05.14.
  */
 public class ActorComponent extends Component implements QuadTreeObject, Vector3Listener {
-  private BoundingBox boundingBox;
+  protected BoundingBox boundingBox;
 
   public CallBackVector3 position;
   public CallBackVector3 size;
-  private QuadTree parent;
-  private Vector3 temp;
-  private boolean visible = true;
-  private boolean skipCulling = false;
-  private boolean visibleInRenderTree = false;
-  private boolean modified = true;
+  protected QuadTree parent;
+  protected Vector3 temp;
+  protected boolean visible = true;
+  protected boolean skipCulling = false;
+  protected boolean visibleInRenderTree = false;
+  protected boolean modified = true;
+  public Quaternion rotation;
+
   public ActorComponent() {
     this.position    = new CallBackVector3();
     this.size        = new CallBackVector3(Block.BLOCK_SIZE,Block.BLOCK_SIZE,Block.BLOCK_SIZE);
     this.position.setListener(this);
     this.size.setListener(this);
     this.boundingBox = new BoundingBox();
+    this.rotation    = new Quaternion();
     this.temp        = new Vector3();
   }
 

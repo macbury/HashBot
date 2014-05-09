@@ -2,11 +2,14 @@ package de.macbury.hashbot.core.level;
 
 import com.artemis.Entity;
 import com.artemis.World;
+import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.game_objects.components.ActorComponent;
 import de.macbury.hashbot.core.game_objects.components.debug.LineBoxComponent;
 import de.macbury.hashbot.core.game_objects.components.level.CursorComponent;
 import de.macbury.hashbot.core.game_objects.components.level.LevelEditorComponent;
+import de.macbury.hashbot.core.game_objects.components.level.ModelComponent;
 import de.macbury.hashbot.core.partition.GameObjectTree;
+import org.jruby.ir.operands.Hash;
 
 /**
  * Created by macbury on 05.05.14.
@@ -30,6 +33,16 @@ public class EntityFactory {
     e.addComponent(new LineBoxComponent());
     e.addComponent(new LevelEditorComponent());
     e.addComponent(new CursorComponent());
+    return e;
+  }
+
+  public Entity unit() {
+    Entity e              = world.createEntity();
+    ActorComponent actor  = new ActorComponent();
+    actor.position.y      = 1;
+    e.addComponent(actor);
+
+    e.addComponent(new ModelComponent(HashBot.models.unit()));
     return e;
   }
 }

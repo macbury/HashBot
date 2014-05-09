@@ -10,6 +10,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import de.macbury.hashbot.core.graphics.tweens.ScreenManagerAccessor;
 import de.macbury.hashbot.core.graphics.tweens.UIStageAccessor;
 import de.macbury.hashbot.core.graphics.tweens.UITableAccessor;
+import de.macbury.hashbot.core.shader.ShaderManager;
 import de.macbury.hashbot.core.ui.Overlay;
 import de.macbury.hashbot.core.ui.widgets.UIStage;
 import de.macbury.hashbot.core.ui.widgets.UITable;
@@ -36,6 +37,7 @@ public class HashBot extends Game {
   public static InputManager input;
   public static ProfileManager profile;
   public static StorageManager storage;
+  public static Shaders shaders;
 
   private Overlay overlay;
 
@@ -62,6 +64,7 @@ public class HashBot extends Game {
     HashBot.models     = new ModelsManager();
     HashBot.profile    = new ProfileManager();
     HashBot.storage    = new StorageManager();
+    HashBot.shaders    = new Shaders();
 
     Tween.registerAccessor(UIStage.class, new UIStageAccessor());
     Tween.registerAccessor(UITable.class, new UITableAccessor());
@@ -79,6 +82,7 @@ public class HashBot extends Game {
 
   @Override
   public void render() {
+    shaders.update();
     super.render();
     screens.render();
     overlay.draw();

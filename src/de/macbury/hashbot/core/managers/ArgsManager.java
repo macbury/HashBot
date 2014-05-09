@@ -10,9 +10,11 @@ public class ArgsManager {
   private static final CharSequence DEBUG_FLAG = "debug";
   private static final CharSequence EDITOR_FLAG = "editor";
   private static final CharSequence FPS_FLAG = "fps";
+  private static final CharSequence LIVE_SHADERS_FLAG = "liveShaders";
   public boolean fps;
   public boolean startWithEditor;
   public boolean debug;
+  public boolean liveShaders;
 
   public ArgsManager(String[] args) {
     for(String arg : args) {
@@ -26,6 +28,10 @@ public class ArgsManager {
 
       if (arg.contains(FPS_FLAG)) {
         this.fps = true;
+      }
+
+      if (arg.contains(LIVE_SHADERS_FLAG)) {
+        this.liveShaders = true;
       }
     }
   }

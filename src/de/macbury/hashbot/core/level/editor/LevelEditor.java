@@ -27,6 +27,8 @@ public class LevelEditor extends Level {
     super.init();
     this.cursor = entities.cursor();
     this.cursor.addToWorld();
+
+    //entities.unit().addToWorld();
   }
 
   public void setUILayout(EditorTable UILayout) {

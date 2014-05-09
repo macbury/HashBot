@@ -9,6 +9,5 @@ import de.macbury.hashbot.core.graphics.rendering.simple.MultiModeModelBatch;
 public class DefferedModelBatch extends MultiModeModelBatch {
   public DefferedModelBatch(RenderContext renderContext) {
     super(renderContext, new DefferedShaderProvider());
-
   }
 }

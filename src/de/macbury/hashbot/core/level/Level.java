@@ -12,6 +12,7 @@ import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.debug.DebugQuadTree;
 import de.macbury.hashbot.core.debug.FrustrumRenderer;
 import de.macbury.hashbot.core.game_objects.system.CullingSystem;
+import de.macbury.hashbot.core.game_objects.system.ModelRenderingSystem;
 import de.macbury.hashbot.core.game_objects.system.ShapeRenderingSystem;
 import de.macbury.hashbot.core.graphics.camera.RTSCameraController;
 import de.macbury.hashbot.core.graphics.camera.RTSCameraListener;
@@ -38,6 +39,7 @@ public abstract class Level implements Disposable, RTSCameraListener, RenderingE
   protected RTSCameraController cameraController;
   protected Terrain terrain;
   protected EntityFactory entities;
+  private ModelRenderingSystem modelRenderingSystem;
 
   public Level() {
     this.camera           = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -65,7 +67,7 @@ public abstract class Level implements Disposable, RTSCameraListener, RenderingE
 
   // run after setup map and entities
   public void init() {
-    this.tree       = new GameObjectTree(terrain);
+    this.tree        = new GameObjectTree(terrain);
     this.entities    = new EntityFactory(this);
 
     this.tree.setFrustum(camera.frustum);
@@ -73,8 +75,9 @@ public abstract class Level implements Disposable, RTSCameraListener, RenderingE
 
     shapeRenderingSystem = new ShapeRenderingSystem(renderingEngine.shapes);
     cullingSystem        = new CullingSystem(tree);
-
+    modelRenderingSystem = new ModelRenderingSystem(renderingEngine.models);
     world.setSystem(cullingSystem, true);
+    world.setSystem(modelRenderingSystem, true);
     world.setSystem(shapeRenderingSystem, true);
 
     world.initialize();
@@ -94,6 +97,7 @@ public abstract class Level implements Disposable, RTSCameraListener, RenderingE
   @Override
   public void renderModels(ModelBatch modelBatch, Environment env) {
     modelBatch.render(tree, env);
+    modelRenderingSystem.process();
   }
 
   @Override

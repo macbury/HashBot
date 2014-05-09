@@ -14,12 +14,13 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g3d.Model;
 import com.badlogic.gdx.utils.Array;
 import de.macbury.hashbot.core.HashBot;
+import de.macbury.hashbot.core.shader.ShaderManager;
 
 /**
  * Created by macbury on 18.04.14.
  */
 public class Assets extends AssetManager {
-  private static final String SHADERS_PREFIX    = "shaders/";
+  public static final String SHADERS_PREFIX    = "shaders/";
   private static final String FONT_PREFIX       = "fonts/";
   private static final String MUSIC_PREFIX      = "audio/music/";
   private static final String SOUND_PREFIX      = "audio/effects/";
@@ -35,6 +36,7 @@ public class Assets extends AssetManager {
   public static final String CURSOR_PLACEHOLDER       = UI_PREFIX + "cursor_placeholder.png";
 
   public static final String MODEL_MENU_LOGO      = MODELS_PREFIX + "logo.g3db";
+  public static final String MODEL_UNIT           = MODELS_PREFIX + "unit.g3db";
 
   public static final String SOUND_CLICK          = SOUND_PREFIX + "click.wav";
   public static final String SOUND_HOVER          = SOUND_PREFIX + "hover.wav";
@@ -44,6 +46,8 @@ public class Assets extends AssetManager {
 
   public static final String SHADER_FRAGMENT_DEFFERED  = SHADERS_PREFIX + "deffered.fragment.glsl";
   public static final String SHADER_VERTEX_DEFFERED    = SHADERS_PREFIX + "deffered.vertex.glsl";
+
+  public static String[] MODELS = { MODEL_MENU_LOGO, MODEL_UNIT };
 
   private HashBot game;
   private boolean didLoad = false;
@@ -70,7 +74,9 @@ public class Assets extends AssetManager {
     load(MUSIC_MENU, Music.class);
     load(FONT_CODE, BitmapFont.class);
 
-    load(MODEL_MENU_LOGO, Model.class);
+    for (String key : MODELS) {
+      load(key, Model.class);
+    }
 
     load(SOUND_CLICK, Sound.class);
     load(SOUND_HOVER, Sound.class);

@@ -1,9 +1,11 @@
 package de.macbury.hashbot.core.level.map;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.Renderable;
 import com.badlogic.gdx.graphics.g3d.RenderableProvider;
+import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
@@ -22,6 +24,7 @@ import de.macbury.hashbot.core.managers.Assets;
 import de.macbury.hashbot.core.partition.GameObjectTree;
 import de.macbury.hashbot.core.partition.QuadTreeObject;
 
+import javax.swing.text.AttributeSet;
 import java.util.ArrayList;
 
 /**
@@ -53,7 +56,7 @@ public class Terrain implements Disposable {
     }
 
     this.boundingBox = new BoundingBox(new Vector3(0,0,0), new Vector3(width,Block.BLOCK_HEIGHT,height));
-    this.material    = new Material(TextureAttribute.createDiffuse(tileset.getTextures().first()));
+    this.material    = new Material(TextureAttribute.createDiffuse(tileset.getTextures().first()), ColorAttribute.createDiffuse(Color.WHITE));
   }
 
   public void bootstrap() {

@@ -41,7 +41,7 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
     this.stage = new UIStage();
 
     try {
-      this.level = LevelFactory.newLevel(250, 250);
+      this.level = LevelFactory.newLevel(50, 50);
     } catch (LevelInvalidDimensionException e) {
       e.printStackTrace();
     }

@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.shader.ShaderManager;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 
@@ -16,9 +15,10 @@ import java.nio.file.*;
 public class Shaders extends ShaderManager {
   public static final String SHADER_EMPTY     = "SHADER_EMPTY";
   public static final String SHADER_DEFAULT   = "SHADER_DEFAULT";
-  public static final String SHADER_DEFFERED_COMPOSIT = "SHADER_DEFFERED_COMPOSIT";
-  public static final String SHADER_PROCESSOR = "SHADER_PROCESSOR";
-  public static final String SHADER_COPY      = "SHADER_COPY";
+  public static final String SHADER_DEFFERED_GBUFFER = "SHADER_DEFFERED_GBUFFER";
+  public static final String SHADER_APPLY_LIGHT = "SHADER_APPLY_LIGHT";
+  public static final String SHADER_APPLY_FOG = "SHADER_APPLY_FOG";
+
   private WatchService watchService;
 
   public Shaders() {
@@ -26,14 +26,9 @@ public class Shaders extends ShaderManager {
     ShaderProgram.pedantic = false;
     add(SHADER_EMPTY, "empty.vert", "empty.frag");
     add(SHADER_DEFAULT, "default.vert", "default.frag");
-    add(SHADER_DEFFERED_COMPOSIT, "default.vert", "deffered_composit.frag.glsl");
-    if (Gdx.app.getType() == Application.ApplicationType.Desktop
-            || Gdx.app.getType() == Application.ApplicationType.Applet
-            || Gdx.app.getType() == Application.ApplicationType.WebGL) {
-      add(SHADER_PROCESSOR, "processor.vert", "processor.frag");
-      //add("processor_blur", "processor.vert", "processor_blur.frag");
-      add(SHADER_COPY, "processor.vert", "copy.frag");
-    }
+    add(SHADER_APPLY_LIGHT, "default.vert", "deffered/apply_light.fragment.glsl");
+    add(SHADER_APPLY_FOG, "default.vert", "deffered/apply_fog.fragment.glsl");
+    add(SHADER_DEFFERED_GBUFFER, "deffered.vertex.glsl", "deffered.fragment.glsl");
   }
 
   public void update() {
@@ -47,7 +42,7 @@ public class Shaders extends ShaderManager {
     if (watchService == null) {
       try {
         this.watchService = FileSystems.getDefault().newWatchService();
-        Path shadersFolder = Paths.get(Gdx.files.internal(Assets.SHADERS_PREFIX).file().getAbsolutePath());
+        Path shadersFolder = Paths.get(Gdx.files.internal(Assets.SHADERS_PREFIX+"deffered").file().getAbsolutePath());
 
         shadersFolder.register(watchService, StandardWatchEventKinds.ENTRY_MODIFY);
       } catch (IOException e) {

@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g3d.shaders.BaseShader;
 import com.badlogic.gdx.graphics.g3d.shaders.DefaultShader;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.GdxRuntimeException;
+import de.macbury.hashbot.core.HashBot;
+import de.macbury.hashbot.core.managers.Shaders;
 
 /**
  * Created by macbury on 08.05.14.
@@ -23,8 +25,8 @@ public class DefferedShader extends BaseShader {
   private int u_diffuseColor;
   private int u_diffuseTexture;
 
-  public DefferedShader(Renderable renderable, ShaderProgram shaderProgram) {
-    this.program    = shaderProgram;
+  public DefferedShader(Renderable renderable) {
+    this.program    = HashBot.shaders.get(Shaders.SHADER_DEFFERED_GBUFFER);
     this.renderable = renderable;
 
     u_projViewTrans  = register(DefaultShader.Inputs.projViewTrans, DefaultShader.Setters.projViewTrans);

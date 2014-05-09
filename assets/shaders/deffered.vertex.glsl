@@ -17,7 +17,6 @@ void main() {
 	v_texCoords0 = a_texCoord0;
     v_color      = a_color;
     v_normal     = normalize(u_normalMatrix * a_normal);
-    vec4 pos     = u_worldTrans * vec4(a_position, 1.0);
-	v_position   = u_projViewTrans * pos;
-    gl_Position  = v_position;
+	v_position   = u_worldTrans * vec4(a_position, 1.0);// TODO: extremly important in post processing shaders use u_projViewTrans for position manipulation!!!
+    gl_Position  = u_projViewTrans * v_position;
 }

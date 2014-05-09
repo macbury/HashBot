@@ -5,13 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Mesh;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.Pixmap.Format;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
@@ -1014,5 +1009,14 @@ public class ShaderManager {
 
   public void setUniformf(String key, Color color) {
     getCurrent().setUniformf(key, color);
+  }
+
+  public void setUniformf(String key, Vector3 position) {
+    getCurrent().setUniformf(key, position);
+  }
+
+  public void setUniform(String key, PerspectiveCamera camera) {
+    getCurrent().setUniformf(key, camera.position.x, camera.position.y, camera.position.z,
+            1.1881f / (camera.far * camera.far));
   }
 }

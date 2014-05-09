@@ -15,20 +15,16 @@ import de.macbury.hashbot.core.managers.Assets;
  */
 public class DefferedShaderProvider extends BaseShaderProvider {
 
-  private ShaderProgram modelShader;
-
   public DefferedShaderProvider() {
-    this.modelShader = new ShaderProgram(Gdx.files.internal(Assets.SHADER_VERTEX_DEFFERED).readString(), Gdx.files.internal(Assets.SHADER_FRAGMENT_DEFFERED).readString());
   }
 
   @Override
   protected Shader createShader(Renderable renderable) {
-    return new DefferedShader(renderable, modelShader);
+    return new DefferedShader(renderable);
   }
 
   @Override
   public void dispose() {
     super.dispose();
-    modelShader.dispose();
   }
 }

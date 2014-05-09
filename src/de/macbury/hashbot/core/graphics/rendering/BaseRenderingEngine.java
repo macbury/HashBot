@@ -17,7 +17,7 @@ import de.macbury.hashbot.core.graphics.rendering.simple.MultiModeModelBatch;
  * Created by macbury on 07.05.14.
  */
 public abstract class BaseRenderingEngine implements Disposable {
-  private PerspectiveCamera mainCamera;
+  public PerspectiveCamera mainCamera;
   public Environment environment;
   public ShapeRenderer shapes;
   public RenderContext renderContext;

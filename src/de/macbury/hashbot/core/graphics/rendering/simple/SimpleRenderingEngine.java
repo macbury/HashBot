@@ -16,7 +16,7 @@ public class SimpleRenderingEngine extends BaseRenderingEngine {
   }
 
   @Override
-  protected MultiModeModelBatch buildModelBatch() {
+  protected MultiModeModelBatch buildGeometryBatch() {
     return new MultiModeModelBatch(renderContext);
   }
 

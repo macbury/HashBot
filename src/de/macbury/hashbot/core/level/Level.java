@@ -3,7 +3,6 @@ package de.macbury.hashbot.core.level;
 import com.artemis.World;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
-import com.badlogic.gdx.graphics.g3d.Environment;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.collision.BoundingBox;
@@ -11,8 +10,9 @@ import com.badlogic.gdx.utils.Disposable;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.debug.DebugQuadTree;
 import de.macbury.hashbot.core.debug.FrustrumRenderer;
-import de.macbury.hashbot.core.game_objects.system.CullingSystem;
-import de.macbury.hashbot.core.game_objects.system.ModelRenderingSystem;
+import de.macbury.hashbot.core.game_objects.system.ActorSystem;
+import de.macbury.hashbot.core.game_objects.system.GeometryRenderingSystem;
+import de.macbury.hashbot.core.game_objects.system.LightRenderingSystem;
 import de.macbury.hashbot.core.game_objects.system.ShapeRenderingSystem;
 import de.macbury.hashbot.core.graphics.camera.RTSCameraController;
 import de.macbury.hashbot.core.graphics.camera.RTSCameraListener;
@@ -20,6 +20,7 @@ import de.macbury.hashbot.core.graphics.models.RenderDebugStats;
 import de.macbury.hashbot.core.graphics.rendering.BaseRenderingEngine;
 import de.macbury.hashbot.core.graphics.rendering.mrt.MRTRenderingEngine;
 import de.macbury.hashbot.core.graphics.rendering.RenderingEngineListener;
+import de.macbury.hashbot.core.graphics.rendering.mrt.steps.sub.AccumulateLightsStep;
 import de.macbury.hashbot.core.graphics.rendering.simple.SimpleRenderingEngine;
 import de.macbury.hashbot.core.level.map.Terrain;
 import de.macbury.hashbot.core.partition.GameObjectTree;
@@ -30,7 +31,7 @@ import de.macbury.hashbot.core.partition.GameObjectTree;
  */
 public abstract class Level implements Disposable, RTSCameraListener, RenderingEngineListener {
   public BaseRenderingEngine renderingEngine;
-  protected CullingSystem cullingSystem;
+  protected ActorSystem actorSystem;
   protected ShapeRenderingSystem shapeRenderingSystem;
   protected World world;
   protected FrustrumRenderer frustrumDebugger;
@@ -39,12 +40,13 @@ public abstract class Level implements Disposable, RTSCameraListener, RenderingE
   protected RTSCameraController cameraController;
   protected Terrain terrain;
   protected EntityFactory entities;
-  private ModelRenderingSystem modelRenderingSystem;
+  protected GeometryRenderingSystem geometryRenderingSystem;
+  protected LightRenderingSystem lightRenderingSystem;
 
   public Level() {
     this.camera           = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     camera.position.set(10f, 10f, 10f);
-    camera.near = 0.1f;
+    camera.near = 0.01f;
     camera.far = 40f;
     camera.update();
 
@@ -73,13 +75,14 @@ public abstract class Level implements Disposable, RTSCameraListener, RenderingE
     this.tree.setFrustum(camera.frustum);
     cameraController.setCenter(terrain.getCenter());
 
-    shapeRenderingSystem = new ShapeRenderingSystem(renderingEngine.shapes);
-    cullingSystem        = new CullingSystem(tree);
-    modelRenderingSystem = new ModelRenderingSystem(renderingEngine.models);
-    world.setSystem(cullingSystem, true);
-    world.setSystem(modelRenderingSystem, true);
+    shapeRenderingSystem    = new ShapeRenderingSystem(renderingEngine.shapes);
+    actorSystem = new ActorSystem(tree);
+    geometryRenderingSystem = new GeometryRenderingSystem(renderingEngine.models);
+    lightRenderingSystem    = new LightRenderingSystem();
+    world.setSystem(actorSystem, true);
+    world.setSystem(geometryRenderingSystem, true);
     world.setSystem(shapeRenderingSystem, true);
-
+    world.setSystem(lightRenderingSystem, true);
     world.initialize();
 
   }
@@ -91,13 +94,19 @@ public abstract class Level implements Disposable, RTSCameraListener, RenderingE
 
   public void draw() {
     renderingEngine.render();
+
   }
 
+  @Override
+  public void geometryPass(ModelBatch modelBatch) {
+    modelBatch.render(tree);
+    geometryRenderingSystem.process();
+  }
 
   @Override
-  public void renderModels(ModelBatch modelBatch, Environment env) {
-    modelBatch.render(tree, env);
-    modelRenderingSystem.process();
+  public void lightPass(AccumulateLightsStep accumulateLightsStep) {
+    lightRenderingSystem.setProcessor(accumulateLightsStep);
+    lightRenderingSystem.process();
   }
 
   @Override
@@ -118,7 +127,7 @@ public abstract class Level implements Disposable, RTSCameraListener, RenderingE
     } else {
       tree.setFrustum(camera.frustum);
     }
-    cullingSystem.process();
+    actorSystem.process();
     this.world.setDelta(delta);
     this.world.process();
   }

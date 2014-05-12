@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.Pool;
 import de.macbury.hashbot.core.HashBot;
+import de.macbury.hashbot.core.graphics.material.TerrainMaterial;
 import de.macbury.hashbot.core.graphics.mesh.MeshAssembler;
 import de.macbury.hashbot.core.level.map.blocks.BaseBlock;
 import de.macbury.hashbot.core.level.map.blocks.Block;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
  * Created by macbury on 01.05.14.
  */
 public class Terrain implements Disposable {
+  private TextureAtlas glowMap;
   private Material material;
   private Block[][] tiles;
   private int width;
@@ -44,7 +46,7 @@ public class Terrain implements Disposable {
   public Terrain(int width, int height) throws LevelInvalidDimensionException {
     builder = new MeshAssembler();
     tileset = HashBot.assets.get(Assets.TERRAIN_TILESET);
-
+    glowMap = HashBot.assets.get(Assets.GLOW_TILESET);
     this.width = width;
     this.height = height;
 
@@ -56,7 +58,7 @@ public class Terrain implements Disposable {
     }
 
     this.boundingBox = new BoundingBox(new Vector3(0,0,0), new Vector3(width,Block.BLOCK_HEIGHT,height));
-    this.material    = new Material(TextureAttribute.createDiffuse(tileset.getTextures().first()), ColorAttribute.createDiffuse(Color.WHITE));
+    this.material    = new TerrainMaterial(tileset, glowMap);
   }
 
   public void bootstrap() {
@@ -145,5 +147,13 @@ public class Terrain implements Disposable {
 
   public Material getMaterial() {
     return material;
+  }
+
+  public int getWidth() {
+    return width;
+  }
+
+  public int getHeight() {
+    return height;
   }
 }

@@ -2,7 +2,7 @@ uniform sampler2D u_texture; // this should hold the texture rendered by the hor
 varying vec4 v_color;
 varying vec2 v_texCoords;
  
-float blurSize = 1.0/512.0;
+uniform float blurSize;
  
 void main(void)
 {

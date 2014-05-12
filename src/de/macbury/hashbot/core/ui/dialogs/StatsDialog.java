@@ -42,6 +42,10 @@ public class StatsDialog extends UIDialog implements TimerListener {
       }
 
       mrtTable.row(); {
+        mrtTable.add(new RenderTargetPreview(engine.gBuffer.glowAttachment)).expandX().left();
+      }
+
+      mrtTable.row(); {
         mrtTable.add(new RenderTargetPreview(engine.gBuffer.normalsAttachment)).expandX().left();
       }
 

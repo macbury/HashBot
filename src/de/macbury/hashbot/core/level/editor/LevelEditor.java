@@ -1,6 +1,8 @@
 package de.macbury.hashbot.core.level.editor;
 
 import com.artemis.Entity;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
 import de.macbury.hashbot.core.game_objects.system.LevelEditorSystem;
 import de.macbury.hashbot.core.level.Level;
@@ -28,6 +30,18 @@ public class LevelEditor extends Level {
     this.cursor = entities.cursor();
     this.cursor.addToWorld();
 
+    /*Color[] colors = { Color.BLUE, Color.GREEN, Color.ORANGE, Color.PINK, Color.RED };
+
+    for(int i = 0; i < 50; i++) {
+      float x = (float)Math.random() * terrain.getWidth();
+      float z = (float)Math.random() * terrain.getHeight();
+      float y = 0;
+      Vector3 pos = new Vector3(x,y,z);
+
+      int index = (int)Math.round(Math.random() * (colors.length - 1));
+
+      entities.light(pos, colors[index]).addToWorld();
+    }*/
     //entities.unit().addToWorld();
   }
 

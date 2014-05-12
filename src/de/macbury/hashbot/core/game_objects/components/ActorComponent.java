@@ -1,6 +1,7 @@
 package de.macbury.hashbot.core.game_objects.components;
 
 import com.artemis.Component;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Quaternion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.BoundingBox;
@@ -16,9 +17,10 @@ import de.macbury.hashbot.core.partition.QuadTreeObject;
  */
 public class ActorComponent extends Component implements QuadTreeObject, Vector3Listener {
   protected BoundingBox boundingBox;
-
+  public Matrix4 worldTransform;
   public CallBackVector3 position;
   public CallBackVector3 size;
+  public Vector3 origin;
   protected QuadTree parent;
   protected Vector3 temp;
   protected boolean visible = true;
@@ -35,6 +37,8 @@ public class ActorComponent extends Component implements QuadTreeObject, Vector3
     this.boundingBox = new BoundingBox();
     this.rotation    = new Quaternion();
     this.temp        = new Vector3();
+    this.worldTransform = new Matrix4();
+    this.origin      = new Vector3();
   }
 
   @Override
@@ -105,5 +109,13 @@ public class ActorComponent extends Component implements QuadTreeObject, Vector3
       this.parent.remove(this);
     }
     this.parent = null;
+  }
+
+  public void computeMatrix() {
+    origin.set(size.x/2f, size.y/2f, size.z/2f);
+    worldTransform.idt();
+    worldTransform.translate(origin.add(position));
+    worldTransform.scl(size);
+    worldTransform.rotate(rotation);
   }
 }

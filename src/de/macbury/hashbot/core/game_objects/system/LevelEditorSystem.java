@@ -160,6 +160,7 @@ public class LevelEditorSystem extends EntitySystem {
         if (button == 0) {
           LevelEditorSystem.this.listener.levelEditorSystemEndSelectionOrClick(LevelEditorSystem.this);
           getCursorComponent().endSelection();
+          LevelEditorSystem.this.updateCursor(LevelEditorSystem.this.level.getCursor(), true);
         }
       }
 

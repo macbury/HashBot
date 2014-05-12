@@ -89,7 +89,7 @@ public class ShaderManager {
 		if (fb == null || fb.getWidth() != fbWidth || fb.getHeight() != fbHeight) {
 			if (fb != null)
 				fb.dispose();
-		    fb = new FrameBuffer(Format.RGBA8888, fbWidth,
+		    fb = new FrameBuffer(format, fbWidth,
 		    		fbHeight, hasDepth);
 		}
 		frameBuffers.put(fbIdn, fb);

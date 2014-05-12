@@ -1,27 +1,30 @@
 package de.macbury.hashbot.core.graphics.rendering.mrt.steps.normal;
 
-import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import de.macbury.hashbot.core.graphics.rendering.mrt.MRTRenderingEngine;
-import de.macbury.hashbot.core.graphics.rendering.mrt.steps.NormalStep;
+import de.macbury.hashbot.core.graphics.rendering.mrt.steps.NormalSamplingStep;
 import de.macbury.hashbot.core.managers.Shaders;
 
 /**
  * Created by macbury on 09.05.14.
  */
-public class ApplyLightStep extends NormalStep {
+public class ApplyLightStep extends NormalSamplingStep {
   public static final String UNIFORM_AMBIENT_LIGHT_COLOR = "u_ambientLight";
-
+  public static final String UNIFORM_DIR_LIGHT_COLOR = "u_dirLight.color";
+  public static final String UNIFORM_DIR_LIGHT_DIRECTION = "u_dirLight.direction";
   public ApplyLightStep(MRTRenderingEngine engine) {
     super(engine, Shaders.SHADER_APPLY_LIGHT);
   }
 
   @Override
   public void setupUniforms() {
-    ColorAttribute ambientLight = (ColorAttribute) engine.environment.get(ColorAttribute.AmbientLight);
-    sm.setUniformf(UNIFORM_AMBIENT_LIGHT_COLOR, ambientLight.color);
+    sm.setUniformf(UNIFORM_AMBIENT_LIGHT_COLOR, engine.ambientLight.color);
 
+    sm.setUniformf(UNIFORM_DIR_LIGHT_COLOR, engine.sunLight.color);
+    sm.setUniformf(UNIFORM_DIR_LIGHT_DIRECTION, engine.sunLight.direction);
+
+    //uniformLastResult();
     uniformColorTexture();
-    uniformPositionTexture();
+    //uniformPositionTexture();
     uniformNormalTexture();
     uniformCameraPosition();
     uniformProjectionView();

@@ -43,7 +43,7 @@ public class Assets extends AssetManager {
 
   public static final String TEXTURES                 = "textures/";
   public static final String TERRAIN_TILESET          = TEXTURES + "terrain.pack";
-
+  public static final String GLOW_TILESET             = TEXTURES + "glow.atlas";
   public static final String SHADER_FRAGMENT_DEFFERED  = SHADERS_PREFIX + "deffered.fragment.glsl";
   public static final String SHADER_VERTEX_DEFFERED    = SHADERS_PREFIX + "deffered.vertex.glsl";
 
@@ -82,7 +82,7 @@ public class Assets extends AssetManager {
     load(SOUND_HOVER, Sound.class);
 
     load(TERRAIN_TILESET, TextureAtlas.class);
-
+    load(GLOW_TILESET, TextureAtlas.class);
   }
 
   @Override

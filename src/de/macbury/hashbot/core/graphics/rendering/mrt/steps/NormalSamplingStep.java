@@ -8,10 +8,10 @@ import de.macbury.hashbot.core.managers.Shaders;
 /**
  * Created by macbury on 09.05.14.
  */
-public abstract class NormalStep extends Step {
+public abstract class NormalSamplingStep extends Step {
   public static String NORMAL_STEP_FRAME_BUFFER = "NORMAL_STEP_FRAME_BUFFER";
 
-  public NormalStep(MRTRenderingEngine engine, String shaderName) {
+  public NormalSamplingStep(MRTRenderingEngine engine, String shaderName) {
     super(engine, NORMAL_STEP_FRAME_BUFFER, shaderName);
   }
 

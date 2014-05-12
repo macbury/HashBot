@@ -18,6 +18,11 @@ public class Shaders extends ShaderManager {
   public static final String SHADER_DEFFERED_GBUFFER = "SHADER_DEFFERED_GBUFFER";
   public static final String SHADER_APPLY_LIGHT = "SHADER_APPLY_LIGHT";
   public static final String SHADER_APPLY_FOG = "SHADER_APPLY_FOG";
+  public static final String SHADER_ACCUMULATE_LIGHT = "SHADER_ACCUMULATE_LIGHT";
+  public static final String SHADER_APPLY_GLOW = "SHADER_APPLY_GLOW";
+
+  public static final String SHADER_BLUR_HORIZONTAL = "SHADER_BLUR_HORIZONTAL";
+  public static final String SHADER_BLUR_VERTICAL = "SHADER_BLUR_VERTICAL";
 
   private WatchService watchService;
 
@@ -26,8 +31,12 @@ public class Shaders extends ShaderManager {
     ShaderProgram.pedantic = false;
     add(SHADER_EMPTY, "empty.vert", "empty.frag");
     add(SHADER_DEFAULT, "default.vert", "default.frag");
+    add(SHADER_ACCUMULATE_LIGHT, "deffered/accumulate_light.vertex.glsl", "deffered/accumulate_light.fragment.glsl");
     add(SHADER_APPLY_LIGHT, "default.vert", "deffered/apply_light.fragment.glsl");
     add(SHADER_APPLY_FOG, "default.vert", "deffered/apply_fog.fragment.glsl");
+    add(SHADER_APPLY_GLOW, "default.vert", "deffered/apply_glow.fragment.glsl");
+    add(SHADER_BLUR_HORIZONTAL, "default.vert", "deffered/apply_horizontal_blur.fragment.glsl");
+    add(SHADER_BLUR_VERTICAL, "default.vert", "deffered/apply_vertical_blur.fragment.glsl");
     add(SHADER_DEFFERED_GBUFFER, "deffered.vertex.glsl", "deffered.fragment.glsl");
   }
 

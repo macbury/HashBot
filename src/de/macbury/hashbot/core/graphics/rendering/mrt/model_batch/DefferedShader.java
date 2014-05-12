@@ -2,13 +2,16 @@ package de.macbury.hashbot.core.graphics.rendering.mrt.model_batch;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g3d.Attributes;
 import com.badlogic.gdx.graphics.g3d.Renderable;
 import com.badlogic.gdx.graphics.g3d.Shader;
+import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.graphics.g3d.shaders.BaseShader;
 import com.badlogic.gdx.graphics.g3d.shaders.DefaultShader;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import de.macbury.hashbot.core.HashBot;
+import de.macbury.hashbot.core.graphics.material.attributes.GlowAttribute;
 import de.macbury.hashbot.core.managers.Shaders;
 
 /**
@@ -16,7 +19,7 @@ import de.macbury.hashbot.core.managers.Shaders;
  * Gather information about scene in attachments
  */
 public class DefferedShader extends BaseShader {
-
+  private int u_glowTexture;
   private Renderable renderable;
   private int u_projViewTrans;
   private int u_cameraPosition;
@@ -38,7 +41,23 @@ public class DefferedShader extends BaseShader {
 
     //TODO inteligent setters and getters!
     u_diffuseTexture = register(DefaultShader.Inputs.diffuseTexture, DefaultShader.Setters.diffuseTexture);
+    u_glowTexture    = register(glowTexture, glowSetterTexture);
   }
+
+  public final static Uniform glowTexture = new Uniform("u_glowTexture", GlowAttribute.Glow);
+  public final static Setter glowSetterTexture = new Setter() {
+    @Override
+    public boolean isGlobal (BaseShader shader, int inputID) {
+      return false;
+    }
+
+    @Override
+    public void set (BaseShader shader, int inputID, Renderable renderable, Attributes combinedAttributes) {
+      final int unit = shader.context.textureBinder.bind(((GlowAttribute)(combinedAttributes
+              .get(GlowAttribute.Glow))).textureDescription);
+      shader.set(inputID, unit);
+    }
+  };
 
   @Override
   public void init() {

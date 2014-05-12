@@ -13,12 +13,12 @@ import de.macbury.hashbot.core.partition.GameObjectTree;
 /**
  * Created by macbury on 05.05.14.
  */
-public class CullingSystem extends EntitySystem {
+public class ActorSystem extends EntitySystem {
   @Mapper
   ComponentMapper<ActorComponent> am;
   private GameObjectTree tree;
 
-  public CullingSystem(GameObjectTree tree) {
+  public ActorSystem(GameObjectTree tree) {
     super(Aspect.getAspectForAll(ActorComponent.class));
     this.tree = tree;
   }
@@ -32,6 +32,7 @@ public class CullingSystem extends EntitySystem {
       Entity e             = entities.get(i);
       ActorComponent actor = am.get(e);
       if (actor.isModified()) {
+        actor.computeMatrix();
         actor.removeFromParentTree();
         tree.insert(actor);
         actor.setModified(false);

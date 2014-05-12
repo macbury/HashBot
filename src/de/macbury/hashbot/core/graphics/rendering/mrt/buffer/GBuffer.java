@@ -17,6 +17,7 @@ public class GBuffer implements Disposable {
   public final static int ATTACHEMNT_NORMAL   = GL30.GL_COLOR_ATTACHMENT1;
   public final static int ATTACHEMNT_DEPTH    = GL30.GL_DEPTH_ATTACHMENT;
   public final static int ATTACHEMNT_POSITION = GL30.GL_COLOR_ATTACHMENT2;
+  public final static int ATTACHEMNT_GLOW     = GL30.GL_COLOR_ATTACHMENT3;
   private final int width;
   private final int height;
   private IntBuffer handle;
@@ -29,6 +30,7 @@ public class GBuffer implements Disposable {
   public GBufferAttachment normalsAttachment;
   public GBufferAttachment depthAttachment;
   private IntBuffer attachmentsToRender;
+  public GBufferAttachment glowAttachment;
 
   public GBuffer(int width, int height, RenderContext renderContext) {
     this.width          = width;
@@ -47,6 +49,7 @@ public class GBuffer implements Disposable {
     colorAttachment    = new GBufferAttachment(ATTACHEMNT_COLOR, handle, width, height, GL30.GL_RGBA, GL30.GL_RGBA, GL20.GL_UNSIGNED_BYTE);
     positionAttachment = new GBufferAttachment(ATTACHEMNT_POSITION, handle, width, height, GL30.GL_RGBA32F, GL30.GL_RGBA, GL20.GL_FLOAT);
     normalsAttachment  = new GBufferAttachment(ATTACHEMNT_NORMAL, handle, width, height, GL30.GL_RGBA16F, GL30.GL_RGBA, GL20.GL_FLOAT);
+    glowAttachment     = new GBufferAttachment(ATTACHEMNT_GLOW, handle, width, height, GL30.GL_RGBA, GL30.GL_RGBA, GL20.GL_UNSIGNED_BYTE);
     depthAttachment    = new GBufferAttachment(ATTACHEMNT_DEPTH, handle, width, height, GL30.GL_DEPTH_COMPONENT24, GL30.GL_RGBA, GL20.GL_FLOAT);
 
 
@@ -54,14 +57,16 @@ public class GBuffer implements Disposable {
       colorAttachment.bindRenderTarget();
       positionAttachment.bindRenderTarget();
       normalsAttachment.bindRenderTarget();
+      glowAttachment.bindRenderTarget();
       depthAttachment.bindRenderTarget();
 
       colorAttachment.generateAndBindTexture();
       positionAttachment.generateAndBindTexture();
       normalsAttachment.generateAndBindTexture();
+      glowAttachment.generateAndBindTexture();
     }
 
-    attachmentsToRender = BufferUtils.newIntBuffer(3);
+    attachmentsToRender = BufferUtils.newIntBuffer(4);
 
     int result = gl.glCheckFramebufferStatus(GL20.GL_FRAMEBUFFER);
     // final
@@ -86,6 +91,7 @@ public class GBuffer implements Disposable {
 
   @Override
   public void dispose() {
+    glowAttachment.dispose();
     colorAttachment.dispose();
     positionAttachment.dispose();
     normalsAttachment.dispose();
@@ -104,9 +110,10 @@ public class GBuffer implements Disposable {
     attachmentsToRender.put(ATTACHEMNT_COLOR);
     attachmentsToRender.put(ATTACHEMNT_NORMAL);
     attachmentsToRender.put(ATTACHEMNT_POSITION);
+    attachmentsToRender.put(ATTACHEMNT_GLOW);
     attachmentsToRender.flip();
 
-    Gdx.gl30.glDrawBuffers(3, attachmentsToRender);
+    Gdx.gl30.glDrawBuffers(4, attachmentsToRender);
   }
 
   public void end() {

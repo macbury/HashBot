@@ -15,12 +15,12 @@ import de.macbury.hashbot.core.game_objects.components.level.ModelComponent;
 /**
  * Created by macbury on 09.05.14.
  */
-public class ModelRenderingSystem extends EntitySystem {
+public class GeometryRenderingSystem extends EntitySystem {
   private final ModelBatch batch;
   @Mapper ComponentMapper<ActorComponent> am;
   @Mapper ComponentMapper<ModelComponent> mm;
 
-  public ModelRenderingSystem(ModelBatch batch) {
+  public GeometryRenderingSystem(ModelBatch batch) {
     super(Aspect.getAspectForAll(ActorComponent.class, ModelComponent.class));
     this.batch = batch;
   }

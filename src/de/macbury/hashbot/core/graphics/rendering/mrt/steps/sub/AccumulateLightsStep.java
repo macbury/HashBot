@@ -23,7 +23,7 @@ public class AccumulateLightsStep extends SubSamplingStep {
   @Override
   public void setupUniforms() {
     uniformScreenSize();
-    uniformColorTexture();
+    //uniformColorTexture();
     uniformNormalTexture();
     uniformPositionTexture();
     uniformProjectionView();

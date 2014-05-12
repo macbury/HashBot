@@ -1,6 +1,7 @@
 package de.macbury.hashbot.core.graphics.rendering.mrt;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.rendering.mrt.buffer.GBuffer;
@@ -57,7 +58,10 @@ public class MRTRenderingEngine extends BaseRenderingEngine {
   protected void afterRender() {
     gBuffer.end();
 
-    /*accumulateLightsStep.begin(); {
+    applyHorizontalBlur.renderFBO();
+    applyVerticalBlur.renderFBO();
+
+    accumulateLightsStep.begin(); {
       accumulateLightsStep.clear();
       renderContext.setCullFace(GL30.GL_FRONT);
       renderContext.setBlending(true, GL30.GL_ONE, GL30.GL_ONE);
@@ -66,10 +70,7 @@ public class MRTRenderingEngine extends BaseRenderingEngine {
       Gdx.gl.glBlendEquation(GL30.GL_FUNC_ADD);
 
       getListener().lightPass(accumulateLightsStep);
-    } accumulateLightsStep.end();*/
-
-    applyHorizontalBlur.renderFBO();
-    applyVerticalBlur.renderFBO();
+    } accumulateLightsStep.end();
     applyLightStep.renderFBO();
     applyGlowStep.renderFBO();
     applyFogStep.renderFBO();

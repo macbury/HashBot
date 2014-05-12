@@ -9,7 +9,7 @@ import de.macbury.hashbot.core.graphics.rendering.mrt.MRTRenderingEngine;
  */
 public abstract class SubSamplingStep extends Step {
   public static final float SAMPLE_FACTOR = 0.35f;
-  public static String SUB_STEP_FRAME_BUFFER = "BLUR_SUB_STEP_FRAME_BUFFER";
+  public static String SUB_STEP_FRAME_BUFFER = "SUB_STEP_FRAME_BUFFER";
   public SubSamplingStep(MRTRenderingEngine engine, String shaderName) {
     super(engine, SUB_STEP_FRAME_BUFFER, shaderName);
   }

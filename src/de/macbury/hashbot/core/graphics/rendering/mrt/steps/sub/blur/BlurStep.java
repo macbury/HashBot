@@ -10,7 +10,7 @@ import de.macbury.hashbot.core.graphics.rendering.mrt.steps.Step;
  * Created by macbury on 12.05.14.
  */
 public abstract class BlurStep extends Step {
-  public static final float SAMPLE_FACTOR = 0.5f;
+  public static final int RENDER_SIZE = 512;
   private static final String  UNIFORM_BLUR_SIZE = "blurSize";
   public static String BLUR_SUB_STEP_FRAME_BUFFER = "BLUR_SUB_STEP_FRAME_BUFFER";
 
@@ -20,7 +20,7 @@ public abstract class BlurStep extends Step {
 
   @Override
   public void createFBO() {
-    sm.createFB(fboId, Pixmap.Format.RGBA8888, Math.round(Gdx.graphics.getWidth() * SAMPLE_FACTOR), Math.round(Gdx.graphics.getHeight() * SAMPLE_FACTOR), false);
+    sm.createFB(fboId, Pixmap.Format.RGBA8888, RENDER_SIZE, RENDER_SIZE, false);
   }
 
   public void uniformBlurSize() {

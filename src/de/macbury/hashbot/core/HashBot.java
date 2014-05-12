@@ -105,8 +105,6 @@ public class HashBot extends Game {
     config.forceExit = true;
     config.resizable = false;
     config.useGL30 = true;
-    config.foregroundFPS = 100;
-    config.backgroundFPS = 100;
     HashBot.args = new ArgsManager(args);
     return new LwjglApplication(this, config, new ExtLwjgGraphics(config));
   }

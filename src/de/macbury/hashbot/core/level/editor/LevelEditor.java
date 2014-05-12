@@ -30,7 +30,7 @@ public class LevelEditor extends Level {
     this.cursor = entities.cursor();
     this.cursor.addToWorld();
 
-    /*Color[] colors = { Color.BLUE, Color.GREEN, Color.ORANGE, Color.PINK, Color.RED };
+    Color[] colors = { Color.BLUE, Color.GREEN, Color.ORANGE, Color.PINK, Color.RED };
 
     for(int i = 0; i < 50; i++) {
       float x = (float)Math.random() * terrain.getWidth();
@@ -41,7 +41,7 @@ public class LevelEditor extends Level {
       int index = (int)Math.round(Math.random() * (colors.length - 1));
 
       entities.light(pos, colors[index]).addToWorld();
-    }*/
+    }
     //entities.unit().addToWorld();
   }
 

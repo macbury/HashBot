@@ -22,7 +22,7 @@ public class ApplyLightStep extends NormalSamplingStep {
     sm.setUniformf(UNIFORM_DIR_LIGHT_COLOR, engine.sunLight.color);
     sm.setUniformf(UNIFORM_DIR_LIGHT_DIRECTION, engine.sunLight.direction);
 
-    //uniformLastResult();
+    uniformLastResult();
     uniformColorTexture();
     //uniformPositionTexture();
     uniformNormalTexture();

@@ -7,7 +7,6 @@ struct Light {
   float quadraticAttenuation;
 };
 
-uniform sampler2D u_colorTexture;
 uniform sampler2D u_normalTexture;
 uniform sampler2D u_positionTexture;
 uniform mat4 u_projViewTrans;
@@ -29,9 +28,9 @@ vec4 calcPointLight(vec3 position, vec3 normal){
     float NdotL = max(dot(normal,lightDirection),0.0);
 
     if (NdotL > 0.0) {
-        float att = 1.0 / (u_light.constantAttenuation +
-                        u_light.linearAttenuation * distance +
-                        u_light.quadraticAttenuation * distance * distance);
+        float att = 1.0 / (0.2f +
+                        0.3f * distance +
+                        0.1f * distance * distance);
         color += att * (u_light.color * NdotL);
     }
 
@@ -40,7 +39,6 @@ vec4 calcPointLight(vec3 position, vec3 normal){
 
 void main() {
   vec2 textCoords = calcTexCoord();
-  vec4 color      = texture2D(u_colorTexture, textCoords);
   vec4 normal     = texture2D(u_normalTexture, textCoords);
   vec4 position   = texture2D(u_positionTexture, textCoords);
 

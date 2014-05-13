@@ -32,7 +32,7 @@ public class LevelEditor extends Level {
 
     Color[] colors = { Color.BLUE, Color.GREEN, Color.ORANGE, Color.PINK, Color.RED };
 
-    for(int i = 0; i < 50; i++) {
+    /*for(int i = 0; i < 1; i++) {
       float x = (float)Math.random() * terrain.getWidth();
       float z = (float)Math.random() * terrain.getHeight();
       float y = 0;
@@ -41,8 +41,15 @@ public class LevelEditor extends Level {
       int index = (int)Math.round(Math.random() * (colors.length - 1));
 
       entities.light(pos, colors[index]).addToWorld();
-    }
-    //entities.unit().addToWorld();
+    }*/
+    /*
+    float x = terrain.getWidth() / 2;
+    float z = terrain.getHeight() / 2;
+    float y = 1;
+    Vector3 pos = new Vector3(x,y,z);
+    entities.light(pos, Color.WHITE).addToWorld();
+    //entities.unit().addToWorld();*/
+    //fogOfWar.setEnabled(false);
   }
 
   public void setUILayout(EditorTable UILayout) {

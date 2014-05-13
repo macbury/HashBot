@@ -13,6 +13,7 @@ import de.macbury.hashbot.core.graphics.rendering.mrt.steps.normal.ApplyFogStep;
 import de.macbury.hashbot.core.graphics.rendering.mrt.steps.normal.ApplyLightStep;
 import de.macbury.hashbot.core.graphics.rendering.mrt.steps.sub.blur.GlowHorizontalBlurStep;
 import de.macbury.hashbot.core.graphics.rendering.mrt.steps.sub.blur.GlowVerticalBlurStep;
+import de.macbury.hashbot.core.level.Level;
 import de.macbury.hashbot.core.managers.Shaders;
 
 /**
@@ -29,8 +30,8 @@ public class MRTRenderingEngine extends BaseRenderingEngine {
   public GBuffer gBuffer;
   public Shaders sm;
 
-  public MRTRenderingEngine(PerspectiveCamera camera) {
-    super(camera);
+  public MRTRenderingEngine(Level level) {
+    super(level);
     this.gBuffer = new GBuffer(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), renderContext);
 
     this.sm     = HashBot.shaders;
@@ -58,9 +59,11 @@ public class MRTRenderingEngine extends BaseRenderingEngine {
   protected void afterRender() {
     gBuffer.end();
 
+    //sunLight.direction.set(mainCamera.direction);
+
     applyHorizontalBlur.renderFBO();
     applyVerticalBlur.renderFBO();
-
+/*
     accumulateLightsStep.begin(); {
       accumulateLightsStep.clear();
       renderContext.setCullFace(GL30.GL_FRONT);
@@ -70,12 +73,12 @@ public class MRTRenderingEngine extends BaseRenderingEngine {
       Gdx.gl.glBlendEquation(GL30.GL_FUNC_ADD);
 
       getListener().lightPass(accumulateLightsStep);
-    } accumulateLightsStep.end();
+    } accumulateLightsStep.end();*/
     applyLightStep.renderFBO();
     applyGlowStep.renderFBO();
     applyFogStep.renderFBO();
 
-    applyFogStep.display();
+    applyLightStep.display();
   }
 
 

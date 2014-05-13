@@ -13,11 +13,13 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
 import de.macbury.hashbot.core.graphics.rendering.simple.MultiModeModelBatch;
+import de.macbury.hashbot.core.level.Level;
 
 /**
  * Created by macbury on 07.05.14.
  */
 public abstract class BaseRenderingEngine implements Disposable {
+  public Level level;
   public DirectionalLight sunLight;
   public ColorAttribute fog;
   public ColorAttribute ambientLight;
@@ -27,12 +29,12 @@ public abstract class BaseRenderingEngine implements Disposable {
   public MultiModeModelBatch models;
   private RenderingEngineListener listener;
 
-  public BaseRenderingEngine(PerspectiveCamera camera) {
+  public BaseRenderingEngine(Level level) {
     renderContext     = new RenderContext(new DefaultTextureBinder(DefaultTextureBinder.WEIGHTED));
     models            = buildGeometryBatch();
     shapes            = new ShapeRenderer();
-    this.mainCamera   = camera;
-
+    this.mainCamera   = level.camera;
+    this.level        = level;
     ambientLight      = new ColorAttribute(ColorAttribute.AmbientLight, 0.1f, 0.1f, 0.1f, 1f);
     fog               = new ColorAttribute(ColorAttribute.Fog, 0f, 0f, 0f, 1f);
     sunLight          = new DirectionalLight().set(new Color(.8f,.8f, .8f, 0.1f), new Vector3(1,-1,1));

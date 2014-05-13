@@ -10,10 +10,7 @@ import com.badlogic.gdx.utils.Disposable;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.debug.DebugQuadTree;
 import de.macbury.hashbot.core.debug.FrustrumRenderer;
-import de.macbury.hashbot.core.game_objects.system.ActorSystem;
-import de.macbury.hashbot.core.game_objects.system.GeometryRenderingSystem;
-import de.macbury.hashbot.core.game_objects.system.LightRenderingSystem;
-import de.macbury.hashbot.core.game_objects.system.ShapeRenderingSystem;
+import de.macbury.hashbot.core.game_objects.system.*;
 import de.macbury.hashbot.core.graphics.camera.RTSCameraController;
 import de.macbury.hashbot.core.graphics.camera.RTSCameraListener;
 import de.macbury.hashbot.core.graphics.models.RenderDebugStats;
@@ -22,6 +19,7 @@ import de.macbury.hashbot.core.graphics.rendering.mrt.MRTRenderingEngine;
 import de.macbury.hashbot.core.graphics.rendering.RenderingEngineListener;
 import de.macbury.hashbot.core.graphics.rendering.mrt.steps.sub.AccumulateLightsStep;
 import de.macbury.hashbot.core.graphics.rendering.simple.SimpleRenderingEngine;
+import de.macbury.hashbot.core.level.map.FogManager;
 import de.macbury.hashbot.core.level.map.Terrain;
 import de.macbury.hashbot.core.partition.GameObjectTree;
 
@@ -36,12 +34,14 @@ public abstract class Level implements Disposable, RTSCameraListener, RenderingE
   protected World world;
   protected FrustrumRenderer frustrumDebugger;
   protected GameObjectTree tree;
-  protected PerspectiveCamera camera;
+  public PerspectiveCamera camera;
   protected RTSCameraController cameraController;
   protected Terrain terrain;
   protected EntityFactory entities;
   protected GeometryRenderingSystem geometryRenderingSystem;
   protected LightRenderingSystem lightRenderingSystem;
+  public FogManager fogOfWar;
+  public FogSystem fogSystem;
 
   public Level() {
     this.camera           = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -55,13 +55,13 @@ public abstract class Level implements Disposable, RTSCameraListener, RenderingE
     cameraController.setCamera(camera);
     cameraController.setListener(this);
 
-    frustrumDebugger  = new FrustrumRenderer(camera);
+    frustrumDebugger     = new FrustrumRenderer(camera);
     world                = new World();
 
     if (HashBot.config.isGoodQuality()) {
-      this.renderingEngine = new MRTRenderingEngine(camera);
+      this.renderingEngine = new MRTRenderingEngine(this);
     } else {
-      this.renderingEngine = new SimpleRenderingEngine(camera);
+      this.renderingEngine = new SimpleRenderingEngine(this);
     }
 
     renderingEngine.setListener(this);
@@ -75,26 +75,29 @@ public abstract class Level implements Disposable, RTSCameraListener, RenderingE
     this.tree.setFrustum(camera.frustum);
     cameraController.setCenter(terrain.getCenter());
 
+    this.fogOfWar = new FogManager(terrain);
+
     shapeRenderingSystem    = new ShapeRenderingSystem(renderingEngine.shapes);
-    actorSystem = new ActorSystem(tree);
+    actorSystem             = new ActorSystem(tree);
     geometryRenderingSystem = new GeometryRenderingSystem(renderingEngine.models);
     lightRenderingSystem    = new LightRenderingSystem();
+    fogSystem               = new FogSystem(fogOfWar, terrain);
     world.setSystem(actorSystem, true);
     world.setSystem(geometryRenderingSystem, true);
     world.setSystem(shapeRenderingSystem, true);
     world.setSystem(lightRenderingSystem, true);
+    world.setSystem(fogSystem, true);
     world.initialize();
-
   }
 
   @Override
   public void dispose() {
     renderingEngine.dispose();
+    fogOfWar.dispose();
   }
 
   public void draw() {
     renderingEngine.render();
-
   }
 
   @Override
@@ -128,6 +131,7 @@ public abstract class Level implements Disposable, RTSCameraListener, RenderingE
       tree.setFrustum(camera.frustum);
     }
     actorSystem.process();
+    fogSystem.process();
     this.world.setDelta(delta);
     this.world.process();
   }

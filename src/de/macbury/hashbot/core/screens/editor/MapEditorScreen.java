@@ -41,7 +41,7 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
     this.stage = new UIStage();
 
     try {
-      this.level = LevelFactory.newLevel(50, 50);
+      this.level = LevelFactory.newLevel(128, 64);
     } catch (LevelInvalidDimensionException e) {
       e.printStackTrace();
     }
@@ -70,7 +70,7 @@ public class MapEditorScreen extends BaseScreen implements EditorTableListener, 
     level.getLevelEditorSystem().setListener(this);
 
     //level.getCameraController().setMaxZoom(RTSCameraController.MAX_ZOOM * 3);
-    statsDialog.toggleVisibility(stage);
+    //statsDialog.toggleVisibility(stage);
   }
 
   @Override

@@ -16,14 +16,14 @@ struct DirectionalLight {
 uniform DirectionalLight u_dirLight;
 
 void main() {
-  vec4 color    = texture2D(u_colorTexture, v_texCoords);
-  vec4 normal   = texture2D(u_normalTexture, v_texCoords);
-  vec4 lightMap = texture2D(u_texture, v_texCoords);
+  vec4 color            = texture2D(u_colorTexture, v_texCoords);
+  vec4 normal           = texture2D(u_normalTexture, v_texCoords);
+  vec4 lightMap         = texture2D(u_texture, v_texCoords);
   vec3 lightDir         = -u_dirLight.direction;
   float NdotL           = clamp(dot(normal.xyz, lightDir), 0.0, 1.0);
   vec4 lightDiffuse     = vec4(u_dirLight.color.rgb * NdotL, 0);
 
-  vec4 final            = v_color * color * (u_ambientLight + lightDiffuse + lightMap);
+  vec4 final            = v_color * color * (u_ambientLight + lightDiffuse);
 
   gl_FragColor          = final;
 }

@@ -1,5 +1,7 @@
 package de.macbury.hashbot.core.time;
 
+import com.badlogic.gdx.Gdx;
+
 /**
  * Created by macbury on 02.05.14.
  */
@@ -10,4 +12,8 @@ public abstract class BaseTimer {
   }
 
   public abstract void update(float delta);
+
+  public void update() {
+    this.update(Gdx.graphics.getDeltaTime());
+  }
 }

@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.material.attributes.GlowAttribute;
+import de.macbury.hashbot.core.graphics.material.attributes.NormalAttribute;
 import de.macbury.hashbot.core.managers.Shaders;
 
 /**
@@ -19,6 +20,7 @@ import de.macbury.hashbot.core.managers.Shaders;
  * Gather information about scene in attachments
  */
 public class DefferedShader extends BaseShader {
+  private int u_normalTexture;
   private int u_glowTexture;
   private Renderable renderable;
   private int u_projViewTrans;
@@ -42,6 +44,7 @@ public class DefferedShader extends BaseShader {
     //TODO inteligent setters and getters!
     u_diffuseTexture = register(DefaultShader.Inputs.diffuseTexture, DefaultShader.Setters.diffuseTexture);
     u_glowTexture    = register(glowTexture, glowSetterTexture);
+   // u_normalTexture  = register(normalTexture, normalSetterTexture);
   }
 
   public final static Uniform glowTexture = new Uniform("u_glowTexture", GlowAttribute.Glow);
@@ -55,6 +58,21 @@ public class DefferedShader extends BaseShader {
     public void set (BaseShader shader, int inputID, Renderable renderable, Attributes combinedAttributes) {
       final int unit = shader.context.textureBinder.bind(((GlowAttribute)(combinedAttributes
               .get(GlowAttribute.Glow))).textureDescription);
+      shader.set(inputID, unit);
+    }
+  };
+
+  public final static Uniform normalTexture = new Uniform("u_normalTexture", NormalAttribute.Normal);
+  public final static Setter normalSetterTexture = new Setter() {
+    @Override
+    public boolean isGlobal (BaseShader shader, int inputID) {
+      return false;
+    }
+
+    @Override
+    public void set (BaseShader shader, int inputID, Renderable renderable, Attributes combinedAttributes) {
+      final int unit = shader.context.textureBinder.bind(((NormalAttribute)(combinedAttributes
+              .get(NormalAttribute.Normal))).textureDescription);
       shader.set(inputID, unit);
     }
   };

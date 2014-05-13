@@ -13,6 +13,7 @@ public class LevelFactory {
     LevelEditor level = new LevelEditor();
     Terrain terrain = new Terrain(cols, rows);
     terrain.bootstrap();
+    terrain.outline();
     level.setTerrain(terrain);
     return level;
   }

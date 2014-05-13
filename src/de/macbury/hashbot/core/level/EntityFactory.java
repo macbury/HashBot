@@ -7,10 +7,7 @@ import com.badlogic.gdx.math.Vector3;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.game_objects.components.ActorComponent;
 import de.macbury.hashbot.core.game_objects.components.debug.LineBoxComponent;
-import de.macbury.hashbot.core.game_objects.components.level.CursorComponent;
-import de.macbury.hashbot.core.game_objects.components.level.LevelEditorComponent;
-import de.macbury.hashbot.core.game_objects.components.level.LightComponent;
-import de.macbury.hashbot.core.game_objects.components.level.ModelComponent;
+import de.macbury.hashbot.core.game_objects.components.level.*;
 import de.macbury.hashbot.core.partition.GameObjectTree;
 import org.jruby.ir.operands.Hash;
 
@@ -36,6 +33,9 @@ public class EntityFactory {
     e.addComponent(new LineBoxComponent());
     e.addComponent(new LevelEditorComponent());
     e.addComponent(new CursorComponent());
+    FogComponent fog = new FogComponent();
+    fog.fieldOfView = 4;
+    e.addComponent(fog);
     return e;
   }
 
@@ -53,8 +53,7 @@ public class EntityFactory {
     Entity e              = world.createEntity();
     ActorComponent actor  = new ActorComponent();
     actor.position.set(position);
-    float size = (float) Math.random() * 10;
-    actor.size.set(size,size,size);
+    actor.size.set(3,3,3);
     e.addComponent(actor);
 
     e.addComponent(new LightComponent(color, 10));

@@ -112,7 +112,7 @@ public class ActorComponent extends Component implements QuadTreeObject, Vector3
   }
 
   public void computeMatrix() {
-    origin.set(size.x/2f, size.y/2f, size.z/2f);
+    //origin.set(size.x/2f, size.y/2f, size.z/2f);
     worldTransform.idt();
     worldTransform.translate(origin.add(position));
     worldTransform.scl(size);

@@ -19,7 +19,7 @@ import de.macbury.hashbot.core.partition.QuadTreeObject;
  * Created by macbury on 01.05.14.
  */
 public class Chunk extends Renderable implements Disposable, QuadTreeObject {
-  public final static int SIZE = 5;
+  public final static int SIZE = 16;
   public final static int CHUNK_WIDTH = SIZE * Block.BLOCK_SIZE; //size in meters
 
   private static final int CHUNK_HEIGHT = (int)Block.BLOCK_HEIGHT;
@@ -69,31 +69,49 @@ public class Chunk extends Renderable implements Disposable, QuadTreeObject {
 
           block.setChunk(this);
           maxHeight = Math.max(maxHeight, block.getHeight());
-
+          
           builder.topFace(x * Block.BLOCK_SIZE, block.getHeight() * Block.BLOCK_HEIGHT, y * Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, uv.getU(),uv.getV(),uv.getU2(),uv.getU2());
 
+          int height = 0;
+
           if (topBlock != null) {
-            for (int th = topBlock.getHeight(); th < block.getHeight(); th++) {
-              builder.frontFace(x * Block.BLOCK_SIZE, th * block.BLOCK_HEIGHT, y * Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE,uv.getU(),uv.getV(),uv.getU2(),uv.getU2());
-            }
+            height = topBlock.getHeight();
           }
 
+          for (int th = height; th < block.getHeight(); th++) {
+            builder.frontFace(x * Block.BLOCK_SIZE, th * block.BLOCK_HEIGHT, y * Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE,uv.getU(),uv.getV(),uv.getU2(),uv.getU2());
+          }
+
+          //builder.frontSlopeFace(x * Block.BLOCK_SIZE, 1, y * Block.BLOCK_SIZE, Block.BLOCK_SIZE, height, Block.BLOCK_SIZE,uv.getU(),uv.getV(),uv.getU2(),uv.getU2());
+
           if (bottomBlock != null) {
-            for (int th = bottomBlock.getHeight(); th < block.getHeight(); th++) {
-              builder.backFace(x * Block.BLOCK_SIZE, th * block.BLOCK_HEIGHT, y * Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, uv.getU(), uv.getV(), uv.getU2(), uv.getU2());
-            }
+            height = bottomBlock.getHeight();
+          } else {
+            height = 0;
+          }
+
+          for (int th = height; th < block.getHeight(); th++) {
+            builder.backFace(x * Block.BLOCK_SIZE, th * block.BLOCK_HEIGHT, y * Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, uv.getU(), uv.getV(), uv.getU2(), uv.getU2());
           }
 
           if (leftBlock != null) {
-            for (int th = leftBlock.getHeight(); th < block.getHeight(); th++) {
-              builder.leftFace(x * Block.BLOCK_SIZE, th * block.BLOCK_HEIGHT, y * Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, uv.getU(), uv.getV(), uv.getU2(), uv.getU2());
-            }
+            height = leftBlock.getHeight();
+          } else {
+            height = 0;
+          }
+
+          for (int th = height; th < block.getHeight(); th++) {
+            builder.leftFace(x * Block.BLOCK_SIZE, th * block.BLOCK_HEIGHT, y * Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, uv.getU(), uv.getV(), uv.getU2(), uv.getU2());
           }
 
           if (rightBlock != null) {
-            for (int th = rightBlock.getHeight(); th < block.getHeight(); th++) {
-              builder.rightFace(x * Block.BLOCK_SIZE, th * block.BLOCK_HEIGHT, y * Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, uv.getU(), uv.getV(), uv.getU2(), uv.getU2());
-            }
+            height = rightBlock.getHeight();
+          } else {
+            height = 0;
+          }
+
+          for (int th = height; th < block.getHeight(); th++) {
+            builder.rightFace(x * Block.BLOCK_SIZE, th * block.BLOCK_HEIGHT, y * Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, Block.BLOCK_SIZE, uv.getU(), uv.getV(), uv.getU2(), uv.getU2());
           }
         }
       }

@@ -15,6 +15,8 @@ uniform vec4 u_cameraPosition;
 uniform vec2 u_screenSize;
 varying vec4 v_position;
 
+uniform sampler2D u_colorTexture; //TODO REMOVE
+
 vec2 calcTexCoord() {
    return gl_FragCoord.xy / u_screenSize;
 }
@@ -41,7 +43,7 @@ void main() {
   vec2 textCoords = calcTexCoord();
   vec4 normal     = texture2D(u_normalTexture, textCoords);
   vec4 position   = texture2D(u_positionTexture, textCoords);
-
-  gl_FragColor    = calcPointLight(position.xyz, normal.xyz);
+  vec4 color      = texture2D(u_colorTexture, textCoords);
+  gl_FragColor    = color + calcPointLight(position.xyz, normal.xyz);
 
 }

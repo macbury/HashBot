@@ -12,7 +12,7 @@ import de.macbury.hashbot.core.managers.Shaders;
 /**
  * Created by macbury on 09.05.14.
  */
-public class AccumulateLightsStep extends SubSamplingStep {
+public class AccumulateLightsStep extends NormalSamplingStep {
   public static final String UNIFORM_LIGHT_COLOR    = "u_light.color";
   public static final String UNIFORM_LIGHT_POSITION = "u_light.position";
   public static final String UNIFORM_LIGHT_RADIUS   = "u_light.radius";
@@ -23,7 +23,7 @@ public class AccumulateLightsStep extends SubSamplingStep {
   @Override
   public void setupUniforms() {
     uniformScreenSize();
-    //uniformColorTexture();
+    //uniformColorTexture();//TODO REMOVE!
     uniformNormalTexture();
     uniformPositionTexture();
     uniformProjectionView();

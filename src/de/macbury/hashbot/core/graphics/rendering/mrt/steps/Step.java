@@ -54,6 +54,7 @@ public abstract class Step {
     renderContext.begin();
     sm.begin(shaderName);
     setupUniforms();
+    //clear();
   }
 
   public void renderFBO() {

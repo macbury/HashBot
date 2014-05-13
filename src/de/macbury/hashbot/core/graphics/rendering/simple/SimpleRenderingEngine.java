@@ -3,6 +3,7 @@ package de.macbury.hashbot.core.graphics.rendering.simple;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import de.macbury.hashbot.core.graphics.rendering.BaseRenderingEngine;
+import de.macbury.hashbot.core.level.Level;
 
 /**
  * Created by macbury on 07.05.14.
@@ -10,7 +11,7 @@ import de.macbury.hashbot.core.graphics.rendering.BaseRenderingEngine;
 public class SimpleRenderingEngine extends BaseRenderingEngine {
   private static final String TAG = "SimpleRenderingEngine";
 
-  public SimpleRenderingEngine(PerspectiveCamera camera) {
+  public SimpleRenderingEngine(Level camera) {
     super(camera);
     Gdx.app.log(TAG, "Created");
   }

@@ -11,7 +11,7 @@ public abstract class Block {
   public static final int BLOCK_SIZE = 1;
   public static final float BLOCK_HEIGHT = 1;
   public static final int BLOCK_MIN_HEIGHT = 1;
-
+  public static final int BLOCK_MAX_HEIGHT = 10;
   public Slope getSlope() {
     return slope;
   }
@@ -28,6 +28,10 @@ public abstract class Block {
     Right
   }
 
+  public static enum State {
+    Active, Unvisited, Visited
+  }
+
   private final int x;
   private final int y;
   private int height = BLOCK_MIN_HEIGHT;
@@ -35,6 +39,8 @@ public abstract class Block {
   private Vector3 vec3;
   private Chunk chunk;
   private Slope slope;
+  private State state = State.Unvisited;
+
 
   public Block(int x, int y) {
     this.x = x;
@@ -65,11 +71,24 @@ public abstract class Block {
   }
 
   public void setHeight(int height) {
-    this.height = height;
+    if (height >= BLOCK_MIN_HEIGHT && height <= BLOCK_MAX_HEIGHT)
+      this.height = height;
   }
 
   public void updateChunk() {
     if (chunk != null)
       chunk.rebuild();
+  }
+
+  public boolean isSlope() {
+    return slope != Slope.None;
+  }
+
+  public void markAsActive() {
+    state = State.Active;
+  }
+
+  public void markAsVisited() {
+    state = State.Visited;
   }
 }

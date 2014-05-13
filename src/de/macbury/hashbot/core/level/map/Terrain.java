@@ -32,6 +32,8 @@ import java.util.ArrayList;
  * Created by macbury on 01.05.14.
  */
 public class Terrain implements Disposable {
+  private static final int OUTLINE_HEIGHT = 10;
+  private TextureAtlas normalMap;
   private TextureAtlas glowMap;
   private Material material;
   private Block[][] tiles;
@@ -47,6 +49,7 @@ public class Terrain implements Disposable {
     builder = new MeshAssembler();
     tileset = HashBot.assets.get(Assets.TERRAIN_TILESET);
     glowMap = HashBot.assets.get(Assets.GLOW_TILESET);
+    normalMap = HashBot.assets.get(Assets.NORMAL_TILESET);
     this.width = width;
     this.height = height;
 
@@ -58,7 +61,7 @@ public class Terrain implements Disposable {
     }
 
     this.boundingBox = new BoundingBox(new Vector3(0,0,0), new Vector3(width,Block.BLOCK_HEIGHT,height));
-    this.material    = new TerrainMaterial(tileset, glowMap);
+    this.material    = new TerrainMaterial(tileset, glowMap, normalMap);
   }
 
   public void bootstrap() {
@@ -79,8 +82,6 @@ public class Terrain implements Disposable {
         chunks.add(new Chunk(col, row, this));
       }
     }
-
-    rebuild();
   }
 
   public void rebuild() {
@@ -155,5 +156,17 @@ public class Terrain implements Disposable {
 
   public int getHeight() {
     return height;
+  }
+
+  public void outline() {
+    for(int x = 0; x < width; x++) {
+      getBlock(x, 0).setHeight(OUTLINE_HEIGHT);
+      getBlock(x, height-1).setHeight(OUTLINE_HEIGHT);
+    }
+
+    for(int y = 0; y < height;y++) {
+      getBlock(0, y).setHeight(OUTLINE_HEIGHT);
+      getBlock(width-1, y).setHeight(OUTLINE_HEIGHT);
+    }
   }
 }

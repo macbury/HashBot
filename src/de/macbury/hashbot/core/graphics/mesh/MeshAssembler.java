@@ -366,4 +366,23 @@ public class MeshAssembler implements Disposable {
     uv(u,v2);
     normal(1,0,0);
   }
+
+  public void frontSlopeFace(float x, float y, float z, float width, float height, float depth, float u, float v, float u2, float v2) {
+    int n1 = this.vertex(x, y,  z+depth); // bottom left
+    uv(u, v2);
+    normal(0,0,1);
+    int n2 = this.vertex(x+width, y,  z+depth); //bottom right
+    uv(u2, v2);
+    normal(0,0,1);
+
+    int n3 = this.vertex(x+width,  y+height,  z); //top right
+    uv(u2,v);
+    normal(0,0,1);
+    indices(n1, n2, n3);
+
+    n2 = this.vertex(x,  y+height,  z); //top left
+    normal(0, 0, 1);
+    indices(n1, n3, n2);
+    uv(u, v);
+  }
 }

@@ -16,6 +16,7 @@ import de.macbury.hashbot.core.time.TimerListener;
  */
 public class FogManager implements Disposable, TimerListener {
   private static final int SYNC_TERRAIN_EVERY_FRAME = 4;
+  private static final float HEIGHT_FACTOR          = 0.3f;
   private FrameTickTimer terrainSyncTimer;
   private Terrain terrain;
   private Pixmap visitedPixmap;
@@ -75,7 +76,8 @@ public class FogManager implements Disposable, TimerListener {
       terrainSyncTimer.update();
   }
 
-  public void applyFov(int fov, int x, int y) {
+  public void applyFov(float height, int fov, int x, int y) {
+    fov = Math.round(fov * Math.max(height * HEIGHT_FACTOR, 1));
     mainPixmap.setColor(ACTIVE_TILE);
     mainPixmap.fillCircle(x, y, fov);
     visitedPixmap.setColor(VISITED_TILE);

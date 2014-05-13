@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.Pool;
 import de.macbury.hashbot.core.HashBot;
 import de.macbury.hashbot.core.graphics.material.TerrainMaterial;
 import de.macbury.hashbot.core.graphics.mesh.MeshAssembler;
+import de.macbury.hashbot.core.graphics.utils.CallBackVector3;
 import de.macbury.hashbot.core.level.map.blocks.BaseBlock;
 import de.macbury.hashbot.core.level.map.blocks.Block;
 import de.macbury.hashbot.core.level.map.exceptions.LevelInvalidDimensionException;
@@ -168,5 +169,13 @@ public class Terrain implements Disposable {
       getBlock(0, y).setHeight(OUTLINE_HEIGHT);
       getBlock(width-1, y).setHeight(OUTLINE_HEIGHT);
     }
+  }
+
+  public Block getBlock(Vector3 position) {
+    return getBlock(position.x, position.z);
+  }
+
+  private Block getBlock(float x, float z) {
+    return getBlock((int)x, (int)z);
   }
 }

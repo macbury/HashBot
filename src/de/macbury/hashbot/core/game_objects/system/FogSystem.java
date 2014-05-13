@@ -12,11 +12,13 @@ import de.macbury.hashbot.core.game_objects.components.level.LightComponent;
 import de.macbury.hashbot.core.game_objects.components.level.ModelComponent;
 import de.macbury.hashbot.core.level.map.FogManager;
 import de.macbury.hashbot.core.level.map.Terrain;
+import de.macbury.hashbot.core.level.map.blocks.Block;
 
 /**
  * Created by macbury on 13.05.14.
  */
 public class FogSystem extends EntitySystem {
+  private Terrain terrain;
   @Mapper
   ComponentMapper<ActorComponent> am;
   @Mapper
@@ -25,7 +27,8 @@ public class FogSystem extends EntitySystem {
 
   public FogSystem(FogManager fog, Terrain terrain) {
     super(Aspect.getAspectForAll(ActorComponent.class, FogComponent.class));
-    this.fog = fog;
+    this.fog      = fog;
+    this.terrain  = terrain;
   }
 
   @Override
@@ -37,7 +40,9 @@ public class FogSystem extends EntitySystem {
         ActorComponent actorComponent = am.get(e);
         FogComponent   fogComponent   = fm.get(e);
 
-        fog.applyFov(fogComponent.fieldOfView, Math.round(actorComponent.position.x), Math.round(actorComponent.position.z));
+        Block block                   = terrain.getBlock(actorComponent.position);
+
+        fog.applyFov(block.getHeight(), fogComponent.fieldOfView, Math.round(actorComponent.position.x), Math.round(actorComponent.position.z));
       }
     } fog.end();
   }
